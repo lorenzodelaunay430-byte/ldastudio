@@ -73,7 +73,7 @@ tabs.forEach(btn => {
   });
 });
 
-// Counters animation (reliable)
+// Counters animation (reliable even when opening with #hash)
 function animateCount(el, to, ms = 900) {
   const start = performance.now();
   const from = 0;
@@ -84,11 +84,21 @@ function animateCount(el, to, ms = 900) {
     el.textContent = String(Math.round(from + (to - from) * eased));
     if (p < 1) requestAnimationFrame(tick);
   }
-
   requestAnimationFrame(tick);
 }
 
 const counters = document.querySelectorAll("[data-count]");
+function triggerCountersIfVisible() {
+  counters.forEach(el => {
+    if (el.dataset.done) return;
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) {
+      el.dataset.done = "1";
+      animateCount(el, Number(el.dataset.count || "0"), 900);
+    }
+  });
+}
+
 const counterIO = new IntersectionObserver((entries, obs) => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
@@ -101,17 +111,8 @@ const counterIO = new IntersectionObserver((entries, obs) => {
 }, { threshold: 0.2 });
 
 counters.forEach(c => counterIO.observe(c));
-
-// Fallback if already visible on load
-window.addEventListener("load", () => {
-  counters.forEach(el => {
-    const r = el.getBoundingClientRect();
-    if (r.top < window.innerHeight && r.bottom > 0 && !el.dataset.done) {
-      el.dataset.done = "1";
-      animateCount(el, Number(el.dataset.count || "0"), 900);
-    }
-  });
-});
+window.addEventListener("load", triggerCountersIfVisible);
+window.addEventListener("hashchange", () => setTimeout(triggerCountersIfVisible, 50));
 
 // Form demo
 const form = document.getElementById("leadForm");
