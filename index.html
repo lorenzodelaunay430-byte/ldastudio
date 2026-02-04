@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nova Studio — Sites modernes & performants</title>
+  <meta name="description" content="Création de sites web modernes, rapides et optimisés. Design premium, animations, SEO, maintenance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Ambient background -->
+  <div class="bg">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="grid"></div>
+  </div>
+
+  <!-- Top bar -->
+  <header class="top">
+    <div class="wrap top__inner">
+      <a class="brand" href="#">
+        <span class="brand__dot"></span>
+        <span class="brand__name">Nova Studio</span>
+      </a>
+
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#services">Services</a>
+        <a href="#projets">Projets</a>
+        <a href="#process">Process</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#contact" class="btn btn--small">Devis</a>
+      </nav>
+
+      <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobileNav" hidden>
+      <a href="#services">Services</a>
+      <a href="#projets">Projets</a>
+      <a href="#process">Process</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#contact" class="btn">Devis</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero__left">
+        <div class="pill reveal">
+          <span class="pill__spark"></span>
+          Sites premium • rapides • modernes
+        </div>
+
+        <h1 class="reveal">
+          Un site <span class="grad">ultra moderne</span><br />
+          qui donne envie d’acheter.
+        </h1>
+
+        <p class="lead reveal">
+          Design arrondi, animations fluides, sections pro, SEO de base et performance.
+          Parfait pour artisans, boutiques, créateurs, services.
+        </p>
+
+        <div class="cta reveal">
+          <a class="btn" href="#contact">Demander un devis</a>
+          <a class="btn btn--ghost" href="#projets">Voir des exemples</a>
+        </div>
+
+        <div class="stats reveal">
+          <div class="stat">
+            <div class="stat__n">+30%</div>
+            <div class="stat__t">de conversion (objectif)</div>
+          </div>
+          <div class="stat">
+            <div class="stat__n">&lt;1.5s</div>
+            <div class="stat__t">temps de chargement</div>
+          </div>
+          <div class="stat">
+            <div class="stat__n">100%</div>
+            <div class="stat__t">responsive</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__right reveal">
+        <div class="card card--glass tilt" data-tilt>
+          <div class="card__top">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="chip">Live Preview</div>
+          </div>
+
+          <div class="mock">
+            <div class="mock__bar"></div>
+            <div class="mock__hero"></div>
+            <div class="mock__row">
+              <div class="mock__tile"></div>
+              <div class="mock__tile"></div>
+            </div>
+            <div class="mock__row">
+              <div class="mock__tile wide"></div>
+            </div>
+          </div>
+
+          <div class="card__bottom">
+            <div class="badge">SEO</div>
+            <div class="badge">Performance</div>
+            <div class="badge">Animations</div>
+            <div class="badge">Mobile</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logos / trust -->
+    <section class="trust reveal">
+      <div class="trust__line"></div>
+      <div class="trust__items">
+        <span>Artisans</span><span>Coachs</span><span>Restaurants</span><span>Boutiques</span><span>Créateurs</span>
+      </div>
+      <div class="trust__line"></div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section">
+      <div class="section__head reveal">
+        <h2>Ce que tu vends</h2>
+        <p>Un site complet, propre, moderne. Tu peux livrer vite et bien.</p>
+      </div>
+
+      <div class="grid3">
+        <article class="tile reveal">
+          <div class="icon">⚡</div>
+          <h3>Vitesse & Perf</h3>
+          <p>Optimisé, léger, responsive. Expérience fluide sur mobile.</p>
+          <ul>
+            <li>Lazy animations</li>
+            <li>Sections modulaires</li>
+            <li>Accessibilité</li>
+          </ul>
+        </article>
+
+        <article class="tile reveal">
+          <div class="icon">✨</div>
+          <h3>Design Premium</h3>
+          <p>Bords arrondis, effet glass, typographie moderne.</p>
+          <ul>
+            <li>Cartes “glass”</li>
+            <li>Gradients doux</li>
+            <li>Micro-interactions</li>
+          </ul>
+        </article>
+
+        <article class="tile reveal">
+          <div class="icon">📈</div>
+          <h3>SEO de base</h3>
+          <p>Structure claire + meta + bonnes pratiques.</p>
+          <ul>
+            <li>Balises meta</li>
+            <li>Hn propres</li>
+            <li>Sections orientées vente</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projets" class="section">
+      <div class="section__head reveal">
+        <h2>Exemples de sections</h2>
+        <p>Des blocs réutilisables pour n’importe quel client.</p>
+      </div>
+
+      <div class="grid2">
+        <article class="work reveal">
+          <div class="work__img"></div>
+          <div class="work__body">
+            <h3>Landing “Artisan”</h3>
+            <p>Présentation, avis, galerie, contact rapide.</p>
+            <div class="tags">
+              <span>Vitrine</span><span>Galerie</span><span>Devis</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="work reveal">
+          <div class="work__img alt"></div>
+          <div class="work__body">
+            <h3>Business “Pro”</h3>
+            <p>Offres claires, process, FAQ, pricing.</p>
+            <div class="tags">
+              <span>Services</span><span>Tarifs</span><span>FAQ</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process" class="section">
+      <div class="section__head reveal">
+        <h2>Process simple</h2>
+        <p>Ça te permet de vendre vite et livrer proprement.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step__n">1</div>
+          <div>
+            <h3>Brief client</h3>
+            <p>Nom, activité, couleurs, sections, exemples, objectif.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step__n">2</div>
+          <div>
+            <h3>Maquette express</h3>
+            <p>On adapte ce template (textes + visuels + couleurs).</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step__n">3</div>
+          <div>
+            <h3>Livraison & mise en ligne</h3>
+            <p>GitHub / hébergeur + nom de domaine + optimisation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="tarifs" class="section">
+      <div class="section__head reveal">
+        <h2>Tarifs (exemple)</h2>
+        <p>Tu changes les prix quand tu veux. C’est juste un modèle.</p>
+      </div>
+
+      <div class="pricing">
+        <article class="price reveal">
+          <h3>Starter</h3>
+          <div class="price__v">299€</div>
+          <p>Une page premium (landing) + contact.</p>
+          <ul>
+            <li>Design moderne</li>
+            <li>Responsive</li>
+            <li>Formulaire</li>
+          </ul>
+          <a class="btn btn--ghost" href="#contact">Choisir</a>
+        </article>
+
+        <article class="price price--best reveal">
+          <div class="ribbon">Le plus vendu</div>
+          <h3>Pro</h3>
+          <div class="price__v">499€</div>
+          <p>Site vitrine complet + sections pro.</p>
+          <ul>
+            <li>Jusqu’à 5 sections</li>
+            <li>Animations + FAQ</li>
+            <li>SEO de base</li>
+          </ul>
+          <a class="btn" href="#contact">Choisir</a>
+        </article>
+
+        <article class="price reveal">
+          <h3>Premium</h3>
+          <div class="price__v">799€</div>
+          <p>Vitrine + galerie + contenu + optimisation.</p>
+          <ul>
+            <li>Pages supplémentaires</li>
+            <li>Copywriting</li>
+            <li>Support 30j</li>
+          </ul>
+          <a class="btn btn--ghost" href="#contact">Choisir</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="section__head reveal">
+        <h2>Contact</h2>
+        <p>Formulaire simple (tu pourras le brancher à Formspree/Netlify plus tard).</p>
+      </div>
+
+      <div class="contact">
+        <form class="form reveal" id="leadForm">
+          <div class="row">
+            <label>
+              Nom
+              <input name="name" required placeholder="Nom / Entreprise" />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" required placeholder="email@exemple.com" />
+            </label>
+          </div>
+
+          <label>
+            Besoin
+            <select name="need" required>
+              <option value="" disabled selected>Choisir</option>
+              <option>Site vitrine</option>
+              <option>Landing page</option>
+              <option>Refonte</option>
+              <option>Maintenance</option>
+            </select>
+          </label>
+
+          <label>
+            Message
+            <textarea name="message" rows="5" required placeholder="Décris ton projet (activité, style, pages, etc.)"></textarea>
+          </label>
+
+          <button class="btn" type="submit">Envoyer la demande</button>
+          <p class="hint">⚠️ Démo : le formulaire affiche un message de confirmation.</p>
+        </form>
+
+        <aside class="side reveal">
+          <div class="side__card">
+            <h3>Livraison rapide</h3>
+            <p>Template réutilisable → adaptation ultra rapide selon le client.</p>
+          </div>
+          <div class="side__card">
+            <h3>Options</h3>
+            <ul>
+              <li>Nom de domaine</li>
+              <li>Google Analytics</li>
+              <li>Pages en plus</li>
+              <li>Maintenance</li>
+            </ul>
+          </div>
+          <div class="side__card">
+            <h3>Contact direct</h3>
+            <p><strong>Instagram:</strong> @toncompte<br/>
+               <strong>Email:</strong> contact@exemple.fr</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>© <span id="year"></span> Nova Studio • Tous droits réservés</div>
+      <div class="footer__links">
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
