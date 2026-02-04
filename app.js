@@ -1,7 +1,6 @@
 const burger = document.querySelector(".burger");
 const mobileNav = document.querySelector(".mobileNav");
 const toTop = document.getElementById("toTop");
-const scrollFill = document.getElementById("scrollFill");
 
 // Mobile menu
 if (burger && mobileNav) {
@@ -43,13 +42,9 @@ if (tilt) {
   });
 }
 
-// Scroll progress + Back to top
+// Back to top
 function onScroll() {
   const scrollTop = window.scrollY || document.documentElement.scrollTop;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const p = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-  if (scrollFill) scrollFill.style.width = `${p}%`;
-
   if (toTop) {
     if (scrollTop > 500) toTop.classList.add("show");
     else toTop.classList.remove("show");
@@ -57,10 +52,9 @@ function onScroll() {
 }
 window.addEventListener("scroll", onScroll);
 onScroll();
-
 if (toTop) toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-// Tabs (Web / PC)
+// Tabs
 const tabs = document.querySelectorAll(".tab");
 tabs.forEach(btn => {
   btn.addEventListener("click", () => {
@@ -73,7 +67,7 @@ tabs.forEach(btn => {
   });
 });
 
-// Counters animation (reliable even when opening with #hash)
+// Counters (reliable)
 function animateCount(el, to, ms = 900) {
   const start = performance.now();
   const from = 0;
