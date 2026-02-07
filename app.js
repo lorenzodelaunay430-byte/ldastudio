@@ -138,3 +138,45 @@ if (form) {
 }
 
 document.getElementById("year").textContent = new Date().getFullYear();
+// ===== PC 3D SCROLL (only when PC tab is visible) =====
+const pcWrap = document.getElementById("pcWrap");
+const pcCase = document.querySelector("#pc3d .pcCase");
+const pcPanel = document.getElementById("tab-pc");
+
+function isPcTabActive(){
+  return pcPanel && pcPanel.classList.contains("is-on");
+}
+
+function updatePc3D(){
+  if (!pcWrap || !pcCase || !isPcTabActive()) return;
+
+  const rect = pcWrap.getBoundingClientRect();
+  const vh = window.innerHeight;
+
+  // progress (0 -> 1) quand la zone entre dans l'écran
+  const start = vh * 0.85;
+  const end = vh * 0.15;
+  const p = Math.min(1, Math.max(0, (start - rect.top) / (start - end)));
+
+  // rotations “studio”
+  const rotX = 18 - p * 26;       // 18 -> -8
+  const rotY = -28 + p * 56;      // -28 -> 28
+  const lift = 24 + p * 24;       // profondeur
+  const y = -55 - p * 2;
+
+  pcCase.style.transform =
+    `translate(-50%, ${y}%) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(${lift}px)`;
+}
+
+// on scroll
+window.addEventListener("scroll", updatePc3D, { passive: true });
+window.addEventListener("resize", updatePc3D);
+
+// quand tu cliques sur les tabs, on refresh l’effet direct
+document.querySelectorAll(".tab").forEach(btn=>{
+  btn.addEventListener("click", ()=> setTimeout(updatePc3D, 60));
+});
+
+// première fois
+setTimeout(updatePc3D, 120);
+
