@@ -844,6 +844,6 @@ input, select, textarea{
 /* responsive */
 @media (max-width: 980px){
   .pc3d{ height: 300px; }
-}
-
+.pcScene{ position:absolute; inset:0; transform-style:preserve-3d; }
+.pcCase3d{ z-index:2; }
 }
