@@ -597,4 +597,20 @@ input:focus, select:focus, textarea:focus{
   .ctaEnd{ flex-direction:column; align-items:flex-start; }
   .nav{ display:none; }
   .burger{ display:block; }
+/* ===== 3D SCROLL EFFECT ===== */
+.stage-3d{
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform .15s linear;
 }
+
+/* Profondeur interne */
+.stage-3d .screen__hero{ transform: translateZ(40px); }
+.stage-3d .screen__row{ transform: translateZ(30px); }
+.stage-3d .float{ transform: translateZ(60px); }
+
+/* Perspective globale */
+.hero__right{
+  perspective: 1200px;
+}
+
