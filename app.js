@@ -136,19 +136,22 @@ function updatePc3D(){
   const rect = pcWrap.getBoundingClientRect();
   const vh = window.innerHeight;
 
+  // progress zone visible
   const start = vh * 0.88;
-  const end = vh * 0.22;
+  const end = vh * 0.18;
   const p = Math.min(1, Math.max(0, (start - rect.top) / (start - end)));
 
-  const rotX = 18 - p * 26;   // 18 -> -8
-  const rotY = -28 + p * 56;  // -28 -> 28
-  const lift = 24 + p * 28;   // profondeur
-  const y = -55 - p * 2;
+  // Case movement (premium)
+  const rotX = 18 - p * 28;     // 18 -> -10
+  const rotY = -32 + p * 64;    // -32 -> 32
+  const lift = 26 + p * 34;     // Z depth
+  const y = -56 - p * 2;
 
   pcCase.style.transform =
     `translate(-50%, ${y}%) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(${lift}px)`;
-}
 
-window.addEventListener("scroll", updatePc3D, { passive: true });
-window.addEventListener("resize", updatePc3D);
-setTimeout(updatePc3D, 120);
+  // Bonus: accélérer/ralentir les ventilos selon p (optionnel)
+  const fans = document.querySelectorAll(".fanBlades");
+  const speed = 1.9 - p * 0.9; // 1.9s -> 1.0s
+  fans.forEach(f => f.style.animationDuration = `${speed}s`);
+}
