@@ -1,15 +1,12 @@
+// Menu mobile
 const burger = document.querySelector(".burger");
 const mobileNav = document.querySelector(".mobileNav");
-const toTop = document.getElementById("toTop");
-const scrollFill = document.getElementById("scrollFill");
-
 if (burger && mobileNav) {
   burger.addEventListener("click", () => {
     const expanded = burger.getAttribute("aria-expanded") === "true";
     burger.setAttribute("aria-expanded", String(!expanded));
     mobileNav.hidden = expanded;
   });
-
   mobileNav.querySelectorAll("a").forEach(a => {
     a.addEventListener("click", () => {
       burger.setAttribute("aria-expanded", "false");
@@ -26,6 +23,8 @@ const io = new IntersectionObserver((entries) => {
 reveals.forEach(el => io.observe(el));
 
 // Scroll progress + toTop
+const toTop = document.getElementById("toTop");
+const scrollFill = document.getElementById("scrollFill");
 function onScroll() {
   const scrollTop = window.scrollY || document.documentElement.scrollTop;
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -56,8 +55,10 @@ tabs.forEach(btn => {
     document.querySelectorAll(".panel").forEach(p => p.classList.remove("is-on"));
     document.getElementById(`tab-${key}`)?.classList.add("is-on");
 
-    // refresh 3D effect after switching to PC
-    setTimeout(updatePc3D, 60);
+    setTimeout(() => {
+      updatePc3D();
+      updateHero3D();
+    }, 80);
   });
 });
 
@@ -105,7 +106,7 @@ if (form) {
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// ===== 3D SCROLL HERO PREVIEW =====
+// HERO 3D
 const stage3d = document.getElementById("stage3d");
 function updateHero3D(){
   if (!stage3d) return;
@@ -121,7 +122,7 @@ window.addEventListener("scroll", updateHero3D, { passive: true });
 window.addEventListener("resize", updateHero3D);
 updateHero3D();
 
-// ===== PC 3D SCROLL (TAB PC) =====
+// PC 3D (tab PC only)
 const pcWrap = document.getElementById("pcWrap");
 const pcCase = document.getElementById("pcCase");
 const pcPanel = document.getElementById("tab-pc");
@@ -136,22 +137,24 @@ function updatePc3D(){
   const rect = pcWrap.getBoundingClientRect();
   const vh = window.innerHeight;
 
-  // progress zone visible
   const start = vh * 0.88;
   const end = vh * 0.18;
   const p = Math.min(1, Math.max(0, (start - rect.top) / (start - end)));
 
-  // Case movement (premium)
   const rotX = 18 - p * 28;     // 18 -> -10
   const rotY = -32 + p * 64;    // -32 -> 32
-  const lift = 26 + p * 34;     // Z depth
+  const lift = 26 + p * 34;     // profondeur
   const y = -56 - p * 2;
 
   pcCase.style.transform =
     `translate(-50%, ${y}%) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(${lift}px)`;
 
-  // Bonus: accélérer/ralentir les ventilos selon p (optionnel)
-  const fans = document.querySelectorAll(".fanBlades");
-  const speed = 1.9 - p * 0.9; // 1.9s -> 1.0s
-  fans.forEach(f => f.style.animationDuration = `${speed}s`);
+  // vitesse ventilos selon le scroll
+  document.querySelectorAll(".fanBlades").forEach(f => {
+    f.style.animationDuration = `${1.9 - p * 0.9}s`;
+  });
 }
+
+window.addEventListener("scroll", updatePc3D, { passive: true });
+window.addEventListener("resize", updatePc3D);
+setTimeout(updatePc3D, 150);
