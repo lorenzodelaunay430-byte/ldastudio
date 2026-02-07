@@ -1,6 +1,7 @@
 const burger = document.querySelector(".burger");
 const mobileNav = document.querySelector(".mobileNav");
 const toTop = document.getElementById("toTop");
+const scrollFill = document.getElementById("scrollFill");
 
 // Mobile menu
 if (burger && mobileNav) {
@@ -27,7 +28,7 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.16 });
 reveals.forEach(el => io.observe(el));
 
-// Tilt effect
+// Tilt effect (hero card)
 const tilt = document.querySelector("[data-tilt]");
 if (tilt) {
   const max = 10;
@@ -42,9 +43,13 @@ if (tilt) {
   });
 }
 
-// Back to top
+// Scroll progress + Back to top
 function onScroll() {
   const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const p = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  if (scrollFill) scrollFill.style.width = `${p}%`;
+
   if (toTop) {
     if (scrollTop > 500) toTop.classList.add("show");
     else toTop.classList.remove("show");
@@ -52,14 +57,19 @@ function onScroll() {
 }
 window.addEventListener("scroll", onScroll);
 onScroll();
+
 if (toTop) toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-// Tabs
+// Tabs (Web / PC)
 const tabs = document.querySelectorAll(".tab");
 tabs.forEach(btn => {
   btn.addEventListener("click", () => {
-    tabs.forEach(b => b.classList.remove("is-on"));
+    tabs.forEach(b => {
+      b.classList.remove("is-on");
+      b.setAttribute("aria-selected", "false");
+    });
     btn.classList.add("is-on");
+    btn.setAttribute("aria-selected", "true");
 
     const key = btn.dataset.tab;
     document.querySelectorAll(".panel").forEach(p => p.classList.remove("is-on"));
@@ -67,11 +77,10 @@ tabs.forEach(btn => {
   });
 });
 
-// Counters (reliable)
-function animateCount(el, to, ms = 900) {
-  const start = performance.now();
+// Counters (smooth) — but numbers already set, so it's just a nice touch
+function animateCount(el, to, ms = 700) {
   const from = 0;
-
+  const start = performance.now();
   function tick(now) {
     const p = Math.min(1, (now - start) / ms);
     const eased = 1 - Math.pow(1 - p, 3);
@@ -82,33 +91,20 @@ function animateCount(el, to, ms = 900) {
 }
 
 const counters = document.querySelectorAll("[data-count]");
-function triggerCountersIfVisible() {
-  counters.forEach(el => {
-    if (el.dataset.done) return;
-    const r = el.getBoundingClientRect();
-    if (r.top < window.innerHeight && r.bottom > 0) {
-      el.dataset.done = "1";
-      animateCount(el, Number(el.dataset.count || "0"), 900);
-    }
-  });
-}
-
 const counterIO = new IntersectionObserver((entries, obs) => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
     const el = e.target;
     if (el.dataset.done) return;
     el.dataset.done = "1";
-    animateCount(el, Number(el.dataset.count || "0"), 900);
+    animateCount(el, Number(el.dataset.count || "0"), 700);
     obs.unobserve(el);
   });
-}, { threshold: 0.2 });
+}, { threshold: 0.4 });
 
 counters.forEach(c => counterIO.observe(c));
-window.addEventListener("load", triggerCountersIfVisible);
-window.addEventListener("hashchange", () => setTimeout(triggerCountersIfVisible, 50));
 
-// Form demo
+// Form demo (confirmation)
 const form = document.getElementById("leadForm");
 if (form) {
   form.addEventListener("submit", (e) => {
