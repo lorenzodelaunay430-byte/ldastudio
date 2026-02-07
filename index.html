@@ -5,15 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LDA Studio — Sites modernes & Optimisation PC</title>
   <meta name="description" content="LDA Studio : création de sites web modernes (vitrine/landing/refonte) + montage & optimisation PC (Windows/jeux). Devis rapide par mail ou TikTok." />
-
-  <!-- SEO basique -->
   <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="#" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="LDA Studio — Web & PC" />
-  <meta property="og:description" content="Sites modernes + PC performance. Devis rapide." />
-  <meta property="og:type" content="website" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -116,8 +108,8 @@
         </div>
       </div>
 
-      <div class="hero__right reveal">
-        <div class="stage stage-3d reveal" id="stage3d">
+      <div class="hero__right reveal" style="perspective:1200px">
+        <div class="stage reveal" id="stage3d">
           <div class="stage__top">
             <div class="dots"><span></span><span></span><span></span></div>
             <div class="stage__pill">Preview</div>
@@ -170,6 +162,7 @@
         <button class="tab" data-tab="pc" role="tab" aria-selected="false">PC</button>
       </div>
 
+      <!-- WEB -->
       <div class="panel is-on" id="tab-web" role="tabpanel">
         <div class="grid3">
           <article class="tile reveal">
@@ -207,46 +200,47 @@
         </div>
       </div>
 
+      <!-- PC -->
       <div class="panel" id="tab-pc" role="tabpanel">
-      <!-- PC 3D Scroll Showcase -->
-<div class="pcShowcase">
-  <div class="pcShowcase__sticky">
-    <div class="pc3dWrap" id="pcWrap">
-      <div class="pc3d" id="pc3d" aria-label="PC 3D">
-        <div class="pcCase">
-          <div class="pcFace pcFront">
-            <div class="pcRgb"></div>
-            <div class="pcBadge">LDA</div>
-            <div class="pcPorts">
-              <span></span><span></span><span></span>
+
+        <!-- ✅ PC 3D SCROLL SHOWCASE -->
+        <div class="pcShowcase reveal" id="pcWrap">
+          <div class="pc3dWrap">
+            <div class="pc3d" id="pc3d">
+              <div class="pcCase" id="pcCase">
+                <div class="pcFace pcFront">
+                  <div class="pcRgb"></div>
+                  <div class="pcBadge">LDA</div>
+                  <div class="pcPorts"><span></span><span></span><span></span></div>
+                </div>
+
+                <div class="pcFace pcBack"></div>
+                <div class="pcFace pcLeft"></div>
+                <div class="pcFace pcRight"></div>
+                <div class="pcFace pcTop"></div>
+                <div class="pcFace pcBottom"></div>
+
+                <div class="pcGlass"></div>
+              </div>
+
+              <div class="pcShadow"></div>
+            </div>
+
+            <div class="pc3dText">
+              <div class="pc3dKicker">LDA</div>
+              <h3>PC performance</h3>
+              <p>Montage propre, optimisation Windows/jeux, stabilité + FPS. Scroll pour voir l'effet 3D.</p>
+              <div class="pc3dChips">
+                <span>Montage</span>
+                <span>Optimisation</span>
+                <span>Drivers</span>
+                <span>Stabilité</span>
+              </div>
             </div>
           </div>
-
-          <div class="pcFace pcBack"></div>
-          <div class="pcFace pcLeft"></div>
-          <div class="pcFace pcRight"></div>
-          <div class="pcFace pcTop"></div>
-          <div class="pcFace pcBottom"></div>
-
-          <!-- “verre” -->
-          <div class="pcGlass"></div>
         </div>
 
-        <!-- ombre -->
-        <div class="pcShadow"></div>
-      </div>
-
-      <div class="pc3dText">
-        <h3>PC performance</h3>
-        <p>Montage propre, optimisation Windows/jeux, stabilité + FPS. Scroll pour voir l’effet 3D.</p>
-        <div class="pc3dChips">
-          <span>Montage</span><span>Optimisation</span><span>Drivers</span><span>Stabilité</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>     
-    <div class="grid3">
+        <div class="grid3">
           <article class="tile reveal">
             <div class="icon">🖥️</div>
             <h3>Montage PC</h3>
@@ -281,17 +275,9 @@
           </article>
         </div>
 
-        <!-- Tech badges -->
         <div class="stack reveal">
           <div class="stack__item">
-            <div class="stack__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
-                <path d="M3 4.5h8.5V12H3V4.5Z" stroke="currentColor" stroke-width="1.6"/>
-                <path d="M12.5 4.5H21V12h-8.5V4.5Z" stroke="currentColor" stroke-width="1.6"/>
-                <path d="M3 12.8h8.5V20.5H3v-7.7Z" stroke="currentColor" stroke-width="1.6"/>
-                <path d="M12.5 12.8H21v7.7h-8.5v-7.7Z" stroke="currentColor" stroke-width="1.6"/>
-              </svg>
-            </div>
+            <div class="stack__icon" aria-hidden="true">🪟</div>
             <div class="stack__txt">
               <div class="stack__title">Optimisation Windows</div>
               <div class="stack__sub">Démarrage, latence, stabilité, perf</div>
@@ -370,29 +356,6 @@
           <a class="btn btn--ghost" href="#contact">Choisir</a>
         </article>
       </div>
-
-      <div class="subpricing reveal">
-        <div class="subpricing__card">
-          <h3>PC — prix indicatifs</h3>
-          <div class="subpricing__grid">
-            <div class="sub"><div class="sub__t">Montage PC</div><div class="sub__p">60€</div></div>
-            <div class="sub"><div class="sub__t">Optimisation</div><div class="sub__p">40€</div></div>
-            <div class="sub"><div class="sub__t">Nettoyage</div><div class="sub__p">30€</div></div>
-            <div class="sub"><div class="sub__t">Pack Perf (PC)</div><div class="sub__p">90€</div></div>
-          </div>
-          <p class="muted small">💡 Ajustable selon déplacement / complexité.</p>
-        </div>
-
-        <div class="subpricing__card">
-          <h3>Options web</h3>
-          <ul class="check">
-            <li>Nom de domaine + mise en ligne</li>
-            <li>Pages supplémentaires</li>
-            <li>Portfolio / galerie</li>
-            <li>Maintenance mensuelle</li>
-          </ul>
-        </div>
-      </div>
     </section>
 
     <!-- TRUST / WHY -->
@@ -427,14 +390,6 @@
           <p>Pour le PC : réglages propres, priorité stabilité + perf.</p>
         </article>
       </div>
-
-      <div class="ctaEnd reveal">
-        <div>
-          <h3>Tu veux juste un résultat clean ?</h3>
-          <p>Tu m’envoies ton besoin, je te réponds vite. On avance étape par étape.</p>
-        </div>
-        <a class="btn" href="#contact">Demander un devis</a>
-      </div>
     </section>
 
     <!-- FAQ -->
@@ -456,13 +411,8 @@
         </details>
 
         <details class="qa reveal">
-          <summary>Optimisation PC : c’est “safe” ?</summary>
+          <summary>Optimisation PC : c’est safe ?</summary>
           <p>Oui. Je privilégie des réglages stables et propres (pas de trucs dangereux).</p>
-        </details>
-
-        <details class="qa reveal">
-          <summary>Comment on commence ?</summary>
-          <p>Tu me dis ton projet + un exemple de style. Je te fais une proposition simple.</p>
         </details>
       </div>
     </section>
@@ -513,7 +463,6 @@
 
             <div class="sideBtns">
               <a class="btn btn--ghost" href="mailto:delaunaylorenzo388@gmail.com?subject=Devis%20LDA%20Studio">Envoyer un mail</a>
-              <!-- Mets ton @ quand tu veux : ex https://www.tiktok.com/@ldastudio -->
               <a class="btn btn--ghost" href="https://www.tiktok.com/" target="_blank" rel="noopener">DM TikTok</a>
             </div>
 
@@ -522,44 +471,9 @@
 
           <div class="side__card">
             <h3>Conseil rapide</h3>
-            <p class="muted">Envoie un exemple de style + ton contenu (texte/logo/photos) : je te réponds vite.</p>
+            <p class="muted">Envoie un exemple de style + ton contenu : je te réponds vite.</p>
           </div>
         </aside>
-      </div>
-    </section>
-
-    <!-- LEGAL -->
-    <section id="legal" class="section">
-      <div class="section__head reveal">
-        <h2>Mentions légales (modèle)</h2>
-        <p>À mettre à jour quand tu auras ton statut.</p>
-      </div>
-
-      <div class="legal card reveal">
-        <h3>Éditeur du site</h3>
-        <p><strong>LDA Studio</strong><br>
-          Contact : <a class="link" href="mailto:delaunaylorenzo388@gmail.com">delaunaylorenzo388@gmail.com</a>
-        </p>
-
-        <h3>Hébergement</h3>
-        <p>Hébergeur : GitHub Pages / autre (à compléter).</p>
-
-        <h3>Données</h3>
-        <p>Les données envoyées via le formulaire servent uniquement à répondre à la demande. Suppression sur demande.</p>
-
-        <p class="muted small">⚠️ Modèle non juridique.</p>
-      </div>
-    </section>
-
-    <!-- FINAL CTA -->
-    <section class="finalCta reveal" aria-label="Appel à l'action final">
-      <div class="finalCta__card">
-        <h2>Prêt à lancer ton projet ?</h2>
-        <p>Un message, et on démarre. Simple, rapide, pro.</p>
-        <div class="finalCta__btns">
-          <a class="btn" href="#contact">Demander un devis</a>
-          <a class="btn btn--ghost" href="#services">Voir les services</a>
-        </div>
       </div>
     </section>
 
@@ -569,7 +483,6 @@
         <a href="#services">Services</a>
         <a href="#packs">Tarifs</a>
         <a href="#contact">Contact</a>
-        <a href="#legal">Mentions</a>
       </div>
     </footer>
 
