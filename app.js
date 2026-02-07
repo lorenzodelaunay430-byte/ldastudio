@@ -28,20 +28,35 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.16 });
 reveals.forEach(el => io.observe(el));
 
-// Tilt effect (hero card)
-const tilt = document.querySelector("[data-tilt]");
-if (tilt) {
-  const max = 10;
-  tilt.addEventListener("mousemove", (ev) => {
-    const r = tilt.getBoundingClientRect();
-    const x = (ev.clientX - r.left) / r.width - 0.5;
-    const y = (ev.clientY - r.top) / r.height - 0.5;
-    tilt.style.transform = `rotateY(${x * max}deg) rotateX(${-(y * max)}deg) translateZ(0)`;
-  });
-  tilt.addEventListener("mouseleave", () => {
-    tilt.style.transform = "rotateY(0deg) rotateX(0deg)";
-  });
+// ===== 3D SCROLL EFFECT =====
+const stage3d = document.getElementById("stage3d");
+
+function onScroll3D(){
+  if (!stage3d) return;
+
+  const rect = stage3d.getBoundingClientRect();
+  const vh = window.innerHeight;
+
+  // progression visible (0 → 1)
+  const progress = Math.min(
+    1,
+    Math.max(0, 1 - rect.top / vh)
+  );
+
+  const rotateX = (1 - progress) * 12;
+  const rotateY = (progress - 0.5) * 10;
+  const translateZ = progress * 40;
+
+  stage3d.style.transform = `
+    rotateX(${rotateX}deg)
+    rotateY(${rotateY}deg)
+    translateZ(${translateZ}px)
+  `;
 }
+
+window.addEventListener("scroll", onScroll3D);
+onScroll3D();
+
 
 // Scroll progress + Back to top
 function onScroll() {
