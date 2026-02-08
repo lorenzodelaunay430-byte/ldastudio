@@ -155,24 +155,22 @@ function updatePc3D(){
   });
 }
 
-window.addEventListener("scroll", updatePc3D, { passive: true });
-window.addEventListener("resize", updatePc3D);
-setTimeout(updatePc3D, 150);
-const buyBtn = document.getElementById("buyBtn");
-if (buyBtn) {
-  buyBtn.addEventListener("click", () => {
-    if (buyBtn.classList.contains("is-adding")) return;
+document.querySelectorAll(".addToCart").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (btn.classList.contains("is-adding")) return;
 
-    buyBtn.classList.add("is-adding");
+    btn.classList.remove("is-done");
+    btn.classList.add("is-adding");
 
-    // petite latence style "ajout panier"
     setTimeout(() => {
-      buyBtn.classList.remove("is-adding");
-      buyBtn.classList.add("is-done");
+      btn.classList.remove("is-adding");
+      btn.classList.add("is-done");
 
-      // revient à "Acheter" après 2s
-      setTimeout(() => buyBtn.classList.remove("is-done"), 2000);
-    }, 450);
+      // reset after a moment
+      setTimeout(() => btn.classList.remove("is-done"), 2200);
+    }, 560);
   });
+});
+
 }
 
