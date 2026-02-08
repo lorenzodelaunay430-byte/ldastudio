@@ -155,22 +155,6 @@ function updatePc3D(){
   });
 }
 
-document.querySelectorAll(".addToCart").forEach(btn => {
-  btn.addEventListener("click", () => {
-    if (btn.classList.contains("is-adding")) return;
-
-    btn.classList.remove("is-done");
-    btn.classList.add("is-adding");
-
-    setTimeout(() => {
-      btn.classList.remove("is-adding");
-      btn.classList.add("is-done");
-
-      // reset after a moment
-      setTimeout(() => btn.classList.remove("is-done"), 2200);
-    }, 560);
-  });
-});
-
-}
-
+window.addEventListener("scroll", updatePc3D, { passive: true });
+window.addEventListener("resize", updatePc3D);
+setTimeout(updatePc3D, 150);
