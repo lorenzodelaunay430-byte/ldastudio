@@ -745,21 +745,149 @@ input, select, textarea{
   100%{ transform: scale(1); }
 }
 
-/* Swap text to "done" */
-.buyBtn.is-done .buyBtn__text{
+/* ===== Add To Cart (close to IG example) ===== */
+.addToCart{
+  --h: 44px;
+  --pad: 14px;
+  --bg: rgba(255,255,255,.06);
+  --bd: rgba(255,255,255,.14);
+  --txt: rgba(246,247,255,.92);
+  --muted: rgba(246,247,255,.70);
+  --accent: rgb(255,132,0);
+
+  height: var(--h);
+  padding: 0 var(--pad);
+  border-radius: 12px;
+  border: 1px solid var(--bd);
+  background: var(--bg);
+  color: var(--txt);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 900;
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 34px rgba(0,0,0,.26);
+  transition: transform .16s ease, background .16s ease, border-color .16s ease;
+}
+
+.addToCart:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.18);
+}
+
+.addToCart:active{ transform: translateY(0) scale(.98); }
+
+.atc__icon{
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,.18);
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+.atc__cart svg{ width: 20px; height: 20px; opacity: .92; }
+
+.atc__label{
+  position: relative;
+  min-width: 64px;
+  display: grid;
+  align-items: center;
+}
+
+.atc__text{
+  color: var(--txt);
+  transition: transform .22s ease, opacity .22s ease;
+}
+
+.atc__done{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  color: var(--muted);
+  opacity:0;
+  transform: translateY(10px);
+  transition: transform .22s ease, opacity .22s ease;
+}
+
+/* little item flying into cart */
+.atc__item{
+  position:absolute;
+  width: 12px; height: 12px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.06));
+  border: 1px solid rgba(255,255,255,.18);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%) scale(.6);
+  opacity: 0;
+  pointer-events:none;
+  filter: drop-shadow(0 10px 12px rgba(0,0,0,.35));
+}
+
+/* check badge */
+.atc__check{
+  width: 18px; height: 18px;
+  border-radius: 999px;
+  background: rgba(0,255,170,.18);
+  border: 1px solid rgba(0,255,170,.35);
+  color: rgba(0,255,170,.95);
+  display:grid;
+  place-items:center;
+  font-size: 13px;
+  font-weight: 900;
+  opacity: 0;
+  transform: scale(.8);
+  transition: opacity .22s ease, transform .22s ease;
+}
+
+/* ===== STATES ===== */
+.addToCart.is-adding .atc__cart{
+  animation: atcCartMove .55s ease;
+}
+@keyframes atcCartMove{
+  0%{ transform: translateX(0); }
+  45%{ transform: translateX(10px); }
+  100%{ transform: translateX(0); }
+}
+
+.addToCart.is-adding .atc__item{
+  opacity: 1;
+  animation: atcItemFly .55s ease forwards;
+}
+@keyframes atcItemFly{
+  0%{ transform: translate(-10px, 10px) scale(.6); opacity: 0; }
+  25%{ opacity: 1; }
+  65%{ transform: translate(-22px, -10px) scale(1); }
+  100%{ transform: translate(-38px, -14px) scale(.3); opacity: 0; }
+}
+
+/* Done */
+.addToCart.is-done .atc__text{
   opacity: 0;
   transform: translateY(-10px);
-  transition: opacity .2s ease, transform .2s ease;
 }
-.buyBtn.is-done .buyBtn__done{
+.addToCart.is-done .atc__done{
   opacity: 1;
   transform: translateY(0);
 }
-
-/* Optional orange accent */
-.buyBtn--orange{
-  background: linear-gradient(90deg, rgba(255,132,0,.18), rgba(255,255,255,.06));
-  border-color: rgba(255,132,0,.22);
+.addToCart.is-done .atc__check{
+  opacity: 1;
+  transform: scale(1);
 }
 
+/* Accent line like "premium" */
+.addToCart::after{
+  content:"";
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--accent), rgba(255,255,255,.08));
+  opacity: .75;
 }
