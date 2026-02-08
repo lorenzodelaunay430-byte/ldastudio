@@ -144,14 +144,27 @@
         <p>Deux pôles : <strong>Web</strong> et <strong>PC</strong>. Même qualité : propre, rapide, carré.</p>
       </div>
 
-      <div class="tabs reveal" role="tablist" aria-label="Web ou PC">
-        <button class="tab is-on" data-tab="web" role="tab" aria-selected="true">Web</button>
-        <button class="tab" data-tab="pc" role="tab" aria-selected="false">PC</button>
-      </div>
-<button class="buyBtn" id="buyBtn" type="button">
-  <span class="buyBtn__icon" aria-hidden="true">🛒</span>
-  <span class="buyBtn__text">Acheter</span>
-  <span class="buyBtn__done">Ajouté ✅</span>
+      <button class="addToCart" type="button" aria-label="Acheter">
+  <span class="atc__icon atc__cart" aria-hidden="true">
+    <!-- cart svg -->
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M6.5 6h14l-1.6 8.2a2 2 0 0 1-2 1.6H9.1a2 2 0 0 1-2-1.6L5.5 3.8H3"
+        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor"/>
+      <path d="M17 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor"/>
+    </svg>
+  </span>
+
+  <span class="atc__label">
+    <span class="atc__text">Acheter</span>
+    <span class="atc__done">Ajouté</span>
+  </span>
+
+  <!-- little item that flies -->
+  <span class="atc__item" aria-hidden="true"></span>
+
+  <!-- check -->
+  <span class="atc__check" aria-hidden="true">✓</span>
 </button>
 
 
