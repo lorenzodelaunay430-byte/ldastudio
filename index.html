@@ -12,7 +12,26 @@
 
   <link rel="stylesheet" href="styles.css" />
 </head>
+<button id="aiFab">💬</button>
 
+<div id="aiChat" class="aiChat" aria-hidden="true">
+  <div class="aiHead">
+    <div>
+      <div class="aiTitle">Assistant LDA Studio</div>
+      <div class="aiSub">Répond sur sites & PC • 24/7</div>
+    </div>
+    <button id="aiClose" class="aiClose" aria-label="Fermer">✕</button>
+  </div>
+
+  <div id="aiMsgs" class="aiMsgs"></div>
+
+  <form id="aiForm" class="aiForm">
+    <input id="aiInput" placeholder="Pose ta question (tarifs, délais, PC, Windows…)" autocomplete="off" />
+    <button class="aiSend" type="submit">Envoyer</button>
+  </form>
+
+  <div class="aiHint">⚠️ Ne mets pas d’infos sensibles (CB, codes, mots de passe).</div>
+</div>
 <body>
   <!-- BG -->
   <div class="bg" aria-hidden="true">
