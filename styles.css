@@ -654,4 +654,41 @@ input, select, textarea{
   .burger{ display:block; }
   .pc3dWrap{ grid-template-columns: 1fr; }
   .pc3d{ height: 300px; }
+.hidden {
+  display: none !important;
 }
+
+.authForm {
+  max-width: 420px;
+  display: grid;
+  gap: 12px;
+}
+
+.authForm input {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(0,0,0,.2);
+  color: white;
+}
+
+.clientBox {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.05);
+}
+
+.progressBar {
+  height: 10px;
+  background: rgba(255,255,255,.1);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressBar div {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, orange, yellow);
+}
+
