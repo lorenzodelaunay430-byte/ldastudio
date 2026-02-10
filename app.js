@@ -158,3 +158,86 @@ function updatePc3D(){
 window.addEventListener("scroll", updatePc3D, { passive: true });
 window.addEventListener("resize", updatePc3D);
 setTimeout(updatePc3D, 150);
+
+// 🔐 Supabase config
+const SUPABASE_URL = "https://aecifmxziwddaqihjjey.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_Kq-2FsEdgffq0bMt-zfXZg_TbiOJcdP";
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Elements
+const loginForm = document.getElementById("loginForm");
+const authMsg = document.getElementById("authMsg");
+const registerBtn = document.getElementById("registerBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+
+const clientSection = document.getElementById("client");
+const clientMail = document.getElementById("clientMail");
+
+const pStatus = document.getElementById("pStatus");
+const pPack = document.getElementById("pPack");
+const pProgBar = document.getElementById("pProgBar");
+const pProgTxt = document.getElementById("pProgTxt");
+const pDocs = document.getElementById("pDocs");
+const pPay = document.getElementById("pPay");
+const pNotes = document.getElementById("pNotes");
+
+async function refreshUI() {
+  const { data: { user } } = await sb.auth.getUser();
+
+  if (!user) {
+    clientSection.classList.add("hidden");
+    return;
+  }
+
+  clientSection.classList.remove("hidden");
+  clientMail.textContent = "Connecté : " + user.email;
+
+  const { data } = await sb
+    .from("projects")
+    .select("*")
+    .eq("user_id", user.id)
+    .single();
+
+  if (!data) return;
+
+  pStatus.textContent = data.status;
+  pPack.textContent = data.pack;
+  pProgBar.style.width = data.progress + "%";
+  pProgTxt.textContent = data.progress + "%";
+  pDocs.href = data.docs_url || "#";
+  pPay.href = data.pay_url || "#";
+  pNotes.textContent = data.notes || "—";
+}
+
+// Login
+loginForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  authMsg.textContent = "Connexion...";
+  const email = loginEmail.value;
+  const password = loginPass.value;
+
+  const { error } = await sb.auth.signInWithPassword({ email, password });
+  if (error) {
+    authMsg.textContent = error.message;
+    return;
+  }
+  refreshUI();
+});
+
+// Register
+registerBtn.addEventListener("click", async () => {
+  authMsg.textContent = "Création du compte...";
+  await sb.auth.signUp({
+    email: loginEmail.value,
+    password: loginPass.value
+  });
+  authMsg.textContent = "Compte créé ✅";
+});
+
+// Logout
+logoutBtn.addEventListener("click", async () => {
+  await sb.auth.signOut();
+  location.reload();
+});
+
+refreshUI();
