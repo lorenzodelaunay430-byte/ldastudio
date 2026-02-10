@@ -154,63 +154,128 @@ function updatePc3D(){
     f.style.animationDuration = `${1.9 - p * 0.9}s`;
   });
 }
-
-window.addEventListener("scroll", updatePc3D, { passive: true });
-window.addEventListener("resize", updatePc3D);
-setTimeout(updatePc3D, 150);
+// ===== AI Widget (offline smart FAQ) =====
 const aiFab = document.getElementById("aiFab");
-const aiChat = document.getElementById("aiChat");
-const aiClose = document.getElementById("aiClose");
-const aiMsgs = document.getElementById("aiMsgs");
+const aiWidget = document.getElementById("aiWidget");
+const aiX = document.getElementById("aiX");
+const aiBody = document.getElementById("aiBody");
 const aiForm = document.getElementById("aiForm");
 const aiInput = document.getElementById("aiInput");
 
-// 🔁 Mets ici l’URL de ton Worker Cloudflare (étape suivante)
-const AI_ENDPOINT = "https://ton-worker.ton-sous-domaine.workers.dev/chat";
-
-function addMsg(text, who="bot"){
+function addAiMsg(text, who="bot"){
   const div = document.createElement("div");
   div.className = "aiMsg" + (who==="me" ? " me" : "");
   div.textContent = text;
-  aiMsgs.appendChild(div);
-  aiMsgs.scrollTop = aiMsgs.scrollHeight;
+  aiBody.appendChild(div);
+  aiBody.scrollTop = aiBody.scrollHeight;
+}
+
+const KB = [
+  {
+    keys: ["tarif","prix","combien","starter","pro","premium"],
+    answer:
+💸 Tarifs (base)
+• Starter : 199€ (landing 1 page + contact)
+• Pro : 349€ (one-page complète premium)
+• Premium : 549€ (one-page + options)
+
+Dis-moi ton besoin (site / PC) et je te propose le bon pack.
+  },
+  {
+    keys: ["delai","temps","livraison","combien de jours"],
+    answer:
+⏱️ Délais (objectif)
+• Site one-page : 24–72h selon contenu
+• PC : variable (pièces + montage + tests)
+
+Envoie : type de projet + contenu dispo, et je te donne un délai précis.
+  },
+  {
+    keys: ["site","web","vitrine","landing","refonte","maintenance"],
+    answer:
+🌐 Services Web
+• Création (vitrine/landing)
+• Refonte (design + structure + UX)
+• Maintenance (modifs, ajouts, corrections)
+
+Tu veux un style plutôt “dark premium” ou “blanc/orange” ?
+  },
+  {
+    keys: ["pc","montage","optimisation","windows","fps","latence","driver","drivers","nettoyage"],
+    answer:
+🖥️ Services PC
+• Montage (câbles, tests, stabilité)
+• Optimisation Windows/Jeux (FPS/latence)
+• Drivers propres + réglages
+• Nettoyage + températures + bruit
+
+Tu joues à quoi (Fortnite/GTA/…) et c’est quoi ta config ?
+  },
+  {
+    keys: ["contact","mail","email","devis"],
+    answer:
+📩 Contact / Devis
+Tu peux écrire ici ou par mail :
+delaunaylorenzo388@gmail.com
+
+Donne :
+1) ton besoin (site/PC)
+2) délai souhaité
+3) budget approximatif
+4) exemple de style si site
+  }
+];
+
+function bestAnswer(q){
+  const s = q.toLowerCase();
+  let best = null;
+  let bestScore = 0;
+  for (const item of KB){
+    let score = 0;
+    for (const k of item.keys){
+      if (s.includes(k)) score++;
+    }
+    if (score > bestScore){
+      bestScore = score;
+      best = item;
+    }
+  }
+  if (best) return best.answer;
+
+  return Je peux aider 👍
+Dis-moi juste si c’est pour :
+1) un site web (vitrine / landing / refonte)
+ou
+2) un PC (montage / optimisation)
+
+Et donne un peu de contexte.;
 }
 
 aiFab?.addEventListener("click", () => {
-  aiChat.classList.add("isOn");
-  aiChat.setAttribute("aria-hidden","false");
-  if (!aiMsgs.dataset.hello) {
-    aiMsgs.dataset.hello = "1";
-    addMsg("Salut 👋 Je suis l’assistant LDA Studio. Pose-moi une question (site web, tarifs, PC, Windows, FPS…).");
+  aiWidget.classList.add("isOn");
+  aiWidget.setAttribute("aria-hidden","false");
+  if (!aiBody.dataset.hello){
+    aiBody.dataset.hello = "1";
+    addAiMsg("Salut 👋 Je suis l’assistant LDA Studio. Pose une question (tarifs, délais, PC, Windows…).");
   }
   setTimeout(()=>aiInput?.focus(), 60);
 });
 
-aiClose?.addEventListener("click", () => {
-  aiChat.classList.remove("isOn");
-  aiChat.setAttribute("aria-hidden","true");
+aiX?.addEventListener("click", () => {
+  aiWidget.classList.remove("isOn");
+  aiWidget.setAttribute("aria-hidden","true");
 });
 
-aiForm?.addEventListener("submit", async (e) => {
+aiForm?.addEventListener("submit", (e) => {
   e.preventDefault();
-  const q = (aiInput.value  "").trim();
+  const q = (aiInput.value || "").trim();
   if (!q) return;
   aiInput.value = "";
-  addMsg(q, "me");
-  addMsg("…", "bot");
+  addAiMsg(q, "me");
 
-  try{
-    const res = await fetch(AI_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type":"application/json" },
-      body: JSON.stringify({ message: q })
-    });
-    const data = await res.json();
-    aiMsgs.lastChild.remove(); // remove "…"
-    addMsg(data.reply  "Désolé, je n’ai pas pu répondre.");
-  }catch(err){
-    aiMsgs.lastChild.remove();
-    addMsg("Erreur réseau. Réessaie dans un moment.");
-  }
+  // simulate thinking
+  setTimeout(() => {
+    addAiMsg(bestAnswer(q), "bot");
+  }, 220);
 });
 ﻿
