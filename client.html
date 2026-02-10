@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Espace client — LDA Studio</title>
+
+  <link rel="stylesheet" href="styles.css?v=1" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="wrap" style="padding:40px 0;">
+    <div class="clientHead">
+      <div>
+        <h2>Espace client</h2>
+        <p class="muted" id="clientMail">—</p>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn btn--ghost" href="index.html">Accueil</a>
+        <button class="btn btn--ghost" id="logoutBtn" type="button">Se déconnecter</button>
+      </div>
+    </div>
+
+    <div class="clientGrid">
+      <div class="clientBox">
+        <div class="clientLabel">Dernière commande</div>
+        <div class="clientValue" id="oTitle">—</div>
+        <div class="muted" id="oDate">—</div>
+      </div>
+
+      <div class="clientBox">
+        <div class="clientLabel">Statut</div>
+        <div class="clientValue" id="pStatus">—</div>
+        <div class="muted" id="pPack">—</div>
+      </div>
+
+      <div class="clientBox">
+        <div class="clientLabel">Avancement</div>
+        <div class="progressBar"><div id="pProgBar"></div></div>
+        <div class="muted" id="pProgTxt">—</div>
+      </div>
+
+      <div class="clientBox">
+        <div class="clientLabel">Mon site</div>
+        <a class="linkBtn" id="pSite" href="#" target="_blank" rel="noopener">Ouvrir</a>
+      </div>
+
+      <div class="clientBox">
+        <div class="clientLabel">Documents</div>
+        <a class="linkBtn" id="pDocs" href="#" target="_blank" rel="noopener">Ouvrir</a>
+      </div>
+
+      <div class="clientBox">
+        <div class="clientLabel">Paiement</div>
+        <a class="linkBtn" id="pPay" href="#" target="_blank" rel="noopener">Payer</a>
+      </div>
+
+      <div class="clientBox clientBox--full">
+        <div class="clientLabel">Support</div>
+        <div class="clientValue" id="supportTxt">Besoin d’aide ? Clique ci-dessous.</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+          <a class="btn" id="supportMail" href="mailto:delaunaylorenzo388@gmail.com?subject=Support%20LDA%20Studio">Contacter le support</a>
+          <a class="btn btn--ghost" id="supportDocs" href="#" target="_blank" rel="noopener">Guide client</a>
+        </div>
+      </div>
+
+      <div class="clientBox clientBox--full">
+        <div class="clientLabel">Notes / infos</div>
+        <div class="clientValue" id="pNotes">—</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="portal.js?v=1"></script>
+</body>
+</html>
