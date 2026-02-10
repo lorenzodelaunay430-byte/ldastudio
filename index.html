@@ -23,6 +23,65 @@
     <div class="ring r1"></div>
     <div class="ring r2"></div>
   </div>
+<section id="login" class="section">
+  <h2>Connexion</h2>
+  <p class="muted">Accède à ton espace client (suivi du projet, documents, paiement).</p>
+
+  <form id="loginForm" class="authForm">
+    <label>Email
+      <input id="loginEmail" type="email" placeholder="client@email.fr" required>
+    </label>
+
+    <label>Mot de passe
+      <input id="loginPass" type="password" placeholder="••••••••" required>
+    </label>
+
+    <button class="btn" type="submit">Se connecter</button>
+    <button class="btn btn--ghost" type="button" id="registerBtn">Créer un compte</button>
+
+    <p id="authMsg" class="muted"></p>
+  </form>
+</section>
+
+<section id="client" class="section hidden">
+  <h2>Espace client</h2>
+  <p class="muted" id="clientMail"></p>
+
+  <div class="clientBox">
+    <strong>Statut :</strong>
+    <div id="pStatus">—</div>
+  </div>
+
+  <div class="clientBox">
+    <strong>Pack :</strong>
+    <div id="pPack">—</div>
+  </div>
+
+  <div class="clientBox">
+    <strong>Avancement :</strong>
+    <div class="progressBar">
+      <div id="pProgBar"></div>
+    </div>
+    <div id="pProgTxt">—</div>
+  </div>
+
+  <div class="clientBox">
+    <strong>Documents :</strong>
+    <a id="pDocs" href="#" target="_blank">—</a>
+  </div>
+
+  <div class="clientBox">
+    <strong>Paiement :</strong>
+    <a id="pPay" href="#" target="_blank">—</a>
+  </div>
+
+  <div class="clientBox">
+    <strong>Notes :</strong>
+    <div id="pNotes">—</div>
+  </div>
+
+  <button class="btn btn--ghost" id="logoutBtn">Se déconnecter</button>
+</section>
 
   <!-- Scroll bar -->
   <div class="scrollbar" aria-hidden="true"><div class="scrollbar__fill" id="scrollFill"></div></div>
