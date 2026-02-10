@@ -158,3 +158,59 @@ function updatePc3D(){
 window.addEventListener("scroll", updatePc3D, { passive: true });
 window.addEventListener("resize", updatePc3D);
 setTimeout(updatePc3D, 150);
+const aiFab = document.getElementById("aiFab");
+const aiChat = document.getElementById("aiChat");
+const aiClose = document.getElementById("aiClose");
+const aiMsgs = document.getElementById("aiMsgs");
+const aiForm = document.getElementById("aiForm");
+const aiInput = document.getElementById("aiInput");
+
+// 🔁 Mets ici l’URL de ton Worker Cloudflare (étape suivante)
+const AI_ENDPOINT = "https://ton-worker.ton-sous-domaine.workers.dev/chat";
+
+function addMsg(text, who="bot"){
+  const div = document.createElement("div");
+  div.className = "aiMsg" + (who==="me" ? " me" : "");
+  div.textContent = text;
+  aiMsgs.appendChild(div);
+  aiMsgs.scrollTop = aiMsgs.scrollHeight;
+}
+
+aiFab?.addEventListener("click", () => {
+  aiChat.classList.add("isOn");
+  aiChat.setAttribute("aria-hidden","false");
+  if (!aiMsgs.dataset.hello) {
+    aiMsgs.dataset.hello = "1";
+    addMsg("Salut 👋 Je suis l’assistant LDA Studio. Pose-moi une question (site web, tarifs, PC, Windows, FPS…).");
+  }
+  setTimeout(()=>aiInput?.focus(), 60);
+});
+
+aiClose?.addEventListener("click", () => {
+  aiChat.classList.remove("isOn");
+  aiChat.setAttribute("aria-hidden","true");
+});
+
+aiForm?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const q = (aiInput.value  "").trim();
+  if (!q) return;
+  aiInput.value = "";
+  addMsg(q, "me");
+  addMsg("…", "bot");
+
+  try{
+    const res = await fetch(AI_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type":"application/json" },
+      body: JSON.stringify({ message: q })
+    });
+    const data = await res.json();
+    aiMsgs.lastChild.remove(); // remove "…"
+    addMsg(data.reply  "Désolé, je n’ai pas pu répondre.");
+  }catch(err){
+    aiMsgs.lastChild.remove();
+    addMsg("Erreur réseau. Réessaie dans un moment.");
+  }
+});
+﻿
