@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="fr">
 <head>
- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LDA Studio — Web & PC</title>
@@ -13,29 +12,7 @@
 
   <link rel="stylesheet" href="styles.css" />
 </head>
-  <!-- AI widget -->
-<button class="aiFab" id="aiFab" aria-label="Ouvrir le chat IA">
-  💬
-</button>
 
-<div class="aiWidget" id="aiWidget" aria-hidden="true">
-  <div class="aiTop">
-    <div class="aiTop__left">
-      <div class="aiTitle">Assistant LDA Studio</div>
-      <div class="aiSub">Web & PC • réponses instantanées</div>
-    </div>
-    <button class="aiX" id="aiX" aria-label="Fermer">✕</button>
-  </div>
-
-  <div class="aiBody" id="aiBody"></div>
-
-  <form class="aiBottom" id="aiForm">
-    <input class="aiInput" id="aiInput" placeholder="Pose ta question (tarifs, PC, Windows, délais…)" autocomplete="off">
-    <button class="aiSend" type="submit">Envoyer</button>
-  </form>
-
-  <div class="aiNote">⚠️ Ne mets pas d’infos sensibles (CB, codes, mots de passe).</div>
-</div>
 <body>
   <!-- BG -->
   <div class="bg" aria-hidden="true">
@@ -489,70 +466,7 @@
 
     <button class="toTop" id="toTop" aria-label="Remonter">↑</button>
   </main>
-<section id="login" class="section">
-  <h2>Connexion</h2>
-  <p class="muted">Accède à ton espace client (suivi, documents, paiement).</p>
 
-  <div class="authCard">
-    <form id="loginForm" class="authForm">
-      <label>Email
-        <input id="loginEmail" type="email" required placeholder="client@email.fr">
-      </label>
-      <label>Mot de passe
-        <input id="loginPass" type="password" required placeholder="••••••••">
-      </label>
-
-      <button class="btn" type="submit">Se connecter</button>
-      <button class="btn btn--ghost" id="registerBtn" type="button">Créer un compte</button>
-      <button class="btn btn--ghost" id="resetBtn" type="button">Mot de passe oublié</button>
-
-      <p class="authMsg" id="authMsg"></p>
-    </form>
-  </div>
-</section>
-
-<section id="client" class="section hidden" aria-hidden="true">
-  <div class="clientHead">
-    <div>
-      <h2>Espace client</h2>
-      <p class="muted" id="clientMail">—</p>
-    </div>
-    <button class="btn btn--ghost" id="logoutBtn" type="button">Se déconnecter</button>
-  </div>
-
-  <div class="clientGrid">
-    <div class="clientBox">
-      <div class="clientLabel">Statut</div>
-      <div class="clientValue" id="pStatus">—</div>
-    </div>
-
-    <div class="clientBox">
-      <div class="clientLabel">Pack</div>
-      <div class="clientValue" id="pPack">—</div>
-    </div>
-
-    <div class="clientBox">
-      <div class="clientLabel">Avancement</div>
-      <div class="progressBar"><div id="pProgBar"></div></div>
-      <div class="muted" id="pProgTxt">—</div>
-    </div>
-
-    <div class="clientBox">
-      <div class="clientLabel">Documents</div>
-      <a class="linkBtn" id="pDocs" href="#" target="_blank" rel="noopener">Ouvrir</a>
-    </div>
-
-    <div class="clientBox">
-      <div class="clientLabel">Paiement</div>
-      <a class="linkBtn" id="pPay" href="#" target="_blank" rel="noopener">Payer</a>
-    </div>
-
-    <div class="clientBox clientBox--full">
-      <div class="clientLabel">Notes</div>
-      <div class="clientValue" id="pNotes">—</div>
-    </div>
-  </div>
-</section>
   <script src="app.js"></script>
 </body>
 </html>
