@@ -12,25 +12,28 @@
 
   <link rel="stylesheet" href="styles.css" />
 </head>
-<button id="aiFab">💬</button>
+  <!-- AI widget -->
+<button class="aiFab" id="aiFab" aria-label="Ouvrir le chat IA">
+  💬
+</button>
 
-<div id="aiChat" class="aiChat" aria-hidden="true">
-  <div class="aiHead">
-    <div>
+<div class="aiWidget" id="aiWidget" aria-hidden="true">
+  <div class="aiTop">
+    <div class="aiTop__left">
       <div class="aiTitle">Assistant LDA Studio</div>
-      <div class="aiSub">Répond sur sites & PC • 24/7</div>
+      <div class="aiSub">Web & PC • réponses instantanées</div>
     </div>
-    <button id="aiClose" class="aiClose" aria-label="Fermer">✕</button>
+    <button class="aiX" id="aiX" aria-label="Fermer">✕</button>
   </div>
 
-  <div id="aiMsgs" class="aiMsgs"></div>
+  <div class="aiBody" id="aiBody"></div>
 
-  <form id="aiForm" class="aiForm">
-    <input id="aiInput" placeholder="Pose ta question (tarifs, délais, PC, Windows…)" autocomplete="off" />
+  <form class="aiBottom" id="aiForm">
+    <input class="aiInput" id="aiInput" placeholder="Pose ta question (tarifs, PC, Windows, délais…)" autocomplete="off">
     <button class="aiSend" type="submit">Envoyer</button>
   </form>
 
-  <div class="aiHint">⚠️ Ne mets pas d’infos sensibles (CB, codes, mots de passe).</div>
+  <div class="aiNote">⚠️ Ne mets pas d’infos sensibles (CB, codes, mots de passe).</div>
 </div>
 <body>
   <!-- BG -->
