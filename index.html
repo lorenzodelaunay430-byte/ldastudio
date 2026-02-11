@@ -6,11 +6,11 @@
   <meta name="description" content="LDA Studio - Création de sites web modernes + services PC (montage/optimisation Windows/jeux)." />
   <title>LDA Studio — Web & PC</title>
 
-  <link rel="stylesheet" href="styles.css?v=1" />
+  <link rel="stylesheet" href="styles.css?v=2" />
 </head>
 
 <body>
-  <!-- INTRO 3D (overlay) -->
+  <!-- INTRO 3D (LDA) -->
   <div id="intro3D" aria-hidden="true">
     <canvas id="introCanvas"></canvas>
     <div class="introCenter">
@@ -23,11 +23,12 @@
 
   <!-- BG -->
   <div class="bgGlow" aria-hidden="true"></div>
+  <div class="bgRings" aria-hidden="true"></div>
 
   <!-- NAV -->
   <header class="top">
     <div class="wrap topInner">
-      <a class="brand" href="#">
+      <a class="brand" href="#top">
         <span class="brandDot"></span>
         <span class="brandName">LDA Studio</span>
         <span class="brandTag">Web • PC</span>
@@ -37,17 +38,31 @@
         <a href="#services">Services</a>
         <a href="#tarifs">Tarifs</a>
         <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
       </nav>
 
       <div class="navActions">
         <a class="btn btnGhost" href="login.html">Espace client</a>
         <a class="btn btnPrimary" href="#contact">Demander un devis</a>
       </div>
+
+      <button class="burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobileNav" id="mobileNav" aria-hidden="true">
+      <a href="#services">Services</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a href="login.html" class="mobileCta">Espace client</a>
+      <a href="#contact" class="mobileCta2">Demander un devis</a>
     </div>
   </header>
 
   <!-- HERO -->
-  <main class="wrap">
+  <main class="wrap" id="top">
     <section class="hero">
       <div class="heroLeft">
         <div class="pill">
@@ -94,7 +109,7 @@
       </div>
 
       <div class="heroRight">
-        <div class="mock">
+        <div class="mock tilt" data-tilt>
           <div class="mockTop">
             <span class="mockDot r"></span><span class="mockDot y"></span><span class="mockDot g"></span>
             <span class="mockTitle">Preview</span>
@@ -103,6 +118,7 @@
 
           <div class="mockPane mockPaneBig">
             <div class="mockGlow"></div>
+            <div class="mockLine"></div>
           </div>
 
           <div class="mockGrid">
@@ -133,74 +149,109 @@
         </div>
       </div>
 
+      <!-- WEB -->
       <div class="cards" id="cardsWeb">
-        <article class="card">
+        <article class="card tilt" data-tilt>
           <div class="cardIcon">🌐</div>
           <h3>Création de site</h3>
           <p>Vitrine ou landing page qui convertit. Design moderne + sections pro.</p>
           <ul>
             <li>One-page premium</li>
-            <li>Responsive</li>
+            <li>Animations</li>
             <li>SEO de base</li>
           </ul>
         </article>
 
-        <article class="card">
+        <article class="card tilt" data-tilt>
           <div class="cardIcon">🧩</div>
           <h3>Refonte</h3>
           <p>Ton site est vieux ? On le modernise : structure, visuel, vitesse, UX.</p>
           <ul>
-            <li>Design + structure</li>
-            <li>Optimisation perf</li>
-            <li>Contenu amélioré</li>
+            <li>Nouveau design</li>
+            <li>Meilleure lisibilité</li>
+            <li>Optimisation</li>
           </ul>
         </article>
 
-        <article class="card">
+        <article class="card tilt" data-tilt>
           <div class="cardIcon">🛠️</div>
           <h3>Maintenance</h3>
           <p>Corrections, ajouts, mises à jour, sections, bugfix, suivi.</p>
           <ul>
             <li>Modifs rapides</li>
-            <li>Sécurité</li>
+            <li>Ajout sections</li>
             <li>Support</li>
           </ul>
         </article>
       </div>
 
-      <div class="cards hidden" id="cardsPC">
-        <article class="card">
-          <div class="cardIcon">🖥️</div>
-          <h3>Montage PC</h3>
-          <p>Montage propre, câble management, tests, stabilité. Prêt à jouer / bosser.</p>
-          <ul>
-            <li>Montage complet</li>
-            <li>Tests stabilité</li>
-            <li>Conseils pièces</li>
-          </ul>
-        </article>
+      <!-- PC -->
+      <div class="pcZone hidden" id="cardsPC">
+        <div class="pcShow">
+          <div class="pcInfo">
+            <div class="pcTitle">PC performance</div>
+            <p class="pcText">Montage propre, optimisation Windows/jeux, stabilité + FPS. Scroll pour voir l’effet 3D.</p>
+            <div class="pcTags">
+              <span class="tag2">Optimisation Windows</span>
+              <span class="tag2">Optimisation Jeux</span>
+              <span class="tag2">Drivers</span>
+              <span class="tag2">Stabilité</span>
+            </div>
+          </div>
 
-        <article class="card">
-          <div class="cardIcon">⚙️</div>
-          <h3>Optimisation</h3>
-          <p>Windows, drivers, réglages, FPS/latence. Objectif : perf + stabilité.</p>
-          <ul>
-            <li>Optimisation système</li>
-            <li>Réglages jeux</li>
-            <li>Conseils config</li>
-          </ul>
-        </article>
+          <div class="pc3DBox tilt" data-tilt>
+            <div class="pc3DWrap">
+              <div class="pc3D" id="pc3d">
+                <div class="pcFace pcFront"></div>
+                <div class="pcFace pcBack"></div>
+                <div class="pcFace pcLeft"></div>
+                <div class="pcFace pcRight"></div>
+                <div class="pcFace pcTop"></div>
+                <div class="pcFace pcBottom"></div>
+                <div class="pcGlow"></div>
+                <div class="pcFans">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+            <div class="pcLegend">Scroll = rotation 3D</div>
+          </div>
+        </div>
 
-        <article class="card">
-          <div class="cardIcon">🧼</div>
-          <h3>Nettoyage</h3>
-          <p>Dépoussiérage, contrôle températures, réduction bruit. Durée de vie ++</p>
-          <ul>
-            <li>Températures mieux</li>
-            <li>Moins de bruit</li>
-            <li>Durée de vie</li>
-          </ul>
-        </article>
+        <div class="cards">
+          <article class="card tilt" data-tilt>
+            <div class="cardIcon">🖥️</div>
+            <h3>Montage PC</h3>
+            <p>Montage propre, câble management, tests, stabilité. Setup prêt à jouer / bosser.</p>
+            <ul>
+              <li>Montage complet</li>
+              <li>Tests stabilité</li>
+              <li>Conseils pièces</li>
+            </ul>
+          </article>
+
+          <article class="card tilt" data-tilt>
+            <div class="cardIcon">⚙️</div>
+            <h3>Optimisation</h3>
+            <p>Windows, drivers, réglages, FPS/latence. Objectif : perf + stabilité.</p>
+            <ul>
+              <li>Optimisation système</li>
+              <li>Réglages jeux</li>
+              <li>Conseils config</li>
+            </ul>
+          </article>
+
+          <article class="card tilt" data-tilt>
+            <div class="cardIcon">🧼</div>
+            <h3>Nettoyage</h3>
+            <p>Dépoussiérage, contrôle températures, réduction bruit. Durée de vie ++</p>
+            <ul>
+              <li>Températures mieux</li>
+              <li>Moins de bruit</li>
+              <li>Durée de vie</li>
+            </ul>
+          </article>
+        </div>
       </div>
 
       <div class="banner">
@@ -220,7 +271,7 @@
       </div>
 
       <div class="pricing">
-        <div class="priceCard">
+        <div class="priceCard tilt" data-tilt>
           <div class="priceTop">
             <div class="priceName">Starter</div>
             <div class="priceVal">199€</div>
@@ -229,12 +280,12 @@
           <ul class="priceList">
             <li>Design moderne</li>
             <li>Responsive</li>
-            <li>1 section contact</li>
+            <li>Contact</li>
           </ul>
           <a class="btn btnPrimary w100" href="#contact">Choisir Starter</a>
         </div>
 
-        <div class="priceCard isHot">
+        <div class="priceCard isHot tilt" data-tilt>
           <div class="badgeHot">Best</div>
           <div class="priceTop">
             <div class="priceName">Pro</div>
@@ -249,7 +300,7 @@
           <a class="btn btnPrimary w100" href="#contact">Choisir Pro</a>
         </div>
 
-        <div class="priceCard">
+        <div class="priceCard tilt" data-tilt>
           <div class="priceTop">
             <div class="priceName">Premium</div>
             <div class="priceVal">549€</div>
@@ -284,7 +335,7 @@
         </details>
 
         <details class="faqItem">
-          <summary>Pour le PC, tu fais quoi exactement ?</summary>
+          <summary>PC : tu fais quoi exactement ?</summary>
           <p>Montage, optimisation Windows/jeux, drivers propres, réglages FPS/latence, nettoyage, stabilité.</p>
         </details>
       </div>
@@ -297,7 +348,7 @@
         <p>Décris ton projet en 30 secondes, je réponds vite.</p>
       </div>
 
-      <div class="contactBox">
+      <div class="contactBox tilt" data-tilt>
         <div class="contactLeft">
           <div class="contactLine"><span>📩</span> <strong>Email :</strong> <a href="mailto:delaunaylorenzo388@gmail.com">delaunaylorenzo388@gmail.com</a></div>
           <div class="contactLine"><span>✅</span> <strong>Infos utiles :</strong> type (site/PC), délai, budget, exemple de style.</div>
@@ -312,13 +363,13 @@
 
       <footer class="footer">
         <div>© <span id="year"></span> LDA Studio — Web & PC</div>
-        <div class="footerSmall">Site GitHub Pages • Design dark / orange</div>
+        <div class="footerSmall">GitHub Pages • Dark / Orange • Glass</div>
       </footer>
     </section>
   </main>
 
   <!-- Scripts (ordre important) -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-  <script src="app.js?v=1"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>
