@@ -241,3 +241,67 @@ logoutBtn.addEventListener("click", async () => {
 });
 
 refreshUI();
+// ===== 3D INTRO =====
+const canvas = document.getElementById("introCanvas");
+if (canvas) {
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+  );
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    alpha: true,
+    antialias: true
+  });
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // Torus (anneau 3D)
+  const geometry = new THREE.TorusGeometry(2, 0.6, 32, 100);
+  const material = new THREE.MeshStandardMaterial({
+    color: 0xff7a00,
+    metalness: 0.7,
+    roughness: 0.2
+  });
+
+  const torus = new THREE.Mesh(geometry, material);
+  scene.add(torus);
+
+  const light = new THREE.PointLight(0xffffff, 2);
+  light.position.set(5, 5, 5);
+  scene.add(light);
+
+  camera.position.z = 6;
+
+  function animate() {
+    requestAnimationFrame(animate);
+
+    torus.rotation.x += 0.01;
+    torus.rotation.y += 0.015;
+
+    renderer.render(scene, camera);
+  }
+
+  animate();
+
+  // Resize
+  window.addEventListener("resize", () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  // Auto remove intro
+  setTimeout(() => {
+    const intro = document.getElementById("intro3D");
+    intro.style.opacity = "0";
+    intro.style.transition = "1s ease";
+    setTimeout(() => intro.remove(), 1000);
+  }, 3500);
+}
