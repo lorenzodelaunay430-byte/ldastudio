@@ -1,76 +1,1329 @@
+<!-- client.html — LDA Studio / Espace Client (style “grande startup”) -->
 <!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Espace client — LDA Studio</title>
+  <meta name="theme-color" content="#0b0f19" />
+  <style>
+    :root{
+      --bg0:#070a12;
+      --bg1:#0a1022;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
+      --border: rgba(255,255,255,.12);
+      --txt: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.62);
+      --muted2: rgba(255,255,255,.45);
+      --shadow: 0 18px 70px rgba(0,0,0,.55);
+      --shadow2: 0 10px 40px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 14px;
+      --ring: 0 0 0 3px rgba(120,170,255,.22);
+      --good: rgba(58,225,160,.95);
+      --warn: rgba(255,204,80,.95);
+      --bad: rgba(255,95,95,.95);
+      --accent1: rgba(120,170,255,1);
+      --accent2: rgba(186,120,255,1);
+      --accent3: rgba(72,255,220,1);
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
 
-  <link rel="stylesheet" href="styles.css?v=1" />
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0;
+      color:var(--txt);
+      font-family:var(--font);
+      background:
+        radial-gradient(1200px 800px at 15% 10%, rgba(120,170,255,.24), transparent 60%),
+        radial-gradient(900px 650px at 85% 20%, rgba(186,120,255,.18), transparent 55%),
+        radial-gradient(900px 650px at 50% 95%, rgba(72,255,220,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+
+    /* Background noise + grid */
+    .bg-noise{
+      pointer-events:none;
+      position:fixed; inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(900px 520px at 50% 20%, rgba(0,0,0,.9), transparent 70%);
+      opacity:.18;
+    }
+    .grain{
+      pointer-events:none;
+      position:fixed; inset:-40%;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+      opacity:.08;
+      transform: rotate(8deg);
+      mix-blend-mode: overlay;
+    }
+
+    /* Layout */
+    .shell{
+      min-height:100vh;
+      display:grid;
+      grid-template-columns: 280px 1fr;
+      gap:22px;
+      padding:22px;
+      max-width: 1400px;
+      margin:0 auto;
+    }
+
+    /* Glass card */
+    .glass{
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    /* Sidebar */
+    .sidebar{
+      position:sticky;
+      top:22px;
+      height: calc(100vh - 44px);
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      padding:10px 10px 14px 10px;
+    }
+    .logo{
+      width:44px; height:44px; border-radius: 14px;
+      background:
+        radial-gradient(16px 16px at 30% 25%, rgba(255,255,255,.55), transparent 60%),
+        linear-gradient(135deg, rgba(120,170,255,.95), rgba(186,120,255,.85));
+      box-shadow: 0 14px 30px rgba(120,170,255,.15);
+      border: 1px solid rgba(255,255,255,.18);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+      transform: rotate(18deg);
+      animation: shine 4.5s linear infinite;
+      opacity:.55;
+    }
+    @keyframes shine{ 0%{ transform: translateX(-25%) rotate(18deg)} 100%{ transform: translateX(25%) rotate(18deg)} }
+
+    .brand h1{
+      margin:0;
+      font-size: 14px;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.9);
+      line-height: 1.1;
+    }
+    .brand p{
+      margin:3px 0 0 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .nav{
+      margin-top: 10px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      padding: 6px;
+    }
+    .nav button{
+      all:unset;
+      cursor:pointer;
+      display:flex; align-items:center; gap:12px;
+      padding:12px 12px;
+      border-radius: 14px;
+      color: rgba(255,255,255,.78);
+      transition: .18s ease;
+      border: 1px solid transparent;
+    }
+    .nav button:hover{
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.08);
+      transform: translateY(-1px);
+    }
+    .nav button.active{
+      background: linear-gradient(135deg, rgba(120,170,255,.16), rgba(186,120,255,.10));
+      border-color: rgba(120,170,255,.22);
+      color: rgba(255,255,255,.92);
+      box-shadow: 0 14px 36px rgba(0,0,0,.35);
+    }
+    .ico{
+      width:18px; height:18px;
+      display:inline-grid; place-items:center;
+      opacity:.95;
+    }
+    .nav small{
+      margin-left:auto;
+      font-size: 11px;
+      color: var(--muted2);
+      padding: 3px 8px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 999px;
+      background: rgba(0,0,0,.18);
+    }
+
+    .sidebarBottom{
+      margin-top:auto;
+      padding:10px 6px 6px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .userCard{
+      padding:12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .avatar{
+      width:42px; height:42px; border-radius: 14px;
+      border:1px solid rgba(255,255,255,.16);
+      background:
+        radial-gradient(16px 16px at 30% 25%, rgba(255,255,255,.45), transparent 60%),
+        linear-gradient(135deg, rgba(72,255,220,.35), rgba(120,170,255,.35));
+      display:grid; place-items:center;
+      font-weight:800;
+      letter-spacing:.3px;
+    }
+    .userMeta{ min-width:0 }
+    .userMeta .name{
+      font-size: 13px;
+      font-weight: 700;
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    .userMeta .mail{
+      font-size: 12px;
+      color: var(--muted);
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    .row{
+      display:flex;
+      gap:10px;
+    }
+    .btn{
+      cursor:pointer;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      padding: 10px 12px;
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.88);
+      transition: .18s ease;
+      font: 600 13px var(--font);
+      display:inline-flex; align-items:center; gap:10px;
+      justify-content:center;
+      width:100%;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: var(--shadow2); border-color: rgba(120,170,255,.22) }
+    .btn.primary{
+      border-color: rgba(120,170,255,.26);
+      background: linear-gradient(135deg, rgba(120,170,255,.28), rgba(186,120,255,.18));
+    }
+    .btn.danger{
+      border-color: rgba(255,95,95,.28);
+      background: linear-gradient(135deg, rgba(255,95,95,.20), rgba(255,255,255,.04));
+    }
+
+    /* Main area */
+    .main{
+      padding: 18px;
+      overflow:hidden;
+      min-height: calc(100vh - 44px);
+    }
+
+    .topbar{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      padding: 8px 8px 16px;
+    }
+    .title h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing:-.2px;
+    }
+    .title p{
+      margin:6px 0 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 70ch;
+    }
+
+    .topActions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .pill{
+      display:flex; align-items:center; gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.86);
+      font: 600 13px var(--font);
+      cursor:pointer;
+      transition:.18s ease;
+      user-select:none;
+    }
+    .pill:hover{ transform: translateY(-1px); border-color: rgba(120,170,255,.22) }
+    .dot{
+      width:9px; height:9px; border-radius: 999px;
+      background: var(--good);
+      box-shadow: 0 0 0 3px rgba(58,225,160,.12);
+    }
+
+    /* Sections */
+    .content{
+      padding: 6px;
+      display:grid;
+      gap:16px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+      align-items:start;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+    .card{
+      padding: 14px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 14px 46px rgba(0,0,0,.26);
+      min-height: 110px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card:before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(480px 260px at 10% 0%, rgba(120,170,255,.14), transparent 60%);
+      pointer-events:none;
+    }
+    .card h3{
+      margin: 0;
+      font-size: 13px;
+      color: rgba(255,255,255,.78);
+      font-weight: 700;
+    }
+    .metric{
+      margin-top:10px;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing:-.6px;
+    }
+    .hint{
+      margin-top:8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .panel{
+      padding: 14px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 14px 46px rgba(0,0,0,.26);
+      overflow:hidden;
+    }
+    .panelHeader{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 10px;
+    }
+    .panelHeader h3{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:.1px;
+    }
+    .panelHeader span{
+      color: var(--muted2);
+      font-size: 12px;
+    }
+
+    table{
+      width:100%;
+      border-collapse: collapse;
+      overflow:hidden;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.14);
+    }
+    th,td{
+      padding: 12px 12px;
+      text-align:left;
+      font-size: 12.5px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.86);
+      vertical-align:middle;
+    }
+    th{
+      color: rgba(255,255,255,.72);
+      font-weight: 700;
+      background: rgba(255,255,255,.03);
+      letter-spacing:.2px;
+    }
+    tr:hover td{ background: rgba(255,255,255,.03) }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      font-weight: 700;
+      font-size: 11px;
+      color: rgba(255,255,255,.86);
+      background: rgba(255,255,255,.05);
+      white-space:nowrap;
+    }
+    .tag.good{ border-color: rgba(58,225,160,.25); background: rgba(58,225,160,.10) }
+    .tag.warn{ border-color: rgba(255,204,80,.25); background: rgba(255,204,80,.10) }
+    .tag.bad{ border-color: rgba(255,95,95,.25); background: rgba(255,95,95,.10) }
+
+    /* Forms */
+    .formGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    label{
+      font-size: 12px;
+      color: var(--muted);
+    }
+    input, textarea, select{
+      width:100%;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.16);
+      color: rgba(255,255,255,.92);
+      padding: 12px 12px;
+      font: 600 13px var(--font);
+      outline:none;
+      transition: .18s ease;
+    }
+    textarea{ min-height: 110px; resize: vertical }
+    input:focus, textarea:focus, select:focus{
+      border-color: rgba(120,170,255,.35);
+      box-shadow: var(--ring);
+    }
+    .muted{
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    /* Login overlay */
+    .authWrap{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding: 22px;
+    }
+    .authCard{
+      width:min(980px, 100%);
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:16px;
+      padding: 16px;
+    }
+    .hero{
+      padding: 18px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(700px 420px at 20% 0%, rgba(120,170,255,.22), transparent 60%),
+        radial-gradient(700px 420px at 80% 20%, rgba(186,120,255,.18), transparent 60%),
+        rgba(255,255,255,.04);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero h2{
+      margin:0;
+      font-size: 28px;
+      letter-spacing:-.6px;
+    }
+    .hero p{
+      margin:10px 0 0 0;
+      color: var(--muted);
+      max-width: 52ch;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .hero .banners{
+      margin-top:16px;
+      display:grid;
+      gap:10px;
+    }
+    .banner{
+      padding: 12px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      display:flex; gap:10px; align-items:flex-start;
+    }
+    .badge{
+      width:34px; height:34px; border-radius: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(135deg, rgba(72,255,220,.20), rgba(120,170,255,.22));
+      display:grid; place-items:center;
+      font-weight: 900;
+      opacity:.95;
+    }
+    .banner b{ font-size: 13px }
+    .banner span{ display:block; margin-top:3px; font-size:12px; color: var(--muted) }
+
+    .auth{
+      padding: 18px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .auth h3{ margin:0; font-size: 16px }
+    .auth .row2{ display:flex; gap:10px }
+    .auth .row2 .btn{ width: 100% }
+    .divider{
+      display:flex; align-items:center; gap:12px;
+      color: var(--muted2);
+      font-size: 12px;
+      margin: 6px 0;
+    }
+    .divider:before,.divider:after{
+      content:"";
+      height:1px;
+      background: rgba(255,255,255,.10);
+      flex:1;
+    }
+    .toast{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: min(420px, calc(100% - 36px));
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      color: rgba(255,255,255,.92);
+      transform: translateY(16px);
+      opacity:0;
+      pointer-events:none;
+      transition:.18s ease;
+      font-size: 13px;
+    }
+    .toast.show{ opacity:1; transform: translateY(0); pointer-events:auto }
+    .toast .tTitle{ font-weight:800 }
+    .toast .tMsg{ margin-top:4px; color: var(--muted) }
+
+    /* Pages */
+    .page{ display:none }
+    .page.active{ display:block }
+
+    /* Responsive */
+    @media (max-width: 1050px){
+      .shell{ grid-template-columns: 1fr; }
+      .sidebar{ position:relative; height:auto; top:auto }
+      .grid{ grid-template-columns: 1fr }
+      .cards{ grid-template-columns: repeat(2, minmax(0,1fr)) }
+    }
+    @media (max-width: 720px){
+      .cards{ grid-template-columns: 1fr }
+      .formGrid{ grid-template-columns: 1fr }
+      .authCard{ grid-template-columns: 1fr }
+      .topbar{ flex-direction:column; align-items:flex-start }
+      .topActions{ justify-content:flex-start }
+    }
+  </style>
 </head>
+
 <body>
-  <div class="wrap" style="padding:40px 0;">
-    <div class="clientHead">
-      <div>
-        <h2>Espace client</h2>
-        <p class="muted" id="clientMail">—</p>
-      </div>
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <a class="btn btn--ghost" href="index.html">Accueil</a>
-        <button class="btn btn--ghost" id="logoutBtn" type="button">Se déconnecter</button>
-      </div>
-    </div>
+  <div class="bg-noise"></div>
+  <div class="grain"></div>
 
-    <div class="clientGrid">
-      <div class="clientBox">
-        <div class="clientLabel">Dernière commande</div>
-        <div class="clientValue" id="oTitle">—</div>
-        <div class="muted" id="oDate">—</div>
-      </div>
+  <!-- AUTH SCREEN -->
+  <section id="authScreen" class="authWrap" style="display:none">
+    <div class="glass authCard">
+      <div class="hero">
+        <div class="brand" style="padding:0 0 10px 0">
+          <div class="logo"></div>
+          <div>
+            <h1>LDA Studio</h1>
+            <p>Espace client • Connexion sécurisée</p>
+          </div>
+        </div>
 
-      <div class="clientBox">
-        <div class="clientLabel">Statut</div>
-        <div class="clientValue" id="pStatus">—</div>
-        <div class="muted" id="pPack">—</div>
-      </div>
+        <h2>Un espace client digne d’une grande startup.</h2>
+        <p>
+          Accède à tes projets, tes commandes, tes livrables et ton support.
+          Connexion email ou Discord (OAuth) pour une expérience moderne et rapide.
+        </p>
 
-      <div class="clientBox">
-        <div class="clientLabel">Avancement</div>
-        <div class="progressBar"><div id="pProgBar"></div></div>
-        <div class="muted" id="pProgTxt">—</div>
-      </div>
-
-      <div class="clientBox">
-        <div class="clientLabel">Mon site</div>
-        <a class="linkBtn" id="pSite" href="#" target="_blank" rel="noopener">Ouvrir</a>
-      </div>
-
-      <div class="clientBox">
-        <div class="clientLabel">Documents</div>
-        <a class="linkBtn" id="pDocs" href="#" target="_blank" rel="noopener">Ouvrir</a>
-      </div>
-
-      <div class="clientBox">
-        <div class="clientLabel">Paiement</div>
-        <a class="linkBtn" id="pPay" href="#" target="_blank" rel="noopener">Payer</a>
-      </div>
-
-      <div class="clientBox clientBox--full">
-        <div class="clientLabel">Support</div>
-        <div class="clientValue" id="supportTxt">Besoin d’aide ? Clique ci-dessous.</div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-          <a class="btn" id="supportMail" href="mailto:delaunaylorenzo388@gmail.com?subject=Support%20LDA%20Studio">Contacter le support</a>
-          <a class="btn btn--ghost" id="supportDocs" href="#" target="_blank" rel="noopener">Guide client</a>
+        <div class="banners">
+          <div class="banner">
+            <div class="badge">⚡</div>
+            <div>
+              <b>Dashboard complet</b>
+              <span>Projets • Commandes • Support • Téléchargements</span>
+            </div>
+          </div>
+          <div class="banner">
+            <div class="badge">🔐</div>
+            <div>
+              <b>Connexion sécurisée</b>
+              <span>Sessions + providers (Discord) via Supabase Auth</span>
+            </div>
+          </div>
+          <div class="banner">
+            <div class="badge">✨</div>
+            <div>
+              <b>Style premium</b>
+              <span>Glass + profondeur + animations subtiles</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="clientBox clientBox--full">
-        <div class="clientLabel">Notes / infos</div>
-        <div class="clientValue" id="pNotes">—</div>
+      <div class="auth">
+        <h3>Connexion</h3>
+        <p class="muted" style="margin:0">
+          Utilise Discord (recommandé) ou email + mot de passe.
+        </p>
+
+        <button id="btnDiscord" class="btn primary">
+          <span class="ico">💬</span>
+          Se connecter avec Discord
+        </button>
+
+        <div class="divider">ou</div>
+
+        <div class="field">
+          <label>Email</label>
+          <input id="email" type="email" placeholder="ex: maya@exemple.com" autocomplete="email" />
+        </div>
+        <div class="field">
+          <label>Mot de passe</label>
+          <input id="password" type="password" placeholder="••••••••" autocomplete="current-password" />
+        </div>
+
+        <div class="row2">
+          <button id="btnLogin" class="btn">Connexion</button>
+          <button id="btnSignup" class="btn">Créer un compte</button>
+        </div>
+
+        <p class="muted" style="margin:0">
+          Astuce : si tu veux un lien magic (sans mot de passe), on peut le rajouter après.
+        </p>
+
+        <div class="divider">Config</div>
+        <p class="muted" style="margin:0">
+          Dans le code, colle tes valeurs <b>SUPABASE_URL</b> et <b>SUPABASE_ANON_KEY</b>.
+          Active aussi “Discord” dans Supabase Auth Providers.
+        </p>
       </div>
     </div>
+  </section>
+
+  <!-- APP SHELL -->
+  <section id="appShell" class="shell" style="display:none">
+    <!-- Sidebar -->
+    <aside class="glass sidebar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <h1>LDA Studio</h1>
+          <p>Espace client</p>
+        </div>
+      </div>
+
+      <nav class="nav" id="nav">
+        <button class="active" data-page="dashboard">
+          <span class="ico">🏠</span> Dashboard
+          <small id="badgeDash">Live</small>
+        </button>
+        <button data-page="projects">
+          <span class="ico">🧩</span> Projets
+          <small id="badgeProj">3</small>
+        </button>
+        <button data-page="orders">
+          <span class="ico">🧾</span> Commandes
+          <small id="badgeOrders">2</small>
+        </button>
+        <button data-page="downloads">
+          <span class="ico">⬇️</span> Livrables
+          <small id="badgeDown">5</small>
+        </button>
+        <button data-page="support">
+          <span class="ico">🎫</span> Support
+          <small id="badgeSupport">1</small>
+        </button>
+        <button data-page="settings">
+          <span class="ico">⚙️</span> Paramètres
+          <small>Pro</small>
+        </button>
+      </nav>
+
+      <div class="sidebarBottom">
+        <div class="userCard">
+          <div class="avatar" id="avatar">LD</div>
+          <div class="userMeta">
+            <div class="name" id="userName">Utilisateur</div>
+            <div class="mail" id="userEmail">email@exemple.com</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <button id="btnNewRequest" class="btn primary">
+            <span class="ico">➕</span> Nouvelle demande
+          </button>
+          <button id="btnLogout" class="btn danger">
+            <span class="ico">⎋</span> Déconnexion
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="glass main">
+      <div class="topbar">
+        <div class="title">
+          <h2 id="pageTitle">Dashboard</h2>
+          <p id="pageSubtitle">
+            Bienvenue dans ton espace client LDA Studio : tout est centralisé, clair et premium.
+          </p>
+        </div>
+
+        <div class="topActions">
+          <div class="pill" id="pillStatus" title="Statut du compte">
+            <span class="dot"></span>
+            <span>Compte connecté</span>
+          </div>
+          <div class="pill" id="pillPlan" title="Plan">
+            <span class="ico">👑</span>
+            <span>Plan : Pro</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <!-- DASHBOARD -->
+        <section class="page active" id="page-dashboard">
+          <div class="cards">
+            <div class="card">
+              <h3>Projets actifs</h3>
+              <div class="metric" id="mProjects">3</div>
+              <div class="hint">UI/UX, Site vitrine, Espace client</div>
+            </div>
+            <div class="card">
+              <h3>Commandes en cours</h3>
+              <div class="metric" id="mOrders">2</div>
+              <div class="hint">Suivi + livraisons en cours</div>
+            </div>
+            <div class="card">
+              <h3>Support</h3>
+              <div class="metric" id="mTickets">1</div>
+              <div class="hint">Tickets ouverts</div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="panel">
+              <div class="panelHeader">
+                <h3>Activité récente</h3>
+                <span>Dernières 7 jours</span>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Évènement</th>
+                    <th>Statut</th>
+                  </tr>
+                </thead>
+                <tbody id="activityBody">
+                  <tr>
+                    <td>Aujourd’hui</td>
+                    <td>Connexion réussie</td>
+                    <td><span class="tag good">OK</span></td>
+                  </tr>
+                  <tr>
+                    <td>Hier</td>
+                    <td>Upload livrable “Pack UI”</td>
+                    <td><span class="tag good">Livré</span></td>
+                  </tr>
+                  <tr>
+                    <td>Il y a 3 jours</td>
+                    <td>Nouveau ticket : “Besoin d’une page devis”</td>
+                    <td><span class="tag warn">En cours</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="panel">
+              <div class="panelHeader">
+                <h3>Actions rapides</h3>
+                <span>Gagne du temps</span>
+              </div>
+
+              <div class="muted" style="margin-bottom:10px">
+                Envoie une demande, récupère tes fichiers, ou contacte le support.
+              </div>
+
+              <div style="display:grid; gap:10px">
+                <button class="btn primary" data-goto="support">
+                  <span class="ico">🎫</span> Ouvrir un ticket support
+                </button>
+                <button class="btn" data-goto="downloads">
+                  <span class="ico">⬇️</span> Voir les livrables
+                </button>
+                <button class="btn" data-goto="projects">
+                  <span class="ico">🧩</span> Voir mes projets
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="page" id="page-projects">
+          <div class="panel">
+            <div class="panelHeader">
+              <h3>Projets</h3>
+              <span>Suivi en temps réel</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Projet</th>
+                  <th>Type</th>
+                  <th>Dernière MAJ</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody id="projectsBody">
+                <tr>
+                  <td>Site LDA Studio</td>
+                  <td>Web</td>
+                  <td>Aujourd’hui</td>
+                  <td><span class="tag warn">En développement</span></td>
+                </tr>
+                <tr>
+                  <td>Espace client (Auth + Discord)</td>
+                  <td>App</td>
+                  <td>Hier</td>
+                  <td><span class="tag good">Stable</span></td>
+                </tr>
+                <tr>
+                  <td>Design system “Glass Pro”</td>
+                  <td>UI/UX</td>
+                  <td>Il y a 5 jours</td>
+                  <td><span class="tag good">Livré</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ORDERS -->
+        <section class="page" id="page-orders">
+          <div class="panel">
+            <div class="panelHeader">
+              <h3>Commandes</h3>
+              <span>Factures + suivi</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>N°</th>
+                  <th>Produit</th>
+                  <th>Date</th>
+                  <th>Montant</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody id="ordersBody">
+                <tr>
+                  <td>#LDA-1024</td>
+                  <td>Pack “Landing Premium”</td>
+                  <td>Il y a 2 jours</td>
+                  <td>299€</td>
+                  <td><span class="tag warn">En cours</span></td>
+                </tr>
+                <tr>
+                  <td>#LDA-1019</td>
+                  <td>Template “Espace Client”</td>
+                  <td>Il y a 10 jours</td>
+                  <td>149€</td>
+                  <td><span class="tag good">Payée</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- DOWNLOADS -->
+        <section class="page" id="page-downloads">
+          <div class="panel">
+            <div class="panelHeader">
+              <h3>Livrables & Téléchargements</h3>
+              <span>Tout au même endroit</span>
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Type</th>
+                  <th>Version</th>
+                  <th>Accès</th>
+                </tr>
+              </thead>
+              <tbody id="downloadsBody">
+                <tr>
+                  <td>UI Kit — Glass Pro</td>
+                  <td>ZIP</td>
+                  <td>v1.2</td>
+                  <td><button class="btn" style="width:auto">Télécharger</button></td>
+                </tr>
+                <tr>
+                  <td>Landing — Apple-like</td>
+                  <td>HTML</td>
+                  <td>v1.0</td>
+                  <td><button class="btn" style="width:auto">Télécharger</button></td>
+                </tr>
+                <tr>
+                  <td>Pack Animations</td>
+                  <td>JS</td>
+                  <td>v0.9</td>
+                  <td><button class="btn" style="width:auto">Télécharger</button></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p class="muted" style="margin-top:12px">
+              Pour connecter les vrais fichiers : on branchera Supabase Storage (bucket “deliverables”)
+              et on listera les objets par utilisateur.
+            </p>
+          </div>
+        </section>
+
+        <!-- SUPPORT -->
+        <section class="page" id="page-support">
+          <div class="grid">
+            <div class="panel">
+              <div class="panelHeader">
+                <h3>Créer un ticket</h3>
+                <span>Réponse rapide</span>
+              </div>
+
+              <div class="formGrid">
+                <div class="field">
+                  <label>Sujet</label>
+                  <input id="ticketSubject" placeholder="Ex: Ajouter une page devis" />
+                </div>
+                <div class="field">
+                  <label>Priorité</label>
+                  <select id="ticketPriority">
+                    <option value="normal">Normal</option>
+                    <option value="high">Haute</option>
+                    <option value="urgent">Urgent</option>
+                  </select>
+                </div>
+                <div class="field" style="grid-column:1/-1">
+                  <label>Message</label>
+                  <textarea id="ticketMessage" placeholder="Décris ce que tu veux, le plus précis possible."></textarea>
+                </div>
+              </div>
+
+              <div class="row" style="margin-top:10px">
+                <button id="btnSendTicket" class="btn primary">
+                  <span class="ico">📨</span> Envoyer
+                </button>
+                <button id="btnClearTicket" class="btn">
+                  <span class="ico">🧹</span> Effacer
+                </button>
+              </div>
+
+              <p class="muted" style="margin-top:12px">
+                (Démo) : on peut enregistrer ces tickets dans une table Supabase “tickets” avec user_id.
+              </p>
+            </div>
+
+            <div class="panel">
+              <div class="panelHeader">
+                <h3>Mes tickets</h3>
+                <span>Historique</span>
+              </div>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Sujet</th>
+                    <th>Créé</th>
+                    <th>Statut</th>
+                  </tr>
+                </thead>
+                <tbody id="ticketsBody">
+                  <tr>
+                    <td>#T-019</td>
+                    <td>Besoin d’une page devis</td>
+                    <td>Il y a 3 jours</td>
+                    <td><span class="tag warn">En cours</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section class="page" id="page-settings">
+          <div class="grid">
+            <div class="panel">
+              <div class="panelHeader">
+                <h3>Profil</h3>
+                <span>Compte</span>
+              </div>
+
+              <div class="formGrid">
+                <div class="field">
+                  <label>Nom affiché</label>
+                  <input id="profileName" placeholder="Ton nom" />
+                </div>
+                <div class="field">
+                  <label>Email</label>
+                  <input id="profileEmail" disabled />
+                </div>
+                <div class="field" style="grid-column:1/-1">
+                  <label>Notes</label>
+                  <textarea id="profileNotes" placeholder="Infos utiles (brief projet, préférences, etc.)"></textarea>
+                </div>
+              </div>
+
+              <div class="row" style="margin-top:10px">
+                <button id="btnSaveProfile" class="btn primary">
+                  <span class="ico">💾</span> Sauvegarder
+                </button>
+                <button id="btnResetProfile" class="btn">
+                  <span class="ico">↺</span> Réinitialiser
+                </button>
+              </div>
+
+              <p class="muted" style="margin-top:12px">
+                (Démo) : pour sauvegarder réellement, on crée une table “profiles” (id=user_id, name, notes…)
+              </p>
+            </div>
+
+            <div class="panel">
+              <div class="panelHeader">
+                <h3>Sécurité</h3>
+                <span>Sessions</span>
+              </div>
+
+              <p class="muted">
+                Connexion via : <b id="authProvider">—</b><br/>
+                Dernière connexion : <b id="lastLogin">—</b>
+              </p>
+
+              <button id="btnRefreshSession" class="btn">
+                <span class="ico">🔄</span> Rafraîchir la session
+              </button>
+
+              <div style="height:10px"></div>
+
+              <button id="btnLogout2" class="btn danger">
+                <span class="ico">⎋</span> Se déconnecter
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </section>
+
+  <div id="toast" class="toast">
+    <div class="tTitle" id="toastTitle">Info</div>
+    <div class="tMsg" id="toastMsg">Message</div>
   </div>
 
-  <script src="portal.js?v=1"></script>
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+    // =========================
+    // 1) CONFIG — METS TES INFOS
+    // =========================
+    const SUPABASE_URL = "YOUR_SUPABASE_URL";
+    const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+
+    // IMPORTANT :
+    // - Dans Supabase > Auth > Providers : active Discord, mets Client ID + Secret
+    // - Redirect URL Discord : https://<project_ref>.supabase.co/auth/v1/callback
+    // - Site URL + Redirect URLs incluent ton domaine + /client.html
+    // - Sur GitHub Pages, le redirectTo doit matcher exactement ton URL publique
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // =========================
+    // UI helpers
+    // =========================
+    const $ = (id) => document.getElementById(id);
+
+    function toast(title, msg){
+      $("toastTitle").textContent = title;
+      $("toastMsg").textContent = msg;
+      const t = $("toast");
+      t.classList.add("show");
+      clearTimeout(toast._t);
+      toast._t = setTimeout(()=> t.classList.remove("show"), 3200);
+    }
+
+    function initials(str){
+      const s = (str || "").trim();
+      if (!s) return "LD";
+      const parts = s.split(/\s+/).slice(0,2);
+      return parts.map(p => p[0]?.toUpperCase() || "").join("") || "LD";
+    }
+
+    function setActivePage(key){
+      // nav
+      document.querySelectorAll("#nav button").forEach(b=>{
+        b.classList.toggle("active", b.dataset.page === key);
+      });
+      // pages
+      document.querySelectorAll(".page").forEach(p=>{
+        p.classList.toggle("active", p.id === `page-${key}`);
+      });
+
+      const titles = {
+        dashboard: ["Dashboard", "Tout ton univers LDA Studio, au même endroit."],
+        projects: ["Projets", "Suivi premium de tes projets en cours."],
+        orders: ["Commandes", "Factures, statuts et historique."],
+        downloads: ["Livrables", "Télécharge tes fichiers, packs et templates."],
+        support: ["Support", "Crée un ticket et suis les réponses."],
+        settings: ["Paramètres", "Profil, sécurité et préférences."],
+      };
+      const [t, s] = titles[key] || ["Espace client", "—"];
+      $("pageTitle").textContent = t;
+      $("pageSubtitle").textContent = s;
+    }
+
+    // =========================
+    // AUTH FLOW
+    // =========================
+    async function showCorrectScreen(){
+      const { data: { session } } = await supabase.auth.getSession();
+      const logged = !!session?.user;
+      $("authScreen").style.display = logged ? "none" : "grid";
+      $("appShell").style.display = logged ? "grid" : "none";
+
+      if (logged) {
+        hydrateUser(session.user);
+        toast("Connecté", "Bienvenue dans ton espace client.");
+      }
+    }
+
+    function hydrateUser(user){
+      const meta = user.user_metadata || {};
+      const displayName = meta.full_name || meta.name || meta.user_name || meta.preferred_username || "Client";
+      const email = user.email || "—";
+
+      $("userName").textContent = displayName;
+      $("userEmail").textContent = email;
+      $("avatar").textContent = initials(displayName);
+
+      $("profileName").value = displayName;
+      $("profileEmail").value = email;
+
+      // Provider (Discord / email)
+      const provider = (user.app_metadata?.provider) || "email";
+      $("authProvider").textContent = provider;
+      $("lastLogin").textContent = new Date().toLocaleString("fr-FR");
+    }
+
+    // Login email
+    async function loginEmail(){
+      const email = $("email").value.trim();
+      const password = $("password").value.trim();
+      if(!email || !password) return toast("Erreur", "Email et mot de passe requis.");
+
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if(error) return toast("Connexion impossible", error.message);
+      await showCorrectScreen();
+    }
+
+    // Signup email
+    async function signupEmail(){
+      const email = $("email").value.trim();
+      const password = $("password").value.trim();
+      if(!email || !password) return toast("Erreur", "Email et mot de passe requis.");
+
+      const { error } = await supabase.auth.signUp({ email, password });
+      if(error) return toast("Inscription impossible", error.message);
+      toast("Compte créé", "Si la confirmation email est activée, vérifie ta boîte mail.");
+      await showCorrectScreen();
+    }
+
+    // Discord OAuth
+    async function loginDiscord(){
+      // Redirige vers /client.html (même page)
+      const redirectTo = window.location.origin + window.location.pathname; // .../client.html
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "discord",
+        options: { redirectTo }
+      });
+      if(error) toast("Erreur Discord", error.message);
+    }
+
+    async function logout(){
+      const { error } = await supabase.auth.signOut();
+      if(error) return toast("Erreur", error.message);
+      toast("Déconnecté", "À bientôt.");
+      await showCorrectScreen();
+    }
+
+    // =========================
+    // EVENTS
+    // =========================
+    // Navigation
+    document.querySelectorAll("#nav button").forEach(btn=>{
+      btn.addEventListener("click", ()=> setActivePage(btn.dataset.page));
+    });
+
+    // Quick goto
+    document.querySelectorAll("[data-goto]").forEach(b=>{
+      b.addEventListener("click", ()=> setActivePage(b.dataset.goto));
+    });
+
+    // Auth buttons
+    $("btnLogin").addEventListener("click", loginEmail);
+    $("btnSignup").addEventListener("click", signupEmail);
+    $("btnDiscord").addEventListener("click", loginDiscord);
+
+    // Logout
+    $("btnLogout").addEventListener("click", logout);
+    $("btnLogout2").addEventListener("click", logout);
+
+    // Support demo
+    $("btnSendTicket").addEventListener("click", async ()=>{
+      const subject = $("ticketSubject").value.trim();
+      const prio = $("ticketPriority").value;
+      const msg = $("ticketMessage").value.trim();
+      if(!subject || !msg) return toast("Manque info", "Sujet et message requis.");
+
+      // Démo UI : ajoute dans la table localement
+      const id = "#T-" + String(Math.floor(Math.random()*900)+100);
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${id}</td>
+        <td>${escapeHtml(subject)}</td>
+        <td>Aujourd’hui</td>
+        <td><span class="tag ${prio === "urgent" ? "bad" : prio === "high" ? "warn" : "warn"}">Ouvert</span></td>
+      `;
+      $("ticketsBody").prepend(tr);
+
+      $("ticketSubject").value = "";
+      $("ticketMessage").value = "";
+      $("ticketPriority").value = "normal";
+      toast("Ticket envoyé", "Support LDA Studio : on s’en occupe.");
+    });
+
+    $("btnClearTicket").addEventListener("click", ()=>{
+      $("ticketSubject").value = "";
+      $("ticketMessage").value = "";
+      $("ticketPriority").value = "normal";
+      toast("OK", "Formulaire effacé.");
+    });
+
+    // Profile demo
+    $("btnSaveProfile").addEventListener("click", ()=>{
+      toast("Sauvegardé", "Démo : branchement Supabase Profiles à faire.");
+    });
+    $("btnResetProfile").addEventListener("click", async ()=>{
+      const { data: { user } } = await supabase.auth.getUser();
+      if(user) hydrateUser(user);
+      $("profileNotes").value = "";
+      toast("Réinitialisé", "Profil remis par défaut.");
+    });
+
+    $("btnRefreshSession").addEventListener("click", async ()=>{
+      const { data, error } = await supabase.auth.getSession();
+      if(error) return toast("Erreur", error.message);
+      if(data.session?.user) hydrateUser(data.session.user);
+      toast("OK", "Session rafraîchie.");
+    });
+
+    $("btnNewRequest").addEventListener("click", ()=>{
+      setActivePage("support");
+      toast("Nouvelle demande", "Décris ton besoin, on lance ça.");
+    });
+
+    // Escape helper
+    function escapeHtml(str){
+      return String(str).replace(/[&<>"']/g, s => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+      }[s]));
+    }
+
+    // =========================
+    // INIT
+    // =========================
+    // Default page
+    setActivePage("dashboard");
+
+    // On load: show correct screen
+    await showCorrectScreen();
+
+    // Listen auth changes
+    supabase.auth.onAuthStateChange((_event, session) => {
+      const logged = !!session?.user;
+      $("authScreen").style.display = logged ? "none" : "grid";
+      $("appShell").style.display = logged ? "grid" : "none";
+      if (logged) hydrateUser(session.user);
+    });
+
+    // Small demo metrics (could be real from DB later)
+    // If you want: fetch counts from Supabase tables and replace below.
+  </script>
 </body>
 </html>
