@@ -1,146 +1,121 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="LDA Studio - Création de sites web modernes + services PC (montage/optimisation Windows/jeux)." />
   <title>LDA Studio — Web & PC</title>
-  <meta name="description" content="LDA Studio : création de sites web modernes + montage & optimisation PC (Windows/jeux). Devis rapide." />
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=1" />
 </head>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
 <body>
-  <!-- BG -->
-<div class="bg" aria-hidden="true">
-    <div class="grain"></div>
-    <div class="grid"></div>
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
-    <div class="ring r1"></div>
-    <div class="ring r2"></div>
+  <!-- INTRO 3D (overlay) -->
+  <div id="intro3D" aria-hidden="true">
+    <canvas id="introCanvas"></canvas>
+    <div class="introCenter">
+      <div class="introBadge">Ultra moderne • Animations • Performance</div>
+      <div class="introTitle">LDA STUDIO</div>
+      <div class="introSub">Web & PC</div>
+      <div class="introHint">Chargement…</div>
+    </div>
   </div>
-<div id="intro3D">
-  <canvas id="introCanvas"></canvas>
-  <div class="introText">LDA STUDIO</div>
-</div>
 
-  <!-- Scroll bar -->
-  <div class="scrollbar" aria-hidden="true"><div class="scrollbar__fill" id="scrollFill"></div></div>
+  <!-- BG -->
+  <div class="bgGlow" aria-hidden="true"></div>
 
-  <!-- Header -->
-  <header class="top" id="top">
-    <div class="wrap top__inner">
-      <a class="brand" href="#top" aria-label="Retour en haut">
-        <span class="brand__dot"></span>
-        <span class="brand__name">LDA Studio</span>
-        <span class="brand__tag">Web • PC</span>
+  <!-- NAV -->
+  <header class="top">
+    <div class="wrap topInner">
+      <a class="brand" href="#">
+        <span class="brandDot"></span>
+        <span class="brandName">LDA Studio</span>
+        <span class="brandTag">Web • PC</span>
       </a>
 
-      <nav class="nav" aria-label="Navigation principale">
-        <a class="btn btn--small" href="login.html">Espace client</a>
+      <nav class="nav">
         <a href="#services">Services</a>
-        <a href="#packs">Tarifs</a>
+        <a href="#tarifs">Tarifs</a>
         <a href="#faq">FAQ</a>
-        <a class="btn btn--small" href="#contact">Demander un devis</a>
       </nav>
 
-      <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-
-    <div class="mobileNav" hidden>
-      <a href="#services">Services</a>
-      <a href="#packs">Tarifs</a>
-      <a href="#faq">FAQ</a>
-      <a class="btn" href="#contact">Demander un devis</a>
+      <div class="navActions">
+        <a class="btn btnGhost" href="login.html">Espace client</a>
+        <a class="btn btnPrimary" href="#contact">Demander un devis</a>
+      </div>
     </div>
   </header>
 
+  <!-- HERO -->
   <main class="wrap">
-
-    <!-- HERO -->
     <section class="hero">
-      <div class="hero__left">
-        <div class="pill reveal">
-          <span class="pill__spark"></span>
+      <div class="heroLeft">
+        <div class="pill">
+          <span class="dot"></span>
           Ultra moderne • Animations • Performance
-          <span class="pill__live">LIVE</span>
+          <span class="pillLive">LIVE</span>
         </div>
 
-        <h1 class="reveal">
-          Des sites qui <span class="grad">impressionnent</span><br>
+        <h1 class="h1">
+          Des sites qui <span class="grad">impressionnent</span><br />
           et des PC qui <span class="grad2">envoient</span>.
         </h1>
 
-        <p class="lead reveal">
-          <strong>LDA Studio</strong> crée des sites web modernes (vitrine / landing / refonte)
-          et propose montage + optimisation PC (Windows/jeux). Propre, rapide, carré.
+        <p class="lead">
+          LDA Studio crée des sites web modernes (vitrine / landing / refonte) et propose montage + optimisation PC (Windows/jeux).
+          Propre, rapide, carré.
         </p>
 
-        <div class="cta reveal">
-          <a class="btn" href="#contact">Demander un devis</a>
-          <a class="btn btn--ghost" href="#services">Voir les services</a>
+        <div class="heroCtas">
+          <a class="btn btnPrimary" href="#contact">Demander un devis</a>
+          <a class="btn btnGhost" href="#services">Voir les services</a>
         </div>
 
-        <div class="mini reveal">
-          <div class="mini__chip"><span class="dot ok"></span> Réponse rapide</div>
-          <div class="mini__chip"><span class="dot ok"></span> Mobile-first</div>
-          <div class="mini__chip"><span class="dot ok"></span> Perf & stabilité</div>
+        <div class="chips">
+          <span class="chip"><span class="chipDot"></span> Réponse rapide</span>
+          <span class="chip"><span class="chipDot"></span> Mobile-first</span>
+          <span class="chip"><span class="chipDot"></span> Perf & stabilité</span>
         </div>
 
-        <div class="stats reveal" aria-label="Indicateurs">
+        <div class="stats">
           <div class="stat">
-            <div class="stat__n" data-count="48">48</div>
-            <div class="stat__t">heures livraison (objectif)</div>
+            <div class="statNum">48</div>
+            <div class="statLab">heures livraison (objectif)</div>
           </div>
           <div class="stat">
-            <div class="stat__n" data-count="95">95</div>
-            <div class="stat__t">perf visée (objectif)</div>
+            <div class="statNum">95</div>
+            <div class="statLab">perf visée (objectif)</div>
           </div>
           <div class="stat">
-            <div class="stat__n" data-count="100">100</div>
-            <div class="stat__t">responsive</div>
+            <div class="statNum">100</div>
+            <div class="statLab">responsive</div>
           </div>
         </div>
       </div>
 
-      <div class="hero__right reveal" style="perspective:1200px">
-        <div class="stage reveal" id="stage3d">
-          <div class="stage__top">
-            <div class="dots"><span></span><span></span><span></span></div>
-            <div class="stage__pill">Preview</div>
+      <div class="heroRight">
+        <div class="mock">
+          <div class="mockTop">
+            <span class="mockDot r"></span><span class="mockDot y"></span><span class="mockDot g"></span>
+            <span class="mockTitle">Preview</span>
+            <span class="mockBadge">⚡ 1.2s</span>
           </div>
 
-          <div class="stage__screen">
-            <div class="scan"></div>
-            <div class="screen__hero"></div>
-            <div class="screen__row">
-              <div class="screen__card"></div>
-              <div class="screen__card"></div>
-            </div>
-            <div class="screen__row">
-              <div class="screen__card wide"></div>
-            </div>
-
-            <div class="float f1">⚡ 1.2s</div>
-            <div class="float f2">✨ Glow</div>
-            <div class="float f3">📈 SEO</div>
+          <div class="mockPane mockPaneBig">
+            <div class="mockGlow"></div>
           </div>
 
-          <div class="stage__bottom">
-            <div class="badge">Animations</div>
-            <div class="badge">Glass</div>
-            <div class="badge">Mobile</div>
-            <div class="badge">Optimisé</div>
+          <div class="mockGrid">
+            <div class="mockPane">✨ Glow</div>
+            <div class="mockPane">📱 Mobile</div>
+            <div class="mockPane">🎯 Conversion</div>
+            <div class="mockPane">✅ SEO</div>
+          </div>
+
+          <div class="mockTags">
+            <span class="tag">Animations</span>
+            <span class="tag">Glass</span>
+            <span class="tag">Optimisé</span>
           </div>
         </div>
       </div>
@@ -148,334 +123,202 @@
 
     <!-- SERVICES -->
     <section id="services" class="section">
-      <div class="section__head reveal">
+      <div class="sectionHead">
         <h2>Services</h2>
-        <p>Deux pôles : <strong>Web</strong> et <strong>PC</strong>. Même qualité : propre, rapide, carré.</p>
-      </div>
+        <p>Deux pôles : Web et PC. Même qualité : propre, rapide, carré.</p>
 
-      <div class="tabs reveal" role="tablist" aria-label="Web ou PC">
-        <button class="tab is-on" data-tab="web" role="tab" aria-selected="true">Web</button>
-        <button class="tab" data-tab="pc" role="tab" aria-selected="false">PC</button>
-      </div>
-
-      <!-- WEB -->
-      <div class="panel is-on" id="tab-web" role="tabpanel">
-        <div class="grid3">
-          <article class="tile reveal">
-            <div class="icon">🌐</div>
-            <h3>Création de site</h3>
-            <p>Vitrine ou landing page qui convertit. Design moderne + sections pro.</p>
-            <ul>
-              <li>Responsive (mobile-first)</li>
-              <li>Animations premium</li>
-              <li>CTA + contact</li>
-            </ul>
-          </article>
-
-          <article class="tile reveal">
-            <div class="icon">🧩</div>
-            <h3>Refonte</h3>
-            <p>Ton site est vieux ? On le modernise : design, structure, lisibilité.</p>
-            <ul>
-              <li>Hiérarchie claire</li>
-              <li>UX améliorée</li>
-              <li>Look “agence”</li>
-            </ul>
-          </article>
-
-          <article class="tile reveal">
-            <div class="icon">🛠️</div>
-            <h3>Maintenance</h3>
-            <p>Corrections, ajouts, mise à jour contenu, petites évolutions.</p>
-            <ul>
-              <li>Modifs rapides</li>
-              <li>Support</li>
-              <li>Évolutions</li>
-            </ul>
-          </article>
+        <div class="tabs">
+          <button class="tab isOn" data-tab="web">Web</button>
+          <button class="tab" data-tab="pc">PC</button>
         </div>
       </div>
 
-      <!-- PC -->
-      <div class="panel" id="tab-pc" role="tabpanel">
-        <!-- ✅ PC 3D SHOWCASE (séparé, propre) -->
-        <div class="pcShowcase reveal" id="pcWrap">
-          <div class="pc3dWrap">
-            <div class="pc3d" id="pc3d">
-              <div class="pcScene" id="pcScene">
-                <div class="pcCase3d" id="pcCase">
-                  <!-- Faces -->
-                  <div class="pcFace pcFront">
-                    <div class="pcRgbBar"></div>
-                    <div class="pcLogo">LDA</div>
+      <div class="cards" id="cardsWeb">
+        <article class="card">
+          <div class="cardIcon">🌐</div>
+          <h3>Création de site</h3>
+          <p>Vitrine ou landing page qui convertit. Design moderne + sections pro.</p>
+          <ul>
+            <li>One-page premium</li>
+            <li>Responsive</li>
+            <li>SEO de base</li>
+          </ul>
+        </article>
 
-                    <div class="fan fan1">
-                      <div class="fanRing"></div>
-                      <div class="fanBlades"></div>
-                    </div>
-                    <div class="fan fan2">
-                      <div class="fanRing"></div>
-                      <div class="fanBlades"></div>
-                    </div>
+        <article class="card">
+          <div class="cardIcon">🧩</div>
+          <h3>Refonte</h3>
+          <p>Ton site est vieux ? On le modernise : structure, visuel, vitesse, UX.</p>
+          <ul>
+            <li>Design + structure</li>
+            <li>Optimisation perf</li>
+            <li>Contenu amélioré</li>
+          </ul>
+        </article>
 
-                    <div class="pcIO"><span></span><span></span><span></span></div>
-                  </div>
+        <article class="card">
+          <div class="cardIcon">🛠️</div>
+          <h3>Maintenance</h3>
+          <p>Corrections, ajouts, mises à jour, sections, bugfix, suivi.</p>
+          <ul>
+            <li>Modifs rapides</li>
+            <li>Sécurité</li>
+            <li>Support</li>
+          </ul>
+        </article>
+      </div>
 
-                  <div class="pcFace pcBack"></div>
-                  <div class="pcFace pcLeft"></div>
-                  <div class="pcFace pcRight"></div>
-                  <div class="pcFace pcTop"></div>
-                  <div class="pcFace pcBottom"></div>
+      <div class="cards hidden" id="cardsPC">
+        <article class="card">
+          <div class="cardIcon">🖥️</div>
+          <h3>Montage PC</h3>
+          <p>Montage propre, câble management, tests, stabilité. Prêt à jouer / bosser.</p>
+          <ul>
+            <li>Montage complet</li>
+            <li>Tests stabilité</li>
+            <li>Conseils pièces</li>
+          </ul>
+        </article>
 
-                  <!-- Glass -->
-                  <div class="pcGlass"></div>
+        <article class="card">
+          <div class="cardIcon">⚙️</div>
+          <h3>Optimisation</h3>
+          <p>Windows, drivers, réglages, FPS/latence. Objectif : perf + stabilité.</p>
+          <ul>
+            <li>Optimisation système</li>
+            <li>Réglages jeux</li>
+            <li>Conseils config</li>
+          </ul>
+        </article>
 
-                  <!-- Inside -->
-                  <div class="inside">
-                    <div class="gpu">
-                      <div class="gpuTop"></div>
-                      <div class="gpuFans"><span></span><span></span></div>
-                    </div>
+        <article class="card">
+          <div class="cardIcon">🧼</div>
+          <h3>Nettoyage</h3>
+          <p>Dépoussiérage, contrôle températures, réduction bruit. Durée de vie ++</p>
+          <ul>
+            <li>Températures mieux</li>
+            <li>Moins de bruit</li>
+            <li>Durée de vie</li>
+          </ul>
+        </article>
+      </div>
 
-                    <div class="ram ram1"></div>
-                    <div class="ram ram2"></div>
-
-                    <div class="cpuBlock"><div class="cpuGlow"></div></div>
-
-                    <div class="cables">
-                      <span class="c1"></span>
-                      <span class="c2"></span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="pcShadow"></div>
-              </div>
-            </div>
-
-            <div class="pcText">
-              <div class="pcKicker">PC • Windows • Jeux</div>
-              <h3>PC performance</h3>
-              <p>Montage propre, optimisation Windows/jeux, stabilité + FPS. Scroll pour voir l’effet 3D.</p>
-              <div class="pcChips">
-                <span>Montage</span><span>Optimisation</span><span>Drivers</span><span>Stabilité</span>
-              </div>
-            </div>
-          </div>
+      <div class="banner">
+        <div>
+          <div class="bannerTitle">Pack “Web + PC” ?</div>
+          <div class="bannerSub">Possible : on combine site + setup perf pour un résultat propre et cohérent.</div>
         </div>
-
-        <!-- ✅ Cards PC -->
-        <div class="grid3">
-          <article class="tile reveal">
-            <div class="icon">🖥️</div>
-            <h3>Montage PC</h3>
-            <p>Montage propre, câble management, tests. Setup prêt à jouer / bosser.</p>
-            <ul>
-              <li>Montage complet</li>
-              <li>Tests stabilité</li>
-              <li>Conseils pièces</li>
-            </ul>
-          </article>
-
-          <article class="tile reveal">
-            <div class="icon">🚀</div>
-            <h3>Optimisation</h3>
-            <p>Windows, drivers, réglages, FPS/latence. Objectif : perf + stabilité.</p>
-            <ul>
-              <li>Optimisation système</li>
-              <li>Réglages jeux</li>
-              <li>Conseils config</li>
-            </ul>
-          </article>
-
-          <article class="tile reveal">
-            <div class="icon">🧼</div>
-            <h3>Nettoyage</h3>
-            <p>Dépoussiérage, contrôle températures, réduction du bruit.</p>
-            <ul>
-              <li>Températures mieux</li>
-              <li>Moins de bruit</li>
-              <li>Durée de vie</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="stack reveal">
-          <div class="stack__item">
-            <div class="stack__icon">🪟</div>
-            <div class="stack__txt">
-              <div class="stack__title">Optimisation Windows</div>
-              <div class="stack__sub">Démarrage, latence, stabilité, perf</div>
-            </div>
-          </div>
-          <div class="stack__item">
-            <div class="stack__icon">🎮</div>
-            <div class="stack__txt">
-              <div class="stack__title">Optimisation Jeux</div>
-              <div class="stack__sub">FPS, réglages, input lag, stabilité</div>
-            </div>
-          </div>
-          <div class="stack__item">
-            <div class="stack__icon">🧩</div>
-            <div class="stack__txt">
-              <div class="stack__title">Drivers</div>
-              <div class="stack__sub">Pilotes propres + profils adaptés</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="banner reveal">
-          <div class="banner__left">
-            <h3>Pack “Web + PC” ?</h3>
-            <p>Possible : on combine site + setup perf pour un résultat propre et cohérent.</p>
-          </div>
-          <a class="btn btn--ghost" href="#contact">Parler du projet</a>
-        </div>
+        <a class="btn btnGhost" href="#contact">Parler du projet</a>
       </div>
     </section>
 
-    <!-- PRICING -->
-    <section id="packs" class="section">
-      <div class="section__head reveal">
+    <!-- TARIFS -->
+    <section id="tarifs" class="section">
+      <div class="sectionHead">
         <h2>Tarifs</h2>
-        <p>Base claire pour démarrer (ajustable selon le besoin).</p>
+        <p>Tarifs indicatifs. Le prix final dépend du contenu, options et délai.</p>
       </div>
 
       <div class="pricing">
-        <article class="price reveal">
-          <h3>Starter</h3>
-          <div class="price__v">199€</div>
-          <p>Landing 1 page premium + contact.</p>
-          <ul>
-            <li>1 page</li>
-            <li>Sections essentielles</li>
-            <li>Formulaire</li>
+        <div class="priceCard">
+          <div class="priceTop">
+            <div class="priceName">Starter</div>
+            <div class="priceVal">199€</div>
+          </div>
+          <div class="priceDesc">Landing / one-page simple + contact</div>
+          <ul class="priceList">
+            <li>Design moderne</li>
+            <li>Responsive</li>
+            <li>1 section contact</li>
           </ul>
-          <a class="btn btn--ghost" href="#contact">Choisir</a>
-        </article>
+          <a class="btn btnPrimary w100" href="#contact">Choisir Starter</a>
+        </div>
 
-        <article class="price price--best reveal">
-          <div class="ribbon">Le plus demandé</div>
-          <h3>Pro</h3>
-          <div class="price__v">349€</div>
-          <p>One-page complète moderne (comme celle-ci).</p>
-          <ul>
-            <li>Animations premium</li>
-            <li>Tarifs + FAQ</li>
-            <li>Optimisation de base</li>
+        <div class="priceCard isHot">
+          <div class="badgeHot">Best</div>
+          <div class="priceTop">
+            <div class="priceName">Pro</div>
+            <div class="priceVal">349€</div>
+          </div>
+          <div class="priceDesc">One-page premium complète</div>
+          <ul class="priceList">
+            <li>Sections pro</li>
+            <li>Animations</li>
+            <li>SEO de base</li>
           </ul>
-          <a class="btn" href="#contact">Choisir</a>
-        </article>
+          <a class="btn btnPrimary w100" href="#contact">Choisir Pro</a>
+        </div>
 
-        <article class="price reveal">
-          <h3>Premium</h3>
-          <div class="price__v">549€</div>
-          <p>One-page + options (sections, contenu, etc.).</p>
-          <ul>
-            <li>Sections +</li>
-            <li>Textes améliorés</li>
-            <li>Support 30 jours</li>
+        <div class="priceCard">
+          <div class="priceTop">
+            <div class="priceName">Premium</div>
+            <div class="priceVal">549€</div>
+          </div>
+          <div class="priceDesc">One-page + options (sur-mesure)</div>
+          <ul class="priceList">
+            <li>Effets avancés</li>
+            <li>Optim perf</li>
+            <li>Support + suivi</li>
           </ul>
-          <a class="btn btn--ghost" href="#contact">Choisir</a>
-        </article>
+          <a class="btn btnPrimary w100" href="#contact">Choisir Premium</a>
+        </div>
       </div>
     </section>
 
     <!-- FAQ -->
     <section id="faq" class="section">
-      <div class="section__head reveal">
+      <div class="sectionHead">
         <h2>FAQ</h2>
-        <p>Questions fréquentes.</p>
+        <p>Réponses rapides sur le fonctionnement.</p>
       </div>
 
       <div class="faq">
-        <details class="qa reveal">
-          <summary>Tu travailles avec des particuliers ?</summary>
-          <p>Oui. Particuliers et professionnels.</p>
+        <details class="faqItem">
+          <summary>Tu livres en combien de temps ?</summary>
+          <p>Objectif : 24–72h pour une one-page si tu as le contenu (textes, logo, infos). Sinon on avance par étapes.</p>
         </details>
-        <details class="qa reveal">
-          <summary>Tu peux mettre le site en ligne ?</summary>
-          <p>Oui : GitHub Pages ou hébergeur + HTTPS.</p>
+
+        <details class="faqItem">
+          <summary>Tu peux faire un site très animé ?</summary>
+          <p>Oui : animations, transitions, effets glass, micro-interactions. On garde quand même la performance.</p>
         </details>
-        <details class="qa reveal">
-          <summary>Optimisation PC : c’est safe ?</summary>
-          <p>Oui. Je privilégie la stabilité + les bons réglages (pas de trucs dangereux).</p>
+
+        <details class="faqItem">
+          <summary>Pour le PC, tu fais quoi exactement ?</summary>
+          <p>Montage, optimisation Windows/jeux, drivers propres, réglages FPS/latence, nettoyage, stabilité.</p>
         </details>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact" class="section">
-      <div class="section__head reveal">
+      <div class="sectionHead">
         <h2>Demander un devis</h2>
-        <p>Le plus simple : mail ou DM TikTok.</p>
+        <p>Décris ton projet en 30 secondes, je réponds vite.</p>
       </div>
 
-      <div class="contact">
-        <form class="form reveal" id="leadForm">
-          <div class="row">
-            <label>Nom / Entreprise
-              <input name="name" required placeholder="Ex: Garage Martin" />
-            </label>
-            <label>Email
-              <input name="email" type="email" required placeholder="email@exemple.fr" />
-            </label>
-          </div>
+      <div class="contactBox">
+        <div class="contactLeft">
+          <div class="contactLine"><span>📩</span> <strong>Email :</strong> <a href="mailto:delaunaylorenzo388@gmail.com">delaunaylorenzo388@gmail.com</a></div>
+          <div class="contactLine"><span>✅</span> <strong>Infos utiles :</strong> type (site/PC), délai, budget, exemple de style.</div>
+          <div class="contactLine"><span>🧠</span> <strong>Conseil :</strong> si tu as déjà un logo + textes → ça va très vite.</div>
+        </div>
 
-          <label>Type de demande
-            <select name="need" required>
-              <option value="" disabled selected>Choisir</option>
-              <option>Site web (création)</option>
-              <option>Site web (refonte)</option>
-              <option>Maintenance</option>
-              <option>Montage PC</option>
-              <option>Optimisation PC</option>
-            </select>
-          </label>
-
-          <label>Message
-            <textarea name="message" rows="5" required placeholder="Décris ton projet (style, délais, budget, etc.)"></textarea>
-          </label>
-
-          <button class="btn" type="submit">Envoyer</button>
-          <p class="hint">Démo : confirmation locale (on branchera un vrai envoi ensuite si tu veux).</p>
-        </form>
-
-        <aside class="side reveal">
-          <div class="side__card">
-            <h3>Contact direct</h3>
-            <p><strong>Email :</strong><br>
-              <a class="link" href="mailto:delaunaylorenzo388@gmail.com">delaunaylorenzo388@gmail.com</a>
-            </p>
-
-            <div class="sideBtns">
-              <a class="btn btn--ghost" href="mailto:delaunaylorenzo388@gmail.com?subject=Devis%20LDA%20Studio">Envoyer un mail</a>
-              <a class="btn btn--ghost" href="https://www.tiktok.com/" target="_blank" rel="noopener">DM TikTok</a>
-            </div>
-
-            <p class="muted small">📌 Plus tard : contact@tondomaine</p>
-          </div>
-
-          <div class="side__card">
-            <h3>Conseil rapide</h3>
-            <p class="muted">Envoie un exemple de style + ton contenu : je réponds vite.</p>
-          </div>
-        </aside>
+        <div class="contactRight">
+          <a class="btn btnPrimary w100" href="mailto:delaunaylorenzo388@gmail.com?subject=Devis%20LDA%20Studio">Envoyer un mail</a>
+          <a class="btn btnGhost w100" href="login.html">Accéder à l’espace client</a>
+        </div>
       </div>
+
+      <footer class="footer">
+        <div>© <span id="year"></span> LDA Studio — Web & PC</div>
+        <div class="footerSmall">Site GitHub Pages • Design dark / orange</div>
+      </footer>
     </section>
-
-    <footer class="footer">
-      <div>© <span id="year"></span> <strong>LDA Studio</strong> — Web • PC</div>
-      <div class="footer__links">
-        <a href="#services">Services</a>
-        <a href="#packs">Tarifs</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </footer>
-
-    <button class="toTop" id="toTop" aria-label="Remonter">↑</button>
   </main>
 
-  <script src="app.js"></script>
+  <!-- Scripts (ordre important) -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="app.js?v=1"></script>
 </body>
 </html>
