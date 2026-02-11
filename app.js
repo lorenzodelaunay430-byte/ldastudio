@@ -1,307 +1,131 @@
-// Menu mobile
-const burger = document.querySelector(".burger");
-const mobileNav = document.querySelector(".mobileNav");
-if (burger && mobileNav) {
-  burger.addEventListener("click", () => {
-    const expanded = burger.getAttribute("aria-expanded") === "true";
-    burger.setAttribute("aria-expanded", String(!expanded));
-    mobileNav.hidden = expanded;
-  });
-  mobileNav.querySelectorAll("a").forEach(a => {
-    a.addEventListener("click", () => {
-      burger.setAttribute("aria-expanded", "false");
-      mobileNav.hidden = true;
-    });
-  });
-}
-
-// Reveal
-const reveals = document.querySelectorAll(".reveal");
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("in"); });
-}, { threshold: 0.16 });
-reveals.forEach(el => io.observe(el));
-
-// Scroll progress + toTop
-const toTop = document.getElementById("toTop");
-const scrollFill = document.getElementById("scrollFill");
-function onScroll() {
-  const scrollTop = window.scrollY || document.documentElement.scrollTop;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const p = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-  if (scrollFill) scrollFill.style.width = `${p}%`;
-
-  if (toTop) {
-    if (scrollTop > 500) toTop.classList.add("show");
-    else toTop.classList.remove("show");
-  }
-}
-window.addEventListener("scroll", onScroll);
-onScroll();
-if (toTop) toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-
-// Tabs
-const tabs = document.querySelectorAll(".tab");
-tabs.forEach(btn => {
-  btn.addEventListener("click", () => {
-    tabs.forEach(b => {
-      b.classList.remove("is-on");
-      b.setAttribute("aria-selected", "false");
-    });
-    btn.classList.add("is-on");
-    btn.setAttribute("aria-selected", "true");
-
-    const key = btn.dataset.tab;
-    document.querySelectorAll(".panel").forEach(p => p.classList.remove("is-on"));
-    document.getElementById(`tab-${key}`)?.classList.add("is-on");
-
-    setTimeout(() => {
-      updatePc3D();
-      updateHero3D();
-    }, 80);
-  });
-});
-
-// Counters
-function animateCount(el, to, ms = 700) {
-  const from = 0;
-  const start = performance.now();
-  function tick(now) {
-    const p = Math.min(1, (now - start) / ms);
-    const eased = 1 - Math.pow(1 - p, 3);
-    el.textContent = String(Math.round(from + (to - from) * eased));
-    if (p < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-const counters = document.querySelectorAll("[data-count]");
-const counterIO = new IntersectionObserver((entries, obs) => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    const el = e.target;
-    if (el.dataset.done) return;
-    el.dataset.done = "1";
-    animateCount(el, Number(el.dataset.count || "0"), 700);
-    obs.unobserve(el);
-  });
-}, { threshold: 0.4 });
-counters.forEach(c => counterIO.observe(c));
-
-// Form demo
-const form = document.getElementById("leadForm");
-if (form) {
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const btn = form.querySelector("button");
-    const old = btn.textContent;
-    btn.textContent = "Envoyé ✅";
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = old;
-      btn.disabled = false;
-      form.reset();
-    }, 1400);
-  });
-}
-
+// year
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// HERO 3D
-const stage3d = document.getElementById("stage3d");
-function updateHero3D(){
-  if (!stage3d) return;
-  const rect = stage3d.getBoundingClientRect();
-  const vh = window.innerHeight;
-  const p = Math.min(1, Math.max(0, 1 - rect.top / vh));
-  const rx = (1 - p) * 12;
-  const ry = (p - 0.5) * 10;
-  const z = p * 40;
-  stage3d.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(${z}px)`;
-}
-window.addEventListener("scroll", updateHero3D, { passive: true });
-window.addEventListener("resize", updateHero3D);
-updateHero3D();
+// Tabs Web/PC
+const tabs = document.querySelectorAll(".tab");
+const web = document.getElementById("cardsWeb");
+const pc = document.getElementById("cardsPC");
 
-// PC 3D (tab PC only)
-const pcWrap = document.getElementById("pcWrap");
-const pcCase = document.getElementById("pcCase");
-const pcPanel = document.getElementById("tab-pc");
+tabs.forEach(btn => {
+  btn.addEventListener("click", () => {
+    tabs.forEach(b => b.classList.remove("isOn"));
+    btn.classList.add("isOn");
 
-function isPcTabActive(){
-  return pcPanel && pcPanel.classList.contains("is-on");
-}
-
-function updatePc3D(){
-  if (!pcWrap || !pcCase || !isPcTabActive()) return;
-
-  const rect = pcWrap.getBoundingClientRect();
-  const vh = window.innerHeight;
-
-  const start = vh * 0.88;
-  const end = vh * 0.18;
-  const p = Math.min(1, Math.max(0, (start - rect.top) / (start - end)));
-
-  const rotX = 18 - p * 28;     // 18 -> -10
-  const rotY = -32 + p * 64;    // -32 -> 32
-  const lift = 26 + p * 34;     // profondeur
-  const y = -56 - p * 2;
-
-  pcCase.style.transform =
-    `translate(-50%, ${y}%) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(${lift}px)`;
-
-  // vitesse ventilos selon le scroll
-  document.querySelectorAll(".fanBlades").forEach(f => {
-    f.style.animationDuration = `${1.9 - p * 0.9}s`;
+    const tab = btn.dataset.tab;
+    if (tab === "web") {
+      web.classList.remove("hidden");
+      pc.classList.add("hidden");
+    } else {
+      pc.classList.remove("hidden");
+      web.classList.add("hidden");
+    }
   });
-}
+});
 
-window.addEventListener("scroll", updatePc3D, { passive: true });
-window.addEventListener("resize", updatePc3D);
-setTimeout(updatePc3D, 150);
+// ===== INTRO 3D (robuste) =====
+document.addEventListener("DOMContentLoaded", () => {
+  const intro = document.getElementById("intro3D");
+  const canvas = document.getElementById("introCanvas");
 
-// 🔐 Supabase config
-const SUPABASE_URL = "https://aecifmxziwddaqihjjey.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_Kq-2FsEdgffq0bMt-zfXZg_TbiOJcdP";
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  if (!intro || !canvas) return;
 
-// Elements
-const loginForm = document.getElementById("loginForm");
-const authMsg = document.getElementById("authMsg");
-const registerBtn = document.getElementById("registerBtn");
-const logoutBtn = document.getElementById("logoutBtn");
-
-const clientSection = document.getElementById("client");
-const clientMail = document.getElementById("clientMail");
-
-const pStatus = document.getElementById("pStatus");
-const pPack = document.getElementById("pPack");
-const pProgBar = document.getElementById("pProgBar");
-const pProgTxt = document.getElementById("pProgTxt");
-const pDocs = document.getElementById("pDocs");
-const pPay = document.getElementById("pPay");
-const pNotes = document.getElementById("pNotes");
-
-async function refreshUI() {
-  const { data: { user } } = await sb.auth.getUser();
-
-  if (!user) {
-    clientSection.classList.add("hidden");
+  // si WebGL/Three indispo => on enlève l'intro pour ne pas bloquer
+  if (!window.THREE) {
+    intro.remove();
     return;
   }
 
-  clientSection.classList.remove("hidden");
-  clientMail.textContent = "Connecté : " + user.email;
-
-  const { data } = await sb
-    .from("projects")
-    .select("*")
-    .eq("user_id", user.id)
-    .single();
-
-  if (!data) return;
-
-  pStatus.textContent = data.status;
-  pPack.textContent = data.pack;
-  pProgBar.style.width = data.progress + "%";
-  pProgTxt.textContent = data.progress + "%";
-  pDocs.href = data.docs_url || "#";
-  pPay.href = data.pay_url || "#";
-  pNotes.textContent = data.notes || "—";
-}
-
-// Login
-loginForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  authMsg.textContent = "Connexion...";
-  const email = loginEmail.value;
-  const password = loginPass.value;
-
-  const { error } = await sb.auth.signInWithPassword({ email, password });
-  if (error) {
-    authMsg.textContent = error.message;
-    return;
-  }
-  refreshUI();
-});
-
-// Register
-registerBtn.addEventListener("click", async () => {
-  authMsg.textContent = "Création du compte...";
-  await sb.auth.signUp({
-    email: loginEmail.value,
-    password: loginPass.value
+  // Renderer
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    alpha: true,
+    antialias: true,
+    powerPreference: "high-performance"
   });
-  authMsg.textContent = "Compte créé ✅";
-});
 
-// Logout
-logoutBtn.addEventListener("click", async () => {
-  await sb.auth.signOut();
-  location.reload();
-});
-
-refreshUI();
-// ===== 3D INTRO =====
-const canvas = document.getElementById("introCanvas");
-if (canvas) {
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight, false);
 
   const scene = new THREE.Scene();
+
   const camera = new THREE.PerspectiveCamera(
-    75,
+    55,
     window.innerWidth / window.innerHeight,
     0.1,
-    1000
+    100
   );
+  camera.position.z = 7;
 
-  const renderer = new THREE.WebGLRenderer({
-    canvas: canvas,
-    alpha: true,
-    antialias: true
+  // Lights
+  const key = new THREE.DirectionalLight(0xffffff, 1.6);
+  key.position.set(4, 3, 6);
+  scene.add(key);
+
+  const fill = new THREE.PointLight(0xffffff, 0.8);
+  fill.position.set(-4, -2, 3);
+  scene.add(fill);
+
+  // Mesh (stylé + léger)
+  const geo = new THREE.TorusKnotGeometry(1.7, 0.55, 140, 18);
+  const mat = new THREE.MeshStandardMaterial({
+    color: 0xff8a00,
+    metalness: 0.82,
+    roughness: 0.22
   });
+  const mesh = new THREE.Mesh(geo, mat);
+  scene.add(mesh);
 
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-  // Torus (anneau 3D)
-  const geometry = new THREE.TorusGeometry(2, 0.6, 32, 100);
-  const material = new THREE.MeshStandardMaterial({
-    color: 0xff7a00,
-    metalness: 0.7,
-    roughness: 0.2
+  // Particules simples (points)
+  const pCount = 600;
+  const pGeo = new THREE.BufferGeometry();
+  const pos = new Float32Array(pCount * 3);
+  for (let i = 0; i < pCount; i++) {
+    pos[i * 3 + 0] = (Math.random() - 0.5) * 18;
+    pos[i * 3 + 1] = (Math.random() - 0.5) * 10;
+    pos[i * 3 + 2] = (Math.random() - 0.5) * 12;
+  }
+  pGeo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+  const pMat = new THREE.PointsMaterial({
+    color: 0xffffff,
+    size: 0.03,
+    transparent: true,
+    opacity: 0.65
   });
+  const points = new THREE.Points(pGeo, pMat);
+  scene.add(points);
 
-  const torus = new THREE.Mesh(geometry, material);
-  scene.add(torus);
+  let t = 0;
+  let raf = 0;
 
-  const light = new THREE.PointLight(0xffffff, 2);
-  light.position.set(5, 5, 5);
-  scene.add(light);
+  function render() {
+    raf = requestAnimationFrame(render);
+    t += 0.01;
 
-  camera.position.z = 6;
+    mesh.rotation.x += 0.010;
+    mesh.rotation.y += 0.014;
+    mesh.position.y = Math.sin(t) * 0.08;
 
-  function animate() {
-    requestAnimationFrame(animate);
-
-    torus.rotation.x += 0.01;
-    torus.rotation.y += 0.015;
+    points.rotation.y += 0.0016;
+    points.rotation.x += 0.0008;
 
     renderer.render(scene, camera);
   }
+  render();
 
-  animate();
-
-  // Resize
-  window.addEventListener("resize", () => {
+  function onResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
+    renderer.setSize(window.innerWidth, window.innerHeight, false);
+  }
+  window.addEventListener("resize", onResize);
 
-  // Auto remove intro
+  // Durée intro
   setTimeout(() => {
-    const intro = document.getElementById("intro3D");
-    intro.style.opacity = "0";
-    intro.style.transition = "1s ease";
-    setTimeout(() => intro.remove(), 1000);
-  }, 3500);
-}
+    intro.classList.add("introFadeOut");
+    setTimeout(() => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onResize);
+      intro.remove();
+    }, 950);
+  }, 2600);
+});
