@@ -25,28 +25,7 @@ a{color:inherit}
 .hidden{display:none!important}
 .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
 
-/* BG FX */
-.bgGlow{
-  position: fixed;
-  inset: -20%;
-  background:
-    radial-gradient(700px 450px at 15% 15%, rgba(255,138,0,.22), transparent 60%),
-    radial-gradient(900px 560px at 85% 85%, rgba(255,138,0,.14), transparent 62%),
-    radial-gradient(1200px 800px at 70% 20%, rgba(255,255,255,.05), transparent 70%);
-  filter: blur(10px);
-  pointer-events:none;
-  z-index:0;
-}
-.bgRings{
-  position: fixed;
-  inset: 0;
-  pointer-events:none;
-  z-index:0;
-  opacity:.22;
-  background:
-    radial-gradient(circle at 70% 40%, rgba(255,255,255,.10) 0 1px, transparent 2px) 0 0 / 260px 260px;
-  mask-image: radial-gradient(circle at 60% 40%, rgba(0,0,0,.85), transparent 68%);
-}
+
 
 /* NAV */
 .top{
