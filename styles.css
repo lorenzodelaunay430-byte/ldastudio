@@ -304,5 +304,21 @@ textarea{
   box-shadow:
     0 20px 60px rgba(0,0,0,.6),
     0 0 40px rgba(255,255,255,.06);
+.card::before,
+.price::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:inherit;
+  background: radial-gradient(circle at top left, rgba(255,255,255,.08), transparent 70%);
+  opacity:0;
+  transition:.3s;
+  z-index:-1;
 }
+
+.card:hover::before,
+.price:hover::before{
+  opacity:1;
+}
+
 
