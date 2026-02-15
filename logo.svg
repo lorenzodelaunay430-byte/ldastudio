@@ -1,0 +1,43 @@
+<!-- /assets/logo.svg -->
+<svg width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="36" y1="28" x2="190" y2="206" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="0.35" stop-color="#DADADA" stop-opacity="0.35"/>
+      <stop offset="0.7" stop-color="#FFFFFF" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#A3A3A3" stop-opacity="0.20"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="38" y1="42" x2="182" y2="190" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.35"/>
+    </linearGradient>
+    <radialGradient id="shine" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(78 64) rotate(55) scale(120 90)">
+      <stop stop-color="#FFFFFF" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur" x="-40" y="-40" width="300" height="300" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+  </defs>
+
+  <!-- soft shadow -->
+  <g filter="url(#blur)" opacity="0.35">
+    <rect x="38" y="42" width="144" height="144" rx="38" fill="#000000"/>
+  </g>
+
+  <!-- glass tile -->
+  <rect x="38" y="38" width="144" height="144" rx="38" fill="url(#g2)" stroke="rgba(255,255,255,0.25)"/>
+  <rect x="38" y="38" width="144" height="144" rx="38" fill="url(#g1)" opacity="0.75"/>
+
+  <!-- highlight -->
+  <path d="M62 68C72 52 92 42 114 42H160C174 42 186 54 186 68V90C168 78 146 72 120 72H78C70 72 64 71 62 68Z" fill="url(#shine)" opacity="0.8"/>
+
+  <!-- LDA text -->
+  <g opacity="0.92">
+    <path d="M78 146V82H94V132H122V146H78Z" fill="#0B0B0B"/>
+    <path d="M132 146V82H154C173 82 184 94 184 114C184 134 173 146 154 146H132ZM148 96V132H154C164 132 168 126 168 114C168 102 164 96 154 96H148Z" fill="#0B0B0B"/>
+  </g>
+
+  <!-- tiny gloss line -->
+  <path d="M56 104C56 86 70 72 88 72H132" stroke="rgba(255,255,255,0.38)" stroke-width="3" stroke-linecap="round"/>
+</svg>
