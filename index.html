@@ -1,29 +1,38 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>LDA Studio — Sites, UI/UX & automatisations</title>
-  <link rel="icon" href="./assets/logo.svg" type="image/svg+xml"/>
- <link rel="stylesheet" href="./styles.css">
-  <script type="module" src="./client.js"></script>
-  <meta name="description" content="LDA Studio — Création de sites modernes, UI/UX et automatisations. Paiement simple via Stripe. Espace client avec connexion Discord."/>
+  <meta name="description" content="LDA Studio — Sites premium, UI/UX propre et automatisations. Paiement Stripe + espace client Discord." />
+  <link rel="stylesheet" href="./styles.css" />
+  <!-- Si tu as logo.svg à la racine -->
+  <link rel="icon" href="./logo.svg" type="image/svg+xml" />
 </head>
-<body>
 
+<body>
+  <!-- NAV -->
   <header class="navbar">
     <div class="container row">
-      <div class="brand">
-        <img src="./assets/logo.svg" alt="LDA Studio"/>
+      <a class="brand" href="./index.html" style="display:flex;align-items:center;gap:10px;">
+        <!-- OPTION A: si tu as logo.svg -->
+        <img src="./logo.svg" alt="LDA Studio" style="width:34px;height:34px;" />
         <div class="t">
           <b>LDA Studio</b>
-          <span>Studio digital — sites & automatisations</span>
+          <span>LDA Studio digital — sites & automatisations</span>
         </div>
-      </div>
+
+        <!-- OPTION B: si tu n'as pas de logo.svg, commente l'image et décommente ça :
+        <div class="t">
+          <b style="font-size:13px;letter-spacing:.6px;text-transform:uppercase;">LDA Studio</b>
+          <span style="display:block;color:rgba(255,255,255,.65);font-size:12px;">Studio digital — sites & automatisations</span>
+        </div>
+        -->
+      </a>
 
       <nav class="navlinks">
         <a href="#services" data-scroll="#services">Services</a>
-        <a href="#pricing" data-scroll="#pricing">Offres</a>
+        <a href="#offres" data-scroll="#offres">Offres</a>
         <a href="#contact" data-scroll="#contact">Contact</a>
         <a class="btn ghost" href="./client.html">Espace client</a>
         <a class="btn primary" href="./client.html">Se connecter</a>
@@ -31,54 +40,81 @@
     </div>
   </header>
 
+  <!-- HERO -->
   <main class="container">
     <section class="hero">
-      <div class="heroGrid">
+      <div style="display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:stretch;">
+        <!-- Left -->
         <div>
-          <div class="kicker">⚡ Lancement — Paiement Stripe + Connexion Discord</div>
-          <h1 class="h1">Des sites premium, sobres, rapides — style Apple.</h1>
-          <p class="sub">
+          <div class="kicker" style="display:inline-flex;gap:10px;align-items:center;padding:7px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(255,255,255,.78);font-size:12px;font-weight:800;">
+            ⚡ Lancement — Paiement Stripe + Connexion Discord
+          </div>
+
+          <h1 class="h1" style="margin:16px 0 12px;font-size:clamp(34px,4.4vw,56px);letter-spacing:-.8px;line-height:1.05;max-width:22ch;">
+            Des sites premium, sobres, rapides — style Apple.
+          </h1>
+
+          <p class="sub" style="margin:0;color:rgba(255,255,255,.62);font-size:15px;line-height:1.65;max-width:64ch;">
             LDA Studio crée des sites modernes (vitrine / pro), du UI/UX propre, et des automatisations.
             Tout est livré avec un espace client sécurisé (Discord ou email).
           </p>
 
-          <div class="heroActions">
-            <a class="btn primary" href="#pricing" data-scroll="#pricing">Voir les offres</a>
+          <div class="actions" style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap;">
+            <a class="btn primary" href="#offres" data-scroll="#offres">Voir les offres</a>
             <a class="btn" href="./client.html">Accéder à l’espace client</a>
             <a class="btn ghost" href="#contact" data-scroll="#contact">Me contacter</a>
           </div>
+
+          <div style="margin-top:16px;color:rgba(255,255,255,.70);font-size:13px;line-height:1.7;">
+            <b>Qualité “startup”</b> — Design • Perf • Sécurité<br/>
+            ⚡ Rapide & responsive • 🔐 Discord OAuth • 🧾 Paiement Stripe
+          </div>
         </div>
 
-        <div class="glass heroCard">
-          <div class="heroCardTop">
-            <b>Qualité “startup”</b>
-            <span class="mini">Design • Perf • Sécurité</span>
+        <!-- Right (glass card) -->
+        <div class="card" style="padding:18px;border-radius:18px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
+            <b style="font-size:13px;letter-spacing:.2px;">Ce que tu reçois</b>
+            <span style="color:rgba(255,255,255,.50);font-size:12px;">Livraison + suivi</span>
           </div>
-          <div class="statGrid">
-            <div class="stat">
-              <b>⚡</b>
-              <span>Rapide & responsive</span>
+
+          <div style="height:12px"></div>
+
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;">
+            <div class="card" style="padding:12px;border-radius:14px;background:rgba(255,255,255,.04);">
+              <b style="display:block;font-size:18px;">⚡</b>
+              <span style="color:rgba(255,255,255,.62);font-size:12px;">Performance</span>
             </div>
-            <div class="stat">
-              <b>🔐</b>
-              <span>Discord OAuth</span>
+            <div class="card" style="padding:12px;border-radius:14px;background:rgba(255,255,255,.04);">
+              <b style="display:block;font-size:18px;">🧊</b>
+              <span style="color:rgba(255,255,255,.62);font-size:12px;">Design clean</span>
             </div>
-            <div class="stat">
-              <b>🧾</b>
-              <span>Paiement Stripe</span>
+            <div class="card" style="padding:12px;border-radius:14px;background:rgba(255,255,255,.04);">
+              <b style="display:block;font-size:18px;">🔐</b>
+              <span style="color:rgba(255,255,255,.62);font-size:12px;">Espace client</span>
             </div>
           </div>
-          <div class="mini">
+
+          <div style="height:12px"></div>
+
+          <div style="border-top:1px solid rgba(255,255,255,.10);padding-top:12px;color:rgba(255,255,255,.62);font-size:13px;line-height:1.6;">
             Une fois payé, tu accèdes à tes livrables et au support depuis l’espace client.
           </div>
+
+          <div style="height:12px"></div>
+
+          <a class="btn primary" href="./client.html" style="width:100%;">Ouvrir l’espace client</a>
         </div>
       </div>
     </section>
 
+    <!-- SERVICES -->
     <section id="services" class="section">
-      <div class="sectionHeader">
-        <h2>Services</h2>
-        <p>Simple, propre, efficace.</p>
+      <div class="sectionHeader" style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:14px;">
+        <div>
+          <h2 style="margin:0;font-size:16px;">Services</h2>
+          <p style="margin:6px 0 0;color:rgba(255,255,255,.62);font-size:13px;">Simple, propre, efficace.</p>
+        </div>
       </div>
 
       <div class="cards">
@@ -97,16 +133,19 @@
       </div>
     </section>
 
-    <section id="pricing" class="section">
-      <div class="sectionHeader">
-        <h2>Offres</h2>
-        <p>Paiement simple via Stripe (Payment Links).</p>
+    <!-- OFFRES / PRICING -->
+    <section id="offres" class="section">
+      <div class="sectionHeader" style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:14px;">
+        <div>
+          <h2 style="margin:0;font-size:16px;">Offres</h2>
+          <p style="margin:6px 0 0;color:rgba(255,255,255,.62);font-size:13px;">Paiement simple via Stripe (Payment Links).</p>
+        </div>
       </div>
 
       <div class="pricing">
         <div class="price">
-          <h3>Offre 1</h3>
-          <div class="money">Starter</div>
+          <h3>Starter</h3>
+          <div class="money">Offre 1</div>
           <p class="small">Idéal pour démarrer vite.</p>
           <ul class="list">
             <li>Landing page premium</li>
@@ -118,8 +157,8 @@
 
         <div class="price featured">
           <div class="badge">Recommandé</div>
-          <h3>Offre 2</h3>
-          <div class="money">Pro</div>
+          <h3>Pro</h3>
+          <div class="money">Offre 2</div>
           <p class="small">Le meilleur rapport qualité/prix.</p>
           <ul class="list">
             <li>Site multi-sections</li>
@@ -130,8 +169,8 @@
         </div>
 
         <div class="price">
-          <h3>Offre 3</h3>
-          <div class="money">Premium</div>
+          <h3>Premium</h3>
+          <div class="money">Offre 3</div>
           <p class="small">Expérience complète.</p>
           <ul class="list">
             <li>Espace client complet</li>
@@ -143,10 +182,13 @@
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact" class="section">
-      <div class="sectionHeader">
-        <h2>Contact</h2>
-        <p>Tu veux un devis ? Écris-moi.</p>
+      <div class="sectionHeader" style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:14px;">
+        <div>
+          <h2 style="margin:0;font-size:16px;">Contact</h2>
+          <p style="margin:6px 0 0;color:rgba(255,255,255,.62);font-size:13px;">Réponse rapide. Devis possible.</p>
+        </div>
       </div>
 
       <div class="cards">
@@ -160,7 +202,8 @@
         </div>
         <div class="card">
           <h3>Espace client</h3>
-          <p><a class="btn" href="./client.html">Connexion Discord / Email</a></p>
+          <p style="margin:0 0 12px;color:rgba(255,255,255,.62);">Connexion Discord ou email.</p>
+          <a class="btn" href="./client.html">Ouvrir</a>
         </div>
       </div>
     </section>
@@ -170,9 +213,27 @@
     </footer>
   </main>
 
-  <script src="./assets/app.js"></script>
+  <script src="./app.js"></script>
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Smooth scroll si app.js n'est pas prêt
+    document.querySelectorAll('[data-scroll]').forEach(a=>{
+      a.addEventListener('click',(e)=>{
+        const id = a.getAttribute('data-scroll');
+        const el = document.querySelector(id);
+        if(!el) return;
+        e.preventDefault();
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
   </script>
+
+  <style>
+    /* petit correctif mobile (au cas où) */
+    @media(max-width: 980px){
+      .navlinks{ display:none; }
+    }
+  </style>
 </body>
 </html>
