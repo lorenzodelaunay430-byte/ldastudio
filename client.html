@@ -1,860 +1,231 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Espace client — LDA Studio</title>
-  <meta name="theme-color" content="#070a12" />
-  <style>
-    :root{
-      --bg0:#060812;
-      --txt: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.62);
-      --muted2: rgba(255,255,255,.45);
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.09);
-      --border: rgba(255,255,255,.12);
-      --shadow: 0 18px 70px rgba(0,0,0,.55);
-      --shadow2: 0 10px 40px rgba(0,0,0,.45);
-      --radius: 18px;
-      --ring: 0 0 0 3px rgba(120,170,255,.22);
-      --good: rgba(58,225,160,.95);
-      --warn: rgba(255,204,80,.95);
-      --bad: rgba(255,95,95,.95);
-      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-    }
-
-    *{ box-sizing:border-box }
-    html,body{ height:100% }
-    body{
-      margin:0;
-      font-family:var(--font);
-      color:var(--txt);
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.65)),
-        url("bg.png") center/cover no-repeat fixed;
-      overflow-x:hidden;
-    }
-
-    /* overlays */
-    .bgGlow{
-      pointer-events:none;
-      position:fixed; inset:0;
-      background:
-        radial-gradient(900px 520px at 15% 10%, rgba(120,170,255,.18), transparent 60%),
-        radial-gradient(900px 520px at 85% 20%, rgba(186,120,255,.14), transparent 60%),
-        radial-gradient(900px 520px at 50% 95%, rgba(72,255,220,.08), transparent 60%);
-      mix-blend-mode: screen;
-      opacity:.9;
-    }
-    .gridLines{
-      pointer-events:none;
-      position:fixed; inset:0;
-      background-image:
-        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: radial-gradient(900px 520px at 50% 20%, rgba(0,0,0,.9), transparent 70%);
-      opacity:.14;
-    }
-
-    /* glass */
-    .glass{
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: var(--shadow2);
-    }
-
-    /* Toast */
-    .toast{
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      width: min(420px, calc(100% - 36px));
-      padding: 12px 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.55);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: var(--shadow);
-      transform: translateY(16px);
-      opacity:0;
-      pointer-events:none;
-      transition:.18s ease;
-      font-size: 13px;
-      z-index: 50;
-    }
-    .toast.show{ opacity:1; transform: translateY(0); pointer-events:auto }
-    .toast .tTitle{ font-weight:900 }
-    .toast .tMsg{ margin-top:4px; color: var(--muted) }
-
-    /* AUTH */
-    .authWrap{
-      min-height:100vh;
-      display:grid;
-      place-items:center;
-      padding: 22px;
-    }
-    .authCard{
-      width:min(980px, 100%);
-      padding: 16px;
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:16px;
-    }
-    .hero{
-      padding: 18px;
-      border-radius: var(--radius);
-      border:1px solid rgba(255,255,255,.10);
-      background:
-        radial-gradient(700px 420px at 20% 0%, rgba(120,170,255,.22), transparent 60%),
-        radial-gradient(700px 420px at 80% 20%, rgba(186,120,255,.18), transparent 60%),
-        rgba(255,255,255,.04);
-      position:relative;
-      overflow:hidden;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      padding: 0 0 12px 0;
-    }
-    .logo{
-      width:44px; height:44px; border-radius: 14px;
-      background:
-        radial-gradient(16px 16px at 30% 25%, rgba(255,255,255,.55), transparent 60%),
-        linear-gradient(135deg, rgba(120,170,255,.95), rgba(186,120,255,.85));
-      border:1px solid rgba(255,255,255,.18);
-      box-shadow: 0 14px 30px rgba(120,170,255,.15);
-      position:relative;
-      overflow:hidden;
-    }
-    .logo:after{
-      content:"";
-      position:absolute; inset:-40%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
-      transform: rotate(18deg);
-      animation: shine 4.5s linear infinite;
-      opacity:.55;
-    }
-    @keyframes shine{ 0%{ transform: translateX(-25%) rotate(18deg)} 100%{ transform: translateX(25%) rotate(18deg)} }
-
-    .brand h1{
-      margin:0;
-      font-size: 14px;
-      letter-spacing: .6px;
-      text-transform: uppercase;
-      line-height: 1.1;
-    }
-    .brand p{
-      margin:3px 0 0 0;
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .hero h2{
-      margin: 10px 0 0 0;
-      font-size: 28px;
-      letter-spacing:-.6px;
-    }
-    .hero > p{
-      margin:10px 0 0 0;
-      color: var(--muted);
-      max-width: 52ch;
-      font-size: 13px;
-      line-height: 1.55;
-    }
-    .banners{
-      margin-top:16px;
-      display:grid;
-      gap:10px;
-    }
-    .banner{
-      padding: 12px;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-      display:flex; gap:10px; align-items:flex-start;
-    }
-    .badge{
-      width:34px; height:34px; border-radius: 14px;
-      border:1px solid rgba(255,255,255,.14);
-      background: linear-gradient(135deg, rgba(72,255,220,.20), rgba(120,170,255,.22));
-      display:grid; place-items:center;
-      font-weight: 900;
-      opacity:.95;
-    }
-    .banner b{ font-size: 13px }
-    .banner span{ display:block; margin-top:3px; font-size:12px; color: var(--muted) }
-
-    .auth{
-      padding: 18px;
-      border-radius: var(--radius);
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-    .auth h3{ margin:0; font-size: 16px }
-    .muted{ color: var(--muted); font-size: 12px; line-height: 1.45; }
-
-    .field{ display:flex; flex-direction:column; gap:8px; }
-    label{ font-size: 12px; color: var(--muted); }
-    input{
-      width:100%;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.16);
-      color: rgba(255,255,255,.92);
-      padding: 12px 12px;
-      font: 600 13px var(--font);
-      outline:none;
-      transition: .18s ease;
-    }
-    input:focus{ border-color: rgba(120,170,255,.35); box-shadow: var(--ring); }
-
-    .btn{
-      cursor:pointer;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.12);
-      padding: 10px 12px;
-      background: rgba(255,255,255,.06);
-      color: rgba(255,255,255,.88);
-      transition: .18s ease;
-      font: 700 13px var(--font);
-      display:inline-flex; align-items:center; gap:10px;
-      justify-content:center;
-      width:100%;
-      user-select:none;
-    }
-    .btn:hover{ transform: translateY(-1px); box-shadow: var(--shadow2); border-color: rgba(120,170,255,.22) }
-    .btn.primary{
-      border-color: rgba(120,170,255,.26);
-      background: linear-gradient(135deg, rgba(120,170,255,.28), rgba(186,120,255,.18));
-    }
-    .btn.danger{
-      border-color: rgba(255,95,95,.28);
-      background: linear-gradient(135deg, rgba(255,95,95,.20), rgba(255,255,255,.04));
-    }
-    .row2{ display:flex; gap:10px; }
-    .divider{
-      display:flex; align-items:center; gap:12px;
-      color: var(--muted2);
-      font-size: 12px;
-      margin: 6px 0;
-    }
-    .divider:before,.divider:after{ content:""; height:1px; background: rgba(255,255,255,.10); flex:1; }
-
-    /* APP */
-    .shell{
-      min-height:100vh;
-      display:grid;
-      grid-template-columns: 280px 1fr;
-      gap:22px;
-      padding:22px;
-      max-width: 1400px;
-      margin:0 auto;
-    }
-    .sidebar{
-      position:sticky;
-      top:22px;
-      height: calc(100vh - 44px);
-      padding:18px;
-      display:flex;
-      flex-direction:column;
-      overflow:hidden;
-    }
-
-    .nav{
-      margin-top: 10px;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      padding: 6px;
-    }
-    .nav button{
-      all:unset;
-      cursor:pointer;
-      display:flex; align-items:center; gap:12px;
-      padding:12px 12px;
-      border-radius: 14px;
-      color: rgba(255,255,255,.78);
-      transition: .18s ease;
-      border: 1px solid transparent;
-      user-select:none;
-    }
-    .nav button:hover{
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.08);
-      transform: translateY(-1px);
-    }
-    .nav button.active{
-      background: linear-gradient(135deg, rgba(120,170,255,.16), rgba(186,120,255,.10));
-      border-color: rgba(120,170,255,.22);
-      color: rgba(255,255,255,.92);
-      box-shadow: 0 14px 36px rgba(0,0,0,.35);
-    }
-    .nav small{
-      margin-left:auto;
-      font-size: 11px;
-      color: var(--muted2);
-      padding: 3px 8px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: 999px;
-      background: rgba(0,0,0,.18);
-    }
-
-    .sidebarBottom{
-      margin-top:auto;
-      padding:10px 6px 6px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-    .userCard{
-      padding:12px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      display:flex;
-      gap:12px;
-      align-items:center;
-    }
-    .avatar{
-      width:42px; height:42px; border-radius: 14px;
-      border:1px solid rgba(255,255,255,.16);
-      background:
-        radial-gradient(16px 16px at 30% 25%, rgba(255,255,255,.45), transparent 60%),
-        linear-gradient(135deg, rgba(72,255,220,.35), rgba(120,170,255,.35));
-      display:grid; place-items:center;
-      font-weight:900;
-      letter-spacing:.3px;
-    }
-    .userMeta{ min-width:0 }
-    .userMeta .name{ font-size: 13px; font-weight: 800; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .userMeta .mail{ font-size: 12px; color: var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-
-    .main{ padding:18px; min-height: calc(100vh - 44px); overflow:hidden; }
-    .topbar{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:16px;
-      padding: 8px 8px 16px;
-    }
-    .title h2{ margin:0; font-size: 22px; letter-spacing:-.2px; }
-    .title p{ margin:6px 0 0 0; color: var(--muted); font-size: 13px; max-width: 70ch; }
-
-    .topActions{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    .pill{
-      display:flex; align-items:center; gap:10px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      color: rgba(255,255,255,.86);
-      font: 800 13px var(--font);
-      cursor:pointer;
-      transition:.18s ease;
-      user-select:none;
-    }
-    .pill:hover{ transform: translateY(-1px); border-color: rgba(120,170,255,.22) }
-    .dot{
-      width:9px; height:9px; border-radius: 999px;
-      background: var(--good);
-      box-shadow: 0 0 0 3px rgba(58,225,160,.12);
-    }
-
-    .content{ padding: 6px; display:grid; gap:16px; }
-    .page{ display:none }
-    .page.active{ display:block }
-
-    .cards{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap:14px;
-    }
-    .card{
-      padding: 14px;
-      border-radius: var(--radius);
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      box-shadow: 0 14px 46px rgba(0,0,0,.26);
-      min-height: 110px;
-      position:relative;
-      overflow:hidden;
-    }
-    .card:before{
-      content:"";
-      position:absolute; inset:-1px;
-      background: radial-gradient(480px 260px at 10% 0%, rgba(120,170,255,.14), transparent 60%);
-      pointer-events:none;
-    }
-    .card h3{ margin: 0; font-size: 13px; color: rgba(255,255,255,.78); font-weight: 900; }
-    .metric{ margin-top:10px; font-size: 28px; font-weight: 900; letter-spacing:-.6px; }
-    .hint{ margin-top:8px; color: var(--muted); font-size: 12px; }
-
-    .grid2{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:16px;
-      align-items:start;
-    }
-    .panel{
-      padding: 14px;
-      border-radius: var(--radius);
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      box-shadow: 0 14px 46px rgba(0,0,0,.26);
-      overflow:hidden;
-    }
-    .panelHeader{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px; margin-bottom:10px;
-    }
-    .panelHeader h3{ margin:0; font-size: 14px; letter-spacing:.1px; }
-    .panelHeader span{ color: var(--muted2); font-size: 12px; }
-
-    table{
-      width:100%;
-      border-collapse: collapse;
-      overflow:hidden;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.14);
-    }
-    th,td{
-      padding: 12px 12px;
-      text-align:left;
-      font-size: 12.5px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      color: rgba(255,255,255,.86);
-      vertical-align:middle;
-    }
-    th{
-      color: rgba(255,255,255,.72);
-      font-weight: 900;
-      background: rgba(255,255,255,.03);
-      letter-spacing:.2px;
-    }
-    tr:hover td{ background: rgba(255,255,255,.03) }
-    .tag{
-      display:inline-flex; align-items:center; gap:8px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border:1px solid rgba(255,255,255,.12);
-      font-weight: 900;
-      font-size: 11px;
-      color: rgba(255,255,255,.86);
-      background: rgba(255,255,255,.05);
-      white-space:nowrap;
-    }
-    .tag.good{ border-color: rgba(58,225,160,.25); background: rgba(58,225,160,.10) }
-    .tag.warn{ border-color: rgba(255,204,80,.25); background: rgba(255,204,80,.10) }
-    .tag.bad{ border-color: rgba(255,95,95,.25); background: rgba(255,95,95,.10) }
-
-    @media (max-width: 1050px){
-      .shell{ grid-template-columns: 1fr; }
-      .sidebar{ position:relative; height:auto; top:auto }
-      .grid2{ grid-template-columns: 1fr }
-      .cards{ grid-template-columns: repeat(2, minmax(0,1fr)) }
-    }
-    @media (max-width: 720px){
-      .cards{ grid-template-columns: 1fr }
-      .authCard{ grid-template-columns: 1fr }
-      .topbar{ flex-direction:column; align-items:flex-start }
-      .topActions{ justify-content:flex-start }
-    }
-  </style>
+  <link rel="icon" href="./assets/logo.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="./assets/style.css"/>
 </head>
-
 <body>
-  <div class="bgGlow"></div>
-  <div class="gridLines"></div>
 
-  <!-- AUTH (affiché par défaut, donc jamais “page vide”) -->
-  <section id="authScreen" class="authWrap">
-    <div class="glass authCard">
-      <div class="hero">
-        <div class="brand">
-          <div class="logo"></div>
-          <div>
-            <h1>LDA Studio</h1>
-            <p>Espace client • Connexion sécurisée</p>
-          </div>
-        </div>
-
-        <h2>Un espace client premium.</h2>
-        <p>
-          Projets, commandes, livrables et support — tout centralisé.
-          Connexion email ou Discord (OAuth) pour un style “grande startup”.
-        </p>
-
-        <div class="banners">
-          <div class="banner">
-            <div class="badge">⚡</div>
-            <div><b>Dashboard</b><span>Suivi clair, rapide, moderne</span></div>
-          </div>
-          <div class="banner">
-            <div class="badge">🔐</div>
-            <div><b>Discord OAuth</b><span>Connexion 1 clic</span></div>
-          </div>
-          <div class="banner">
-            <div class="badge">✨</div>
-            <div><b>Style Apple-like</b><span>Glass + profondeur</span></div>
-          </div>
+  <header class="navbar">
+    <div class="container row">
+      <div class="brand">
+        <img src="./assets/logo.svg" alt="LDA Studio"/>
+        <div class="t">
+          <b>LDA Studio</b>
+          <span>Espace client</span>
         </div>
       </div>
-
-      <div class="auth">
-        <h3>Connexion</h3>
-        <p class="muted" style="margin:0">
-          Discord est le plus simple. Sinon email + mot de passe.
-        </p>
-
-        <button id="btnDiscord" class="btn primary">💬 Se connecter avec Discord</button>
-
-        <div class="divider">ou</div>
-
-        <div class="field">
-          <label>Email</label>
-          <input id="email" type="email" placeholder="ex: client@exemple.com" autocomplete="email" />
-        </div>
-        <div class="field">
-          <label>Mot de passe</label>
-          <input id="password" type="password" placeholder="••••••••" autocomplete="current-password" />
-        </div>
-
-        <div class="row2">
-          <button id="btnLogin" class="btn">Connexion</button>
-          <button id="btnSignup" class="btn">Créer un compte</button>
-        </div>
-
-        <p class="muted" style="margin:0">
-          ⚙️ À configurer : remplace <b>SUPABASE_URL</b> + <b>SUPABASE_ANON_KEY</b> dans le JS.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- APP -->
-  <section id="appShell" class="shell" style="display:none">
-    <aside class="glass sidebar">
-      <div class="brand" style="padding:10px 10px 14px 10px">
-        <div class="logo"></div>
-        <div>
-          <h1>LDA Studio</h1>
-          <p>Espace client</p>
-        </div>
-      </div>
-
-      <nav class="nav" id="nav">
-        <button class="active" data-page="dashboard">🏠 Dashboard <small>Live</small></button>
-        <button data-page="projects">🧩 Projets <small>3</small></button>
-        <button data-page="orders">🧾 Commandes <small>2</small></button>
-        <button data-page="downloads">⬇️ Livrables <small>5</small></button>
-        <button data-page="support">🎫 Support <small>1</small></button>
-        <button data-page="settings">⚙️ Paramètres <small>Pro</small></button>
+      <nav class="navlinks">
+        <a href="./index.html">Accueil</a>
+        <a class="btn ghost" href="./index.html#pricing">Offres</a>
+        <button class="btn" id="btnTopLogout" style="display:none">Déconnexion</button>
       </nav>
+    </div>
+  </header>
 
-      <div class="sidebarBottom">
+  <main class="container" style="padding:18px 0 30px;">
+    <!-- AUTH -->
+    <section id="auth" class="glass" style="padding:18px; margin-top:16px;">
+      <div class="heroGrid" style="grid-template-columns: 1.05fr .95fr;">
+        <div class="card" style="background:transparent; border-color: rgba(255,255,255,.10);">
+          <div class="kicker">🔐 Connexion sécurisée</div>
+          <h1 class="h1" style="margin-top:14px;">Connexion à ton espace client</h1>
+          <p class="sub">
+            Connecte-toi avec Discord (1 clic) ou avec email + mot de passe.
+            Ensuite tu auras tes projets, commandes, livrables et support.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Se connecter</h3>
+          <p class="small">Recommandé : Discord.</p>
+
+          <button class="btn primary" id="btnDiscord">💬 Continuer avec Discord</button>
+
+          <div style="height:12px"></div>
+
+          <div class="field">
+            <label>Email</label>
+            <input class="input" id="email" type="email" placeholder="client@exemple.com" autocomplete="email">
+          </div>
+          <div class="field">
+            <label>Mot de passe</label>
+            <input class="input" id="password" type="password" placeholder="••••••••" autocomplete="current-password">
+          </div>
+
+          <div style="display:flex; gap:10px;">
+            <button class="btn" id="btnLogin" style="width:100%;">Connexion</button>
+            <button class="btn" id="btnSignup" style="width:100%;">Créer</button>
+          </div>
+
+          <p class="small" style="margin-top:12px;">
+            Si la confirmation email est activée, tu devras valider par mail.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- APP -->
+    <section id="app" class="shell hide">
+      <aside class="glass sidebar" style="display:flex; flex-direction:column;">
+        <div style="display:flex; gap:10px; align-items:center; padding:10px;">
+          <img src="./assets/logo.svg" alt="" style="width:38px; height:38px;">
+          <div style="line-height:1.1;">
+            <b style="font-size:13px; letter-spacing:.4px; text-transform:uppercase;">LDA Studio</b><br/>
+            <span style="color:var(--muted); font-size:12px;">Espace client</span>
+          </div>
+        </div>
+
+        <div class="nav" id="nav">
+          <button class="active" data-page="dashboard"><span>Dashboard</span><small id="bDash">Live</small></button>
+          <button data-page="projects"><span>Projets</span><small id="bProj">0</small></button>
+          <button data-page="orders"><span>Commandes</span><small id="bOrders">0</small></button>
+          <button data-page="deliverables"><span>Livrables</span><small id="bDeliv">0</small></button>
+          <button data-page="support"><span>Support</span><small id="bTickets">0</small></button>
+          <button data-page="settings"><span>Paramètres</span><small>Pro</small></button>
+        </div>
+
         <div class="userCard">
           <div class="avatar" id="avatar">LD</div>
           <div class="userMeta">
-            <div class="name" id="userName">Utilisateur</div>
-            <div class="mail" id="userEmail">email@exemple.com</div>
+            <b id="userName">Utilisateur</b>
+            <span id="userEmail">email@exemple.com</span>
           </div>
         </div>
 
-        <div class="row2">
-          <button id="btnLogout" class="btn danger">⎋ Déconnexion</button>
+        <div class="sideActions">
+          <button class="btn" id="btnLogout">Déconnexion</button>
         </div>
-      </div>
-    </aside>
+      </aside>
 
-    <main class="glass main">
-      <div class="topbar">
-        <div class="title">
-          <h2 id="pageTitle">Dashboard</h2>
-          <p id="pageSubtitle">Bienvenue dans ton espace client LDA Studio.</p>
+      <section class="glass main">
+        <div class="topbar">
+          <div>
+            <h1 id="pageTitle">Dashboard</h1>
+            <p id="pageSub">Bienvenue. Tout est centralisé ici.</p>
+          </div>
+          <div class="pills">
+            <div class="pill" id="pillProvider">Provider: —</div>
+            <div class="pill" id="pillPlan">Plan: —</div>
+          </div>
         </div>
-        <div class="topActions">
-          <div class="pill"><span class="dot"></span><span>Connecté</span></div>
-          <div class="pill">👑 Plan : Pro</div>
-        </div>
-      </div>
 
-      <div class="content">
-        <section class="page active" id="page-dashboard">
-          <div class="cards">
-            <div class="card">
-              <h3>Projets actifs</h3>
-              <div class="metric">3</div>
-              <div class="hint">Web • UI/UX • Automatisation</div>
-            </div>
-            <div class="card">
-              <h3>Commandes en cours</h3>
-              <div class="metric">2</div>
-              <div class="hint">Suivi + livraison</div>
-            </div>
-            <div class="card">
-              <h3>Support</h3>
-              <div class="metric">1</div>
-              <div class="hint">Tickets ouverts</div>
-            </div>
+        <!-- Dashboard -->
+        <div class="page" id="page-dashboard">
+          <div class="grid3">
+            <div class="metric"><b id="mProjects">0</b><span>Projets</span></div>
+            <div class="metric"><b id="mOrders">0</b><span>Commandes</span></div>
+            <div class="metric"><b id="mTickets">0</b><span>Tickets</span></div>
           </div>
 
-          <div class="grid2">
-            <div class="panel">
-              <div class="panelHeader"><h3>Activité récente</h3><span>7 jours</span></div>
-              <table>
-                <thead><tr><th>Date</th><th>Évènement</th><th>Statut</th></tr></thead>
-                <tbody>
-                  <tr><td>Aujourd’hui</td><td>Connexion</td><td><span class="tag good">OK</span></td></tr>
-                  <tr><td>Hier</td><td>Livrable ajouté</td><td><span class="tag good">Livré</span></td></tr>
-                  <tr><td>3 jours</td><td>Ticket support</td><td><span class="tag warn">En cours</span></td></tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="panel">
-              <div class="panelHeader"><h3>Actions rapides</h3><span>Gagne du temps</span></div>
-              <button class="btn primary" data-goto="support">🎫 Ouvrir un ticket</button>
-              <div style="height:10px"></div>
-              <button class="btn" data-goto="downloads">⬇️ Voir les livrables</button>
-              <div style="height:10px"></div>
-              <button class="btn" data-goto="projects">🧩 Voir mes projets</button>
-            </div>
-          </div>
-        </section>
-
-        <section class="page" id="page-projects">
           <div class="panel">
-            <div class="panelHeader"><h3>Projets</h3><span>Suivi</span></div>
-            <table>
-              <thead><tr><th>Projet</th><th>Type</th><th>MAJ</th><th>Statut</th></tr></thead>
-              <tbody>
-                <tr><td>Site LDA Studio</td><td>Web</td><td>Aujourd’hui</td><td><span class="tag warn">En dev</span></td></tr>
-                <tr><td>Auth Discord</td><td>App</td><td>Hier</td><td><span class="tag good">Stable</span></td></tr>
-                <tr><td>Design System</td><td>UI</td><td>5 jours</td><td><span class="tag good">Livré</span></td></tr>
+            <div class="panelHead">
+              <b>Activité</b>
+              <span>Derniers événements</span>
+            </div>
+            <table class="table">
+              <thead><tr><th>Date</th><th>Événement</th><th>Détail</th></tr></thead>
+              <tbody id="activity">
+                <tr><td>—</td><td>—</td><td>Connecte-toi pour voir tes données.</td></tr>
               </tbody>
             </table>
           </div>
-        </section>
+        </div>
 
-        <section class="page" id="page-orders">
+        <!-- Projects -->
+        <div class="page hide" id="page-projects">
           <div class="panel">
-            <div class="panelHeader"><h3>Commandes</h3><span>Historique</span></div>
-            <table>
-              <thead><tr><th>N°</th><th>Produit</th><th>Date</th><th>Montant</th><th>Statut</th></tr></thead>
-              <tbody>
-                <tr><td>#LDA-1024</td><td>Landing Premium</td><td>2 jours</td><td>299€</td><td><span class="tag warn">En cours</span></td></tr>
-                <tr><td>#LDA-1019</td><td>Template Espace Client</td><td>10 jours</td><td>149€</td><td><span class="tag good">Payée</span></td></tr>
-              </tbody>
+            <div class="panelHead">
+              <b>Projets</b><span>Suivi</span>
+            </div>
+            <table class="table">
+              <thead><tr><th>Nom</th><th>Statut</th><th>MAJ</th></tr></thead>
+              <tbody id="projectsBody"></tbody>
             </table>
           </div>
-        </section>
+        </div>
 
-        <section class="page" id="page-downloads">
+        <!-- Orders -->
+        <div class="page hide" id="page-orders">
           <div class="panel">
-            <div class="panelHeader"><h3>Livrables</h3><span>Téléchargements</span></div>
-            <table>
-              <thead><tr><th>Nom</th><th>Type</th><th>Version</th><th>Action</th></tr></thead>
-              <tbody>
-                <tr><td>UI Kit — Glass Pro</td><td>ZIP</td><td>v1.2</td><td><button class="btn" style="width:auto">Télécharger</button></td></tr>
-                <tr><td>Landing — Apple-like</td><td>HTML</td><td>v1.0</td><td><button class="btn" style="width:auto">Télécharger</button></td></tr>
-                <tr><td>Pack Animations</td><td>JS</td><td>v0.9</td><td><button class="btn" style="width:auto">Télécharger</button></td></tr>
-              </tbody>
+            <div class="panelHead">
+              <b>Commandes</b><span>Historique</span>
+            </div>
+            <table class="table">
+              <thead><tr><th>Plan</th><th>Montant</th><th>Statut</th><th>Date</th></tr></thead>
+              <tbody id="ordersBody"></tbody>
             </table>
           </div>
-        </section>
+        </div>
 
-        <section class="page" id="page-support">
+        <!-- Deliverables -->
+        <div class="page hide" id="page-deliverables">
           <div class="panel">
-            <div class="panelHeader"><h3>Support</h3><span>Ticket</span></div>
-            <p class="muted">Démo : branchement base Supabase “tickets” ensuite.</p>
-            <button class="btn primary" id="btnFakeTicket">📨 Envoyer un ticket (démo)</button>
-          </div>
-        </section>
+            <div class="panelHead">
+              <b>Livrables</b><span>À connecter à Supabase Storage</span>
+            </div>
+            <p style="margin:0; color:var(--muted); font-size:13px; line-height:1.6;">
+              Pour le moment, on affiche la liste depuis la table <b>deliverables</b>.
+              Tu peux ensuite basculer vers Supabase Storage (bucket).
+            </p>
 
-        <section class="page" id="page-settings">
-          <div class="panel">
-            <div class="panelHeader"><h3>Paramètres</h3><span>Sécurité</span></div>
-            <p class="muted">Provider : <b id="provider">—</b></p>
-            <button class="btn" id="btnRefresh">🔄 Rafraîchir session</button>
             <div style="height:10px"></div>
-            <button class="btn danger" id="btnLogout2">⎋ Déconnexion</button>
+            <table class="table">
+              <thead><tr><th>Nom</th><th>Type</th><th>Lien</th><th>Date</th></tr></thead>
+              <tbody id="deliverablesBody"></tbody>
+            </table>
           </div>
-        </section>
-      </div>
-    </main>
-  </section>
+        </div>
 
-  <div id="toast" class="toast">
-    <div class="tTitle" id="toastTitle">Info</div>
-    <div class="tMsg" id="toastMsg">Message</div>
-  </div>
+        <!-- Support -->
+        <div class="page hide" id="page-support">
+          <div class="panel">
+            <div class="panelHead">
+              <b>Support</b><span>Créer un ticket</span>
+            </div>
 
-  <script type="module">
-    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+            <div class="field">
+              <label>Sujet</label>
+              <input class="input" id="ticketSubject" placeholder="Ex: J’ai besoin d’une landing pour mon activité">
+            </div>
+            <div class="field">
+              <label>Message</label>
+              <textarea id="ticketMessage" placeholder="Décris ton besoin, le plus précis possible."></textarea>
+            </div>
+            <button class="btn primary" id="btnSendTicket">Envoyer</button>
 
-    // ======================
-    // CONFIG (à remplacer)
-    // ======================
-    const SUPABASE_URL = "https://aecifmxziwddaqihjjey.supabase.co";
-    const SUPABASE_ANON_KEY = "sb_publishable_Kq-2FsEdgffq0bMt-zfXZg_TbiOJcdP";
+            <div style="height:12px"></div>
 
-    const $ = (id) => document.getElementById(id);
+            <table class="table">
+              <thead><tr><th>ID</th><th>Sujet</th><th>Statut</th><th>Date</th></tr></thead>
+              <tbody id="ticketsBody"></tbody>
+            </table>
+          </div>
+        </div>
 
-    function toast(title, msg){
-      $("toastTitle").textContent = title;
-      $("toastMsg").textContent = msg;
-      const t = $("toast");
-      t.classList.add("show");
-      clearTimeout(toast._t);
-      toast._t = setTimeout(()=> t.classList.remove("show"), 3200);
-    }
-    function initials(str){
-      const s = (str || "").trim();
-      if (!s) return "LD";
-      const parts = s.split(/\\s+/).slice(0,2);
-      return parts.map(p => p[0]?.toUpperCase() || "").join("") || "LD";
-    }
-    function setActivePage(key){
-      document.querySelectorAll("#nav button").forEach(b=>{
-        b.classList.toggle("active", b.dataset.page === key);
-      });
-      document.querySelectorAll(".page").forEach(p=>{
-        p.classList.toggle("active", p.id === `page-${key}`);
-      });
-      const titles = {
-        dashboard: ["Dashboard","Bienvenue dans ton espace client LDA Studio."],
-        projects: ["Projets","Suivi premium de tes projets."],
-        orders: ["Commandes","Factures et statuts."],
-        downloads: ["Livrables","Télécharge tes fichiers."],
-        support: ["Support","Ouvre un ticket et suis les réponses."],
-        settings: ["Paramètres","Profil, sécurité et sessions."],
-      };
-      const [t,s] = titles[key] || ["Espace client","—"];
-      $("pageTitle").textContent = t;
-      $("pageSubtitle").textContent = s;
-    }
+        <!-- Settings -->
+        <div class="page hide" id="page-settings">
+          <div class="panel">
+            <div class="panelHead">
+              <b>Paramètres</b><span>Profil</span>
+            </div>
 
-    // Navigation
-    document.querySelectorAll("#nav button").forEach(btn=>{
-      btn.addEventListener("click", ()=> setActivePage(btn.dataset.page));
-    });
-    document.querySelectorAll("[data-goto]").forEach(b=>{
-      b.addEventListener("click", ()=> setActivePage(b.dataset.goto));
-    });
+            <div class="field">
+              <label>Nom affiché</label>
+              <input class="input" id="profileName" placeholder="Ton nom">
+            </div>
 
-    // Démo ticket
-    $("btnFakeTicket").addEventListener("click", ()=>{
-      toast("Ticket envoyé", "Démo OK — on branche la table Supabase après.");
-    });
+            <button class="btn primary" id="btnSaveProfile">Sauvegarder</button>
+          </div>
+        </div>
 
-    // Si Supabase pas configuré => on laisse juste l'écran auth visible (pas de page vide)
-    const supabaseReady = !(SUPABASE_URL.includes("YOUR_") || SUPABASE_ANON_KEY.includes("YOUR_"));
-    if(!supabaseReady){
-      toast("À configurer", "Remplace SUPABASE_URL et SUPABASE_ANON_KEY (sinon Discord/login ne marchent pas).");
-    }
+      </section>
+    </section>
+  </main>
 
-    const supabase = supabaseReady ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
-
-    async function showCorrectScreen(){
-      if(!supabase){
-        $("authScreen").style.display = "grid";
-        $("appShell").style.display = "none";
-        return;
-      }
-      const { data: { session } } = await supabase.auth.getSession();
-      const logged = !!session?.user;
-      $("authScreen").style.display = logged ? "none" : "grid";
-      $("appShell").style.display = logged ? "grid" : "none";
-      if(logged) hydrateUser(session.user);
-    }
-
-    function hydrateUser(user){
-      const meta = user.user_metadata || {};
-      const name = meta.full_name || meta.name || meta.user_name || "Client";
-      const email = user.email || "—";
-      $("userName").textContent = name;
-      $("userEmail").textContent = email;
-      $("avatar").textContent = initials(name);
-      $("provider").textContent = (user.app_metadata?.provider) || "email";
-      toast("Connecté", "Bienvenue 🔥");
-    }
-
-    async function loginDiscord(){
-      if(!supabase) return toast("Supabase non prêt", "Ajoute tes clés Supabase d’abord.");
-      const redirectTo = window.location.origin + window.location.pathname; // client.html
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: "discord",
-        options: { redirectTo }
-      });
-      if(error) toast("Erreur Discord", error.message);
-    }
-    async function loginEmail(){
-      if(!supabase) return toast("Supabase non prêt", "Ajoute tes clés Supabase d’abord.");
-      const email = $("email").value.trim();
-      const password = $("password").value.trim();
-      if(!email || !password) return toast("Erreur", "Email + mot de passe requis.");
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if(error) return toast("Connexion impossible", error.message);
-      await showCorrectScreen();
-    }
-    async function signupEmail(){
-      if(!supabase) return toast("Supabase non prêt", "Ajoute tes clés Supabase d’abord.");
-      const email = $("email").value.trim();
-      const password = $("password").value.trim();
-      if(!email || !password) return toast("Erreur", "Email + mot de passe requis.");
-      const { error } = await supabase.auth.signUp({ email, password });
-      if(error) return toast("Inscription impossible", error.message);
-      toast("Compte créé", "Si confirmation email active, vérifie ta boîte mail.");
-      await showCorrectScreen();
-    }
-    async function logout(){
-      if(!supabase) return toast("OK", "Déconnexion (démo).");
-      const { error } = await supabase.auth.signOut();
-      if(error) return toast("Erreur", error.message);
-      toast("Déconnecté", "À bientôt.");
-      await showCorrectScreen();
-    }
-
-    $("btnDiscord").addEventListener("click", loginDiscord);
-    $("btnLogin").addEventListener("click", loginEmail);
-    $("btnSignup").addEventListener("click", signupEmail);
-    $("btnLogout").addEventListener("click", logout);
-    $("btnLogout2").addEventListener("click", logout);
-
-    $("btnRefresh").addEventListener("click", async ()=>{
-      if(!supabase) return toast("Supabase non prêt", "Ajoute tes clés Supabase d’abord.");
-      const { data, error } = await supabase.auth.getSession();
-      if(error) return toast("Erreur", error.message);
-      if(data.session?.user) hydrateUser(data.session.user);
-      toast("OK", "Session rafraîchie.");
-    });
-
-    // init
-    setActivePage("dashboard");
-    await showCorrectScreen();
-
-    if(supabase){
-      supabase.auth.onAuthStateChange((_event, session) => {
-        const logged = !!session?.user;
-        $("authScreen").style.display = logged ? "none" : "grid";
-        $("appShell").style.display = logged ? "grid" : "none";
-        if (logged) hydrateUser(session.user);
-      });
-    }
-  </script>
+  <script type="module" src="./assets/client.js"></script>
 </body>
 </html>
