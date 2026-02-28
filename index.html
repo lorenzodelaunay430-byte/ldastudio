@@ -3,36 +3,39 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lda Opti — Optimisation PC Gaming</title>
-  <meta name="description" content="Optimisation PC en direct : +FPS, moins d'input lag, PC plus stable. Packs Starter, Premium, Pro." />
+  <title>Lda Opti — Optimisation PC (FPS / Input Lag)</title>
+  <meta name="description" content="Lda Opti : optimisation PC en direct. Starter 15€, Premium 30€, Pro 65€." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
-  <header class="site-header" id="top">
-    <div class="container header-row">
-      <a class="brand" href="#top" aria-label="Accueil Lda Opti">
-        <span class="brand-mark">LDA</span><span class="brand-name"> Opti</span>
+  <header class="header">
+    <div class="container header__row">
+      <a class="logo" href="#top" id="top">
+        <span class="logo__mark">LDA</span>
+        <span class="logo__text">Opti</span>
       </a>
 
-      <nav class="nav" aria-label="Navigation principale">
-        <a href="#packs">Offres</a>
+      <nav class="nav">
+        <a href="#packs">Packs</a>
         <a href="#process">Process</a>
         <a href="#avis">Avis</a>
         <a href="#faq">FAQ</a>
-        <a class="btn btn-outline" href="#contact">Contact</a>
+        <a class="btn btn--outline" href="#contact">Contact</a>
       </nav>
 
-      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+      <button class="menu" id="menuBtn" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span>
       </button>
     </div>
 
-    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
-      <a href="#packs">Offres</a>
+    <div class="mobile" id="mobileNav" aria-hidden="true">
+      <a href="#packs">Packs</a>
       <a href="#process">Process</a>
       <a href="#avis">Avis</a>
       <a href="#faq">FAQ</a>
@@ -43,110 +46,133 @@
   <main>
     <!-- HERO -->
     <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="pill">Optimisation PC • Windows 10/11 • Fixe & Portable</p>
-          <h1>Ton PC. <span class="accent">Plus fluide.</span><br>Plus réactif.</h1>
-          <p class="lead">
-            Intervention à distance <strong>en direct</strong> : nettoyage, réglages performance, réduction de l’input lag,
-            optimisation drivers & réseau. Tu vois tout, étape par étape.
+      <div class="hero__bg" aria-hidden="true">
+        <div class="blob blob--a"></div>
+        <div class="blob blob--b"></div>
+        <div class="grain"></div>
+      </div>
+
+      <div class="container hero__grid">
+        <div class="hero__copy reveal">
+          <div class="chips">
+            <span class="chip">PC Fixe</span>
+            <span class="chip">PC Portable</span>
+            <span class="chip">Windows 10/11</span>
+            <span class="chip chip--hot">Optimisation en direct</span>
+          </div>
+
+          <h1 class="hero__title">
+            Ton PC.
+            <span class="accent">Surpuissant.</span>
+          </h1>
+
+          <p class="hero__lead">
+            Stop le lag, les micro-saccades et l’input lag.
+            Optimisation complète en live (AnyDesk + vocal), propre et expliquée.
           </p>
 
-          <div class="hero-cta">
-            <a class="btn btn-primary" href="#packs">Voir les packs</a>
-            <a class="btn btn-ghost" href="#process">Comment ça marche ?</a>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#packs">Voir les packs</a>
+            <a class="btn btn--ghost" href="#process">Comment ça marche</a>
           </div>
 
-          <div class="stats" aria-label="Statistiques">
-            <div class="stat">
-              <div class="stat-num" data-count="120">0</div>
-              <div class="stat-label">FPS potentiels*</div>
+          <div class="proof">
+            <div class="proof__badge">
+              <span class="dot"></span>
+              <span>Intervention rapide • Transparent</span>
             </div>
-            <div class="stat">
-              <div class="stat-num" data-count="60">0</div>
-              <div class="stat-label">% input lag en moins*</div>
-            </div>
-            <div class="stat">
-              <div class="stat-num" data-count="98">0</div>
-              <div class="stat-label">% clients contents*</div>
-            </div>
-          </div>
 
-          <p class="mini-note">*Exemples indicatifs : dépend de ta config, de ton jeu et de l’état du PC.</p>
+            <div class="stats">
+              <div class="stat">
+                <div class="stat__num" data-count="120">0</div>
+                <div class="stat__label">FPS potentiels*</div>
+              </div>
+              <div class="stat">
+                <div class="stat__num" data-count="60">0</div>
+                <div class="stat__label">% input lag*</div>
+              </div>
+              <div class="stat">
+                <div class="stat__num" data-count="98">0</div>
+                <div class="stat__label">% satisfaits*</div>
+              </div>
+            </div>
+            <p class="mini">*Indicatif (selon config/jeu/état du PC).</p>
+          </div>
         </div>
 
-        <!-- ANIMATION SETUP -->
-        <div class="hero-visual" aria-label="Animation d'un setup gaming">
-          <div class="setup-card">
-            <svg class="setup" viewBox="0 0 760 520" role="img" aria-label="Illustration d'un setup PC">
-              <!-- Glow -->
-              <defs>
-                <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="8" result="blur"/>
-                  <feMerge>
-                    <feMergeNode in="blur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
-                </filter>
-              </defs>
+        <!-- SETUP ANIM -->
+        <div class="hero__visual reveal" id="tiltCard">
+          <div class="card">
+            <div class="card__glow" aria-hidden="true"></div>
+            <div class="card__top">
+              <div class="tag">Lda Opti • Live</div>
+              <div class="tag tag--ghost">Setup Scan</div>
+            </div>
 
-              <!-- Desk -->
-              <rect x="70" y="360" width="620" height="60" rx="16" class="desk"/>
-              <rect x="110" y="410" width="540" height="18" rx="9" class="deskShadow"/>
+            <div class="setupWrap">
+              <svg class="setup" viewBox="0 0 900 600" role="img" aria-label="Setup gaming">
+                <defs>
+                  <linearGradient id="g1" x1="0" x2="1">
+                    <stop offset="0" stop-color="rgba(255,122,0,0.75)"/>
+                    <stop offset="1" stop-color="rgba(255,170,90,0.35)"/>
+                  </linearGradient>
+                </defs>
 
-              <!-- Monitor -->
-              <rect x="170" y="90" width="420" height="240" rx="18" class="monitor"/>
-              <rect x="190" y="112" width="380" height="196" rx="12" class="screen"/>
-              <rect x="330" y="330" width="100" height="18" rx="9" class="stand"/>
-              <rect x="300" y="348" width="160" height="18" rx="9" class="stand2"/>
+                <!-- Desk -->
+                <rect x="110" y="420" width="680" height="70" rx="20" class="desk"/>
+                <rect x="150" y="492" width="600" height="18" rx="9" class="desk2"/>
 
-              <!-- Screen content -->
-              <g class="screenContent">
-                <rect x="210" y="140" width="240" height="16" rx="8" class="uiLine"/>
-                <rect x="210" y="170" width="320" height="16" rx="8" class="uiLine2"/>
-                <rect x="210" y="200" width="280" height="16" rx="8" class="uiLine"/>
-                <rect x="210" y="240" width="180" height="16" rx="8" class="uiLine2"/>
-                <rect x="410" y="240" width="120" height="16" rx="8" class="uiLine"/>
-                <circle cx="536" cy="144" r="10" class="uiDot"/>
-                <circle cx="566" cy="144" r="10" class="uiDot2"/>
-              </g>
+                <!-- Monitor -->
+                <rect x="240" y="120" width="420" height="250" rx="22" class="mon"/>
+                <rect x="262" y="145" width="376" height="200" rx="16" class="screen"/>
+                <rect x="392" y="374" width="116" height="18" rx="9" class="stand"/>
+                <rect x="358" y="394" width="184" height="18" rx="9" class="stand2"/>
 
-              <!-- PC Tower -->
-              <rect x="90" y="140" width="120" height="210" rx="18" class="tower"/>
-              <rect x="108" y="160" width="84" height="90" rx="12" class="towerGlass"/>
-              <circle cx="150" cy="290" r="18" class="fanOuter"/>
-              <circle cx="150" cy="290" r="7" class="fanInner"/>
-              <path d="M150 276 L158 290 L150 304 L142 290 Z" class="fanBlade"/>
+                <!-- UI -->
+                <rect x="290" y="176" width="280" height="16" rx="8" class="ui1"/>
+                <rect x="290" y="208" width="330" height="16" rx="8" class="ui2"/>
+                <rect x="290" y="240" width="300" height="16" rx="8" class="ui1"/>
+                <rect x="290" y="288" width="180" height="16" rx="8" class="ui2"/>
+                <circle cx="614" cy="184" r="10" class="dot1"/>
+                <circle cx="642" cy="184" r="10" class="dot2"/>
 
-              <!-- Keyboard -->
-              <rect x="260" y="385" width="260" height="36" rx="12" class="kbd"/>
-              <g class="kbdKeys">
-                <!-- little keys -->
-                <rect x="276" y="395" width="28" height="10" rx="4"/>
-                <rect x="310" y="395" width="28" height="10" rx="4"/>
-                <rect x="344" y="395" width="28" height="10" rx="4"/>
-                <rect x="378" y="395" width="28" height="10" rx="4"/>
-                <rect x="412" y="395" width="28" height="10" rx="4"/>
-                <rect x="446" y="395" width="58" height="10" rx="4"/>
-              </g>
+                <!-- Tower -->
+                <rect x="120" y="170" width="140" height="240" rx="22" class="tower"/>
+                <rect x="142" y="198" width="96" height="110" rx="14" class="glass"/>
+                <circle cx="190" cy="350" r="22" class="fanO"/>
+                <circle cx="190" cy="350" r="8" class="fanI"/>
+                <path d="M190 334 L200 350 L190 366 L180 350 Z" class="blade"/>
 
-              <!-- Mouse -->
-              <rect x="545" y="382" width="48" height="42" rx="18" class="mouse"/>
-              <rect x="567" y="392" width="4" height="12" rx="2" class="mouseWheel"/>
+                <!-- Keyboard -->
+                <rect x="320" y="458" width="300" height="40" rx="14" class="kbd"/>
+                <rect x="340" y="470" width="70" height="10" rx="5" class="key"/>
+                <rect x="416" y="470" width="70" height="10" rx="5" class="key"/>
+                <rect x="492" y="470" width="70" height="10" rx="5" class="key"/>
+                <rect x="568" y="470" width="36" height="10" rx="5" class="key"/>
 
-              <!-- Orange accent cable -->
-              <path d="M595 404 C640 420, 660 430, 680 450" class="cable" filter="url(#softGlow)"/>
-            </svg>
+                <!-- Mouse -->
+                <rect x="648" y="456" width="55" height="46" rx="20" class="mouse"/>
+                <rect x="673" y="468" width="5" height="14" rx="3" class="wheel"/>
 
-            <div class="setup-badge">
-              <span class="dot"></span> Optimisation en direct
+                <!-- Cable accent -->
+                <path d="M703 485 C760 506, 790 520, 820 548" class="cable"/>
+              </svg>
+
+              <div class="scan" aria-hidden="true"></div>
+            </div>
+
+            <div class="card__bottom">
+              <div class="pill">
+                <span class="pulse"></span> Optimisation • Réglages • Stabilité
+              </div>
+              <a class="btn btn--primary btn--sm" href="#packs">Choisir un pack</a>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="marquee" aria-label="Jeux populaires">
-        <div class="marquee-track">
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
           <span>FORTNITE</span><span>VALORANT</span><span>WARZONE</span><span>APEX</span><span>CS2</span><span>GTA V</span><span>FIVEM</span>
           <span>FORTNITE</span><span>VALORANT</span><span>WARZONE</span><span>APEX</span><span>CS2</span><span>GTA V</span><span>FIVEM</span>
         </div>
@@ -156,84 +182,88 @@
     <!-- PROCESS -->
     <section class="section" id="process">
       <div class="container">
-        <h2>Comment ça marche ?</h2>
-        <p class="sub">Simple, rapide, et tu gardes le contrôle.</p>
+        <div class="section__head reveal">
+          <h2>Comment ça marche</h2>
+          <p>Simple, rapide, en live, et tu peux stop quand tu veux.</p>
+        </div>
 
         <div class="steps">
-          <div class="step">
-            <div class="step-num">1</div>
+          <article class="step reveal">
+            <div class="step__icon">1</div>
             <h3>Choisis ton pack</h3>
-            <p>Starter, Premium ou Pro selon ton objectif (FPS, stabilité, compétitif).</p>
-          </div>
-          <div class="step">
-            <div class="step-num">2</div>
+            <p>Starter / Premium / Pro selon ton objectif (FPS, réactivité, compétitif).</p>
+          </article>
+          <article class="step reveal">
+            <div class="step__icon">2</div>
             <h3>On fixe un créneau</h3>
-            <p>Contact par Discord / message. On prépare tout avant l’intervention.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
+            <p>Contact via Discord / message. Pré-check rapide (jeu, config, soucis).</p>
+          </article>
+          <article class="step reveal">
+            <div class="step__icon">3</div>
             <h3>Optimisation live</h3>
-            <p>Prise en main à distance (AnyDesk) + vocal. Point de restauration avant chaque changement.</p>
-          </div>
+            <p>AnyDesk + vocal. Point de restauration avant les changements importants.</p>
+          </article>
         </div>
       </div>
     </section>
 
     <!-- PACKS -->
-    <section class="section alt" id="packs">
+    <section class="section section--alt" id="packs">
       <div class="container">
-        <h2>Nos packs</h2>
-        <p class="sub">Blanc & orange, clair, et sans blabla.</p>
-
-        <div class="pricing">
-          <article class="price-card">
-            <h3>Starter</h3>
-            <p class="tag">Idéal pour commencer</p>
-            <div class="price">15€</div>
-            <ul>
-              <li>Nettoyage & debloat Windows</li>
-              <li>Optimisation démarrage</li>
-              <li>Réglages Windows “performance”</li>
-              <li>Mises à jour & drivers GPU</li>
-              <li>Point de restauration</li>
-            </ul>
-            <a class="btn btn-outline full" href="#contact">Commander Starter</a>
-          </article>
-
-          <article class="price-card featured">
-            <div class="ribbon">Populaire</div>
-            <h3>Premium</h3>
-            <p class="tag">Meilleur rapport perf/prix</p>
-            <div class="price">30€</div>
-            <ul>
-              <li>Tout Starter +</li>
-              <li>Optimisation réseau (latence)</li>
-              <li>Réglages in-game (1 jeu au choix)</li>
-              <li>Optimisation stockage (SSD)</li>
-              <li>Contrôle températures & stabilité</li>
-            </ul>
-            <a class="btn btn-primary full" href="#contact">Commander Premium</a>
-          </article>
-
-          <article class="price-card">
-            <h3>Pro</h3>
-            <p class="tag">Pour les exigeants</p>
-            <div class="price">65€</div>
-            <ul>
-              <li>Tout Premium +</li>
-              <li>BIOS (réglages safe)</li>
-              <li>Optimisation micro-saccades</li>
-              <li>Tuning avancé (selon compatibilité)</li>
-              <li>Suivi 7 jours</li>
-            </ul>
-            <a class="btn btn-outline full" href="#contact">Commander Pro</a>
-          </article>
+        <div class="section__head reveal">
+          <h2>Packs Lda Opti</h2>
+          <p>Blanc, orange, et une expérience “pro” — sans prise de tête.</p>
         </div>
 
-        <div class="trust">
-          <div class="trust-item"><strong>Point de restauration</strong><span>retour arrière en 1 clic</span></div>
-          <div class="trust-item"><strong>Transparent</strong><span>tu vois tout en live</span></div>
-          <div class="trust-item"><strong>Support</strong><span>dispo après l’opti</span></div>
+        <div class="pricing">
+          <article class="plan reveal">
+            <div class="plan__top">
+              <h3>Starter</h3>
+              <span class="price">15€</span>
+            </div>
+            <p class="muted">Clean & boost rapide.</p>
+            <ul>
+              <li>Debloat / nettoyage Windows</li>
+              <li>Optimisation démarrage</li>
+              <li>Réglages perf Windows</li>
+              <li>Drivers GPU propres</li>
+              <li>Point de restauration</li>
+            </ul>
+            <a class="btn btn--outline" href="#contact">Commander Starter</a>
+          </article>
+
+          <article class="plan plan--featured reveal">
+            <div class="badge">Populaire</div>
+            <div class="plan__top">
+              <h3>Premium</h3>
+              <span class="price">30€</span>
+            </div>
+            <p class="muted">Le meilleur pour le gaming.</p>
+            <ul>
+              <li>Tout Starter +</li>
+              <li>Optimisation réseau / latence</li>
+              <li>Réglages 1 jeu au choix</li>
+              <li>Optimisation SSD / cache</li>
+              <li>Températures & stabilité</li>
+            </ul>
+            <a class="btn btn--primary" href="#contact">Commander Premium</a>
+          </article>
+
+          <article class="plan reveal">
+            <div class="plan__top">
+              <h3>Pro</h3>
+              <span class="price">65€</span>
+            </div>
+            <p class="muted">Max perf & stabilité.</p>
+            <ul>
+              <li>Tout Premium +</li>
+              <li>BIOS (safe, selon config)</li>
+              <li>Micro-stutters / frame-time</li>
+              <li>Réglages avancés (si compatible)</li>
+              <li>Suivi 7 jours</li>
+            </ul>
+            <a class="btn btn--outline" href="#contact">Commander Pro</a>
+          </article>
         </div>
       </div>
     </section>
@@ -241,20 +271,22 @@
     <!-- AVIS -->
     <section class="section" id="avis">
       <div class="container">
-        <h2>Avis</h2>
-        <p class="sub">Quelques retours (exemples à remplacer par les tiens).</p>
+        <div class="section__head reveal">
+          <h2>Avis</h2>
+          <p>Remplace ces exemples par tes vrais retours (screens / Trustpilot / Discord).</p>
+        </div>
 
         <div class="reviews">
-          <figure class="review">
-            <blockquote>“J’ai gagné en stabilité, plus de stuttering, et ça se sent direct.”</blockquote>
+          <figure class="review reveal">
+            <blockquote>“Plus de stuttering, c’est stable, ça se ressent direct.”</blockquote>
             <figcaption>— Client Premium</figcaption>
           </figure>
-          <figure class="review">
-            <blockquote>“PC plus réactif, Windows propre, et l’input lag a baissé.”</blockquote>
+          <figure class="review reveal">
+            <blockquote>“Windows propre et PC plus réactif, nickel.”</blockquote>
             <figcaption>— Client Starter</figcaption>
           </figure>
-          <figure class="review">
-            <blockquote>“Pro : réglages vraiment carrés, explications claires, suivi nickel.”</blockquote>
+          <figure class="review reveal">
+            <blockquote>“Pro = explications carrées + suivi. Très clean.”</blockquote>
             <figcaption>— Client Pro</figcaption>
           </figure>
         </div>
@@ -262,90 +294,74 @@
     </section>
 
     <!-- FAQ -->
-    <section class="section alt" id="faq">
+    <section class="section section--alt" id="faq">
       <div class="container">
-        <h2>FAQ</h2>
-
-        <div class="faq">
-          <details>
-            <summary>Est-ce que je risque un ban ?</summary>
-            <p>On ne modifie pas les fichiers du jeu ni l’anti-cheat. On travaille sur Windows et les réglages système.</p>
-          </details>
-          <details>
-            <summary>Je vais perdre mes fichiers ?</summary>
-            <p>Non : on crée un point de restauration avant toute optimisation (et on évite toute suppression de données perso).</p>
-          </details>
-          <details>
-            <summary>Combien de temps ça dure ?</summary>
-            <p>En général : Starter ~45–60 min, Premium ~60–90 min, Pro ~90–150 min selon la config.</p>
-          </details>
+        <div class="section__head reveal">
+          <h2>FAQ</h2>
+          <p>Questions classiques avant une optimisation.</p>
         </div>
 
-        <div class="cta-band">
-          <div>
-            <h3>Stop le lag. Passe en mode fluide.</h3>
-            <p>Dis-moi ta config + ton jeu principal, je te conseille le bon pack.</p>
-          </div>
-          <a class="btn btn-primary" href="#contact">Me contacter</a>
+        <div class="faq">
+          <details class="reveal">
+            <summary>Est-ce que je risque un ban ?</summary>
+            <p>On ne touche pas aux fichiers du jeu / anti-cheat. Optimisation côté Windows et réglages système.</p>
+          </details>
+          <details class="reveal">
+            <summary>Combien de temps ça prend ?</summary>
+            <p>Starter ~45–60 min, Premium ~60–90 min, Pro ~90–150 min selon config.</p>
+          </details>
+          <details class="reveal">
+            <summary>Je peux annuler / revenir en arrière ?</summary>
+            <p>On fait un point de restauration et tu peux stopper la session à tout moment.</p>
+          </details>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section class="section" id="contact">
-      <div class="container contact-grid">
-        <div>
+      <div class="container contact">
+        <div class="reveal">
           <h2>Contact</h2>
-          <p class="sub">Ajoute ici ton Discord, Insta, ou un lien de paiement.</p>
+          <p class="muted">Mets ton Discord + lien paiement (Stripe/PayPal) ici.</p>
 
-          <div class="contact-cards">
-            <div class="contact-card">
+          <div class="contact__cards">
+            <div class="cCard">
               <h4>Discord</h4>
               <p>TonPseudo#0000</p>
-              <a class="btn btn-outline" href="#" aria-label="Lien Discord">Rejoindre</a>
+              <a class="btn btn--outline" href="#">Rejoindre</a>
             </div>
-            <div class="contact-card">
+            <div class="cCard">
               <h4>Paiement</h4>
               <p>Lien Stripe / PayPal</p>
-              <a class="btn btn-outline" href="#" aria-label="Lien paiement">Payer</a>
+              <a class="btn btn--primary" href="#">Payer</a>
             </div>
           </div>
-
-          <p class="legal">
-            Astuce : ajoute tes Mentions légales / CGV (et la partie rétractation si tu fais une prestation numérique immédiate).
-          </p>
         </div>
 
-        <form class="form" onsubmit="return false;">
-          <label>
-            Pseudo / Nom
-            <input type="text" placeholder="Ex: Maya" />
+        <form class="form reveal" onsubmit="return false;">
+          <label>Nom / Pseudo
+            <input type="text" placeholder="Ex: Maya">
           </label>
-          <label>
-            Discord ou Email
-            <input type="text" placeholder="Ex: maya#1234 / mail@exemple.com" />
+          <label>Discord ou Email
+            <input type="text" placeholder="Ex: maya#1234">
           </label>
-          <label>
-            Config + jeu
-            <textarea rows="5" placeholder="Ex: RTX 3060 Ti, Ryzen 5, 16GB — Fortnite — soucis: stuttering/latence..."></textarea>
+          <label>Config + jeu + problème
+            <textarea rows="5" placeholder="Ex: RTX 3060 Ti, Ryzen 5, 16GB — Fortnite — stuttering/latence..."></textarea>
           </label>
-          <button class="btn btn-primary" id="fakeSend">Envoyer</button>
-          <p class="form-note" id="formNote" aria-live="polite"></p>
+          <button class="btn btn--primary" id="sendBtn">Envoyer</button>
+          <p class="form__note" id="note" aria-live="polite"></p>
         </form>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container footer-row">
-      <div class="foot-brand">
-        <span class="brand-mark">LDA</span><span class="brand-name"> Opti</span>
-        <p>© <span id="year"></span> — Tous droits réservés.</p>
-      </div>
-      <div class="foot-links">
-        <a href="#packs">Offres</a>
+    <div class="container footer__row">
+      <div class="muted">© <span id="year"></span> Lda Opti</div>
+      <div class="footer__links">
+        <a href="#packs">Packs</a>
         <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
         <a href="#top">Haut</a>
       </div>
     </div>
