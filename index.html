@@ -2,238 +2,355 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>LDA Studio — Sites, UI/UX & automatisations</title>
-  <meta name="description" content="LDA Studio — Sites premium, UI/UX propre et automatisations. Paiement Stripe + espace client Discord." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lda Opti — Optimisation PC Gaming</title>
+  <meta name="description" content="Optimisation PC en direct : +FPS, moins d'input lag, PC plus stable. Packs Starter, Premium, Pro." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css" />
-  <!-- Si tu as logo.svg à la racine -->
-  <link rel="icon" href="./logo.svg" type="image/svg+xml" />
 </head>
 
 <body>
-  <!-- NAV -->
-  <header class="navbar">
-    <div class="container row">
-      <a class="brand" href="./index.html" style="display:flex;align-items:center;gap:10px;">
-        <!-- OPTION A: si tu as logo.svg -->
-        <img src="./logo.svg" alt="LDA Studio" style="width:34px;height:34px;" />
-        <div class="t">
-          <b>LDA Studio</b>
-          <span>LDA Studio digital — sites & automatisations</span>
-        </div>
-
-        <!-- OPTION B: si tu n'as pas de logo.svg, commente l'image et décommente ça :
-        <div class="t">
-          <b style="font-size:13px;letter-spacing:.6px;text-transform:uppercase;">LDA Studio</b>
-          <span style="display:block;color:rgba(255,255,255,.65);font-size:12px;">Studio digital — sites & automatisations</span>
-        </div>
-        -->
+  <header class="site-header" id="top">
+    <div class="container header-row">
+      <a class="brand" href="#top" aria-label="Accueil Lda Opti">
+        <span class="brand-mark">LDA</span><span class="brand-name"> Opti</span>
       </a>
 
-      <nav class="navlinks">
-        <a href="#services" data-scroll="#services">Services</a>
-        <a href="#offres" data-scroll="#offres">Offres</a>
-        <a href="#contact" data-scroll="#contact">Contact</a>
-        <a class="btn ghost" href="./client.html">Espace client</a>
-        <a class="btn primary" href="./client.html">Se connecter</a>
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#packs">Offres</a>
+        <a href="#process">Process</a>
+        <a href="#avis">Avis</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-outline" href="#contact">Contact</a>
       </nav>
+
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+      <a href="#packs">Offres</a>
+      <a href="#process">Process</a>
+      <a href="#avis">Avis</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
     </div>
   </header>
 
-  <!-- HERO -->
-  <main class="container">
+  <main>
+    <!-- HERO -->
     <section class="hero">
-      <div style="display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:stretch;">
-        <!-- Left -->
-        <div>
-          <div class="kicker" style="display:inline-flex;gap:10px;align-items:center;padding:7px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(255,255,255,.78);font-size:12px;font-weight:800;">
-            ⚡ Lancement — Paiement Stripe + Connexion Discord
-          </div>
-
-          <h1 class="h1" style="margin:16px 0 12px;font-size:clamp(34px,4.4vw,56px);letter-spacing:-.8px;line-height:1.05;max-width:22ch;">
-            Des sites premium, sobres, rapides — style Apple.
-          </h1>
-
-          <p class="sub" style="margin:0;color:rgba(255,255,255,.62);font-size:15px;line-height:1.65;max-width:64ch;">
-            LDA Studio crée des sites modernes (vitrine / pro), du UI/UX propre, et des automatisations.
-            Tout est livré avec un espace client sécurisé (Discord ou email).
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="pill">Optimisation PC • Windows 10/11 • Fixe & Portable</p>
+          <h1>Ton PC. <span class="accent">Plus fluide.</span><br>Plus réactif.</h1>
+          <p class="lead">
+            Intervention à distance <strong>en direct</strong> : nettoyage, réglages performance, réduction de l’input lag,
+            optimisation drivers & réseau. Tu vois tout, étape par étape.
           </p>
 
-          <div class="actions" style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap;">
-            <a class="btn primary" href="#offres" data-scroll="#offres">Voir les offres</a>
-            <a class="btn" href="./client.html">Accéder à l’espace client</a>
-            <a class="btn ghost" href="#contact" data-scroll="#contact">Me contacter</a>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#packs">Voir les packs</a>
+            <a class="btn btn-ghost" href="#process">Comment ça marche ?</a>
           </div>
 
-          <div style="margin-top:16px;color:rgba(255,255,255,.70);font-size:13px;line-height:1.7;">
-            <b>Qualité “startup”</b> — Design • Perf • Sécurité<br/>
-            ⚡ Rapide & responsive • 🔐 Discord OAuth • 🧾 Paiement Stripe
+          <div class="stats" aria-label="Statistiques">
+            <div class="stat">
+              <div class="stat-num" data-count="120">0</div>
+              <div class="stat-label">FPS potentiels*</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num" data-count="60">0</div>
+              <div class="stat-label">% input lag en moins*</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num" data-count="98">0</div>
+              <div class="stat-label">% clients contents*</div>
+            </div>
           </div>
+
+          <p class="mini-note">*Exemples indicatifs : dépend de ta config, de ton jeu et de l’état du PC.</p>
         </div>
 
-        <!-- Right (glass card) -->
-        <div class="card" style="padding:18px;border-radius:18px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
-            <b style="font-size:13px;letter-spacing:.2px;">Ce que tu reçois</b>
-            <span style="color:rgba(255,255,255,.50);font-size:12px;">Livraison + suivi</span>
-          </div>
+        <!-- ANIMATION SETUP -->
+        <div class="hero-visual" aria-label="Animation d'un setup gaming">
+          <div class="setup-card">
+            <svg class="setup" viewBox="0 0 760 520" role="img" aria-label="Illustration d'un setup PC">
+              <!-- Glow -->
+              <defs>
+                <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="8" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
 
-          <div style="height:12px"></div>
+              <!-- Desk -->
+              <rect x="70" y="360" width="620" height="60" rx="16" class="desk"/>
+              <rect x="110" y="410" width="540" height="18" rx="9" class="deskShadow"/>
 
-          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;">
-            <div class="card" style="padding:12px;border-radius:14px;background:rgba(255,255,255,.04);">
-              <b style="display:block;font-size:18px;">⚡</b>
-              <span style="color:rgba(255,255,255,.62);font-size:12px;">Performance</span>
+              <!-- Monitor -->
+              <rect x="170" y="90" width="420" height="240" rx="18" class="monitor"/>
+              <rect x="190" y="112" width="380" height="196" rx="12" class="screen"/>
+              <rect x="330" y="330" width="100" height="18" rx="9" class="stand"/>
+              <rect x="300" y="348" width="160" height="18" rx="9" class="stand2"/>
+
+              <!-- Screen content -->
+              <g class="screenContent">
+                <rect x="210" y="140" width="240" height="16" rx="8" class="uiLine"/>
+                <rect x="210" y="170" width="320" height="16" rx="8" class="uiLine2"/>
+                <rect x="210" y="200" width="280" height="16" rx="8" class="uiLine"/>
+                <rect x="210" y="240" width="180" height="16" rx="8" class="uiLine2"/>
+                <rect x="410" y="240" width="120" height="16" rx="8" class="uiLine"/>
+                <circle cx="536" cy="144" r="10" class="uiDot"/>
+                <circle cx="566" cy="144" r="10" class="uiDot2"/>
+              </g>
+
+              <!-- PC Tower -->
+              <rect x="90" y="140" width="120" height="210" rx="18" class="tower"/>
+              <rect x="108" y="160" width="84" height="90" rx="12" class="towerGlass"/>
+              <circle cx="150" cy="290" r="18" class="fanOuter"/>
+              <circle cx="150" cy="290" r="7" class="fanInner"/>
+              <path d="M150 276 L158 290 L150 304 L142 290 Z" class="fanBlade"/>
+
+              <!-- Keyboard -->
+              <rect x="260" y="385" width="260" height="36" rx="12" class="kbd"/>
+              <g class="kbdKeys">
+                <!-- little keys -->
+                <rect x="276" y="395" width="28" height="10" rx="4"/>
+                <rect x="310" y="395" width="28" height="10" rx="4"/>
+                <rect x="344" y="395" width="28" height="10" rx="4"/>
+                <rect x="378" y="395" width="28" height="10" rx="4"/>
+                <rect x="412" y="395" width="28" height="10" rx="4"/>
+                <rect x="446" y="395" width="58" height="10" rx="4"/>
+              </g>
+
+              <!-- Mouse -->
+              <rect x="545" y="382" width="48" height="42" rx="18" class="mouse"/>
+              <rect x="567" y="392" width="4" height="12" rx="2" class="mouseWheel"/>
+
+              <!-- Orange accent cable -->
+              <path d="M595 404 C640 420, 660 430, 680 450" class="cable" filter="url(#softGlow)"/>
+            </svg>
+
+            <div class="setup-badge">
+              <span class="dot"></span> Optimisation en direct
             </div>
-            <div class="card" style="padding:12px;border-radius:14px;background:rgba(255,255,255,.04);">
-              <b style="display:block;font-size:18px;">🧊</b>
-              <span style="color:rgba(255,255,255,.62);font-size:12px;">Design clean</span>
-            </div>
-            <div class="card" style="padding:12px;border-radius:14px;background:rgba(255,255,255,.04);">
-              <b style="display:block;font-size:18px;">🔐</b>
-              <span style="color:rgba(255,255,255,.62);font-size:12px;">Espace client</span>
-            </div>
           </div>
+        </div>
+      </div>
 
-          <div style="height:12px"></div>
-
-          <div style="border-top:1px solid rgba(255,255,255,.10);padding-top:12px;color:rgba(255,255,255,.62);font-size:13px;line-height:1.6;">
-            Une fois payé, tu accèdes à tes livrables et au support depuis l’espace client.
-          </div>
-
-          <div style="height:12px"></div>
-
-          <a class="btn primary" href="./client.html" style="width:100%;">Ouvrir l’espace client</a>
+      <div class="marquee" aria-label="Jeux populaires">
+        <div class="marquee-track">
+          <span>FORTNITE</span><span>VALORANT</span><span>WARZONE</span><span>APEX</span><span>CS2</span><span>GTA V</span><span>FIVEM</span>
+          <span>FORTNITE</span><span>VALORANT</span><span>WARZONE</span><span>APEX</span><span>CS2</span><span>GTA V</span><span>FIVEM</span>
         </div>
       </div>
     </section>
 
-    <!-- SERVICES -->
-    <section id="services" class="section">
-      <div class="sectionHeader" style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:14px;">
-        <div>
-          <h2 style="margin:0;font-size:16px;">Services</h2>
-          <p style="margin:6px 0 0;color:rgba(255,255,255,.62);font-size:13px;">Simple, propre, efficace.</p>
-        </div>
-      </div>
+    <!-- PROCESS -->
+    <section class="section" id="process">
+      <div class="container">
+        <h2>Comment ça marche ?</h2>
+        <p class="sub">Simple, rapide, et tu gardes le contrôle.</p>
 
-      <div class="cards">
-        <div class="card">
-          <h3>Sites web (vitrine / pro)</h3>
-          <p>Landing page, multi-pages, design premium, SEO de base, performance.</p>
-        </div>
-        <div class="card">
-          <h3>UI/UX design</h3>
-          <p>Interfaces modernes, style Apple, cohérence, hiérarchie et lisibilité.</p>
-        </div>
-        <div class="card">
-          <h3>Automatisations</h3>
-          <p>Formulaires, espace client, process simplifiés, intégrations.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Choisis ton pack</h3>
+            <p>Starter, Premium ou Pro selon ton objectif (FPS, stabilité, compétitif).</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>On fixe un créneau</h3>
+            <p>Contact par Discord / message. On prépare tout avant l’intervention.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>Optimisation live</h3>
+            <p>Prise en main à distance (AnyDesk) + vocal. Point de restauration avant chaque changement.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- OFFRES / PRICING -->
-    <section id="offres" class="section">
-      <div class="sectionHeader" style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:14px;">
-        <div>
-          <h2 style="margin:0;font-size:16px;">Offres</h2>
-          <p style="margin:6px 0 0;color:rgba(255,255,255,.62);font-size:13px;">Paiement simple via Stripe (Payment Links).</p>
+    <!-- PACKS -->
+    <section class="section alt" id="packs">
+      <div class="container">
+        <h2>Nos packs</h2>
+        <p class="sub">Blanc & orange, clair, et sans blabla.</p>
+
+        <div class="pricing">
+          <article class="price-card">
+            <h3>Starter</h3>
+            <p class="tag">Idéal pour commencer</p>
+            <div class="price">15€</div>
+            <ul>
+              <li>Nettoyage & debloat Windows</li>
+              <li>Optimisation démarrage</li>
+              <li>Réglages Windows “performance”</li>
+              <li>Mises à jour & drivers GPU</li>
+              <li>Point de restauration</li>
+            </ul>
+            <a class="btn btn-outline full" href="#contact">Commander Starter</a>
+          </article>
+
+          <article class="price-card featured">
+            <div class="ribbon">Populaire</div>
+            <h3>Premium</h3>
+            <p class="tag">Meilleur rapport perf/prix</p>
+            <div class="price">30€</div>
+            <ul>
+              <li>Tout Starter +</li>
+              <li>Optimisation réseau (latence)</li>
+              <li>Réglages in-game (1 jeu au choix)</li>
+              <li>Optimisation stockage (SSD)</li>
+              <li>Contrôle températures & stabilité</li>
+            </ul>
+            <a class="btn btn-primary full" href="#contact">Commander Premium</a>
+          </article>
+
+          <article class="price-card">
+            <h3>Pro</h3>
+            <p class="tag">Pour les exigeants</p>
+            <div class="price">65€</div>
+            <ul>
+              <li>Tout Premium +</li>
+              <li>BIOS (réglages safe)</li>
+              <li>Optimisation micro-saccades</li>
+              <li>Tuning avancé (selon compatibilité)</li>
+              <li>Suivi 7 jours</li>
+            </ul>
+            <a class="btn btn-outline full" href="#contact">Commander Pro</a>
+          </article>
+        </div>
+
+        <div class="trust">
+          <div class="trust-item"><strong>Point de restauration</strong><span>retour arrière en 1 clic</span></div>
+          <div class="trust-item"><strong>Transparent</strong><span>tu vois tout en live</span></div>
+          <div class="trust-item"><strong>Support</strong><span>dispo après l’opti</span></div>
         </div>
       </div>
+    </section>
 
-      <div class="pricing">
-        <div class="price">
-          <h3>Starter</h3>
-          <div class="money">Offre 1</div>
-          <p class="small">Idéal pour démarrer vite.</p>
-          <ul class="list">
-            <li>Landing page premium</li>
-            <li>Responsive mobile/PC</li>
-            <li>Livraison rapide</li>
-          </ul>
-          <a class="btn primary" href="https://buy.stripe.com/cNieVf5IIf0jbC9gp00ZW00" target="_blank" rel="noreferrer">Payer avec Stripe</a>
+    <!-- AVIS -->
+    <section class="section" id="avis">
+      <div class="container">
+        <h2>Avis</h2>
+        <p class="sub">Quelques retours (exemples à remplacer par les tiens).</p>
+
+        <div class="reviews">
+          <figure class="review">
+            <blockquote>“J’ai gagné en stabilité, plus de stuttering, et ça se sent direct.”</blockquote>
+            <figcaption>— Client Premium</figcaption>
+          </figure>
+          <figure class="review">
+            <blockquote>“PC plus réactif, Windows propre, et l’input lag a baissé.”</blockquote>
+            <figcaption>— Client Starter</figcaption>
+          </figure>
+          <figure class="review">
+            <blockquote>“Pro : réglages vraiment carrés, explications claires, suivi nickel.”</blockquote>
+            <figcaption>— Client Pro</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section alt" id="faq">
+      <div class="container">
+        <h2>FAQ</h2>
+
+        <div class="faq">
+          <details>
+            <summary>Est-ce que je risque un ban ?</summary>
+            <p>On ne modifie pas les fichiers du jeu ni l’anti-cheat. On travaille sur Windows et les réglages système.</p>
+          </details>
+          <details>
+            <summary>Je vais perdre mes fichiers ?</summary>
+            <p>Non : on crée un point de restauration avant toute optimisation (et on évite toute suppression de données perso).</p>
+          </details>
+          <details>
+            <summary>Combien de temps ça dure ?</summary>
+            <p>En général : Starter ~45–60 min, Premium ~60–90 min, Pro ~90–150 min selon la config.</p>
+          </details>
         </div>
 
-        <div class="price featured">
-          <div class="badge">Recommandé</div>
-          <h3>Pro</h3>
-          <div class="money">Offre 2</div>
-          <p class="small">Le meilleur rapport qualité/prix.</p>
-          <ul class="list">
-            <li>Site multi-sections</li>
-            <li>UI/UX clean + animations</li>
-            <li>Espace client (support)</li>
-          </ul>
-          <a class="btn primary" href="https://buy.stripe.com/4gM4gBb326tNay5c8K0ZW01" target="_blank" rel="noreferrer">Payer avec Stripe</a>
-        </div>
-
-        <div class="price">
-          <h3>Premium</h3>
-          <div class="money">Offre 3</div>
-          <p class="small">Expérience complète.</p>
-          <ul class="list">
-            <li>Espace client complet</li>
-            <li>Support + livrables</li>
-            <li>Priorité + suivi</li>
-          </ul>
-          <a class="btn primary" href="https://buy.stripe.com/8x2eVf9YY8BVbC97Su0ZW02" target="_blank" rel="noreferrer">Payer avec Stripe</a>
+        <div class="cta-band">
+          <div>
+            <h3>Stop le lag. Passe en mode fluide.</h3>
+            <p>Dis-moi ta config + ton jeu principal, je te conseille le bon pack.</p>
+          </div>
+          <a class="btn btn-primary" href="#contact">Me contacter</a>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="section">
-      <div class="sectionHeader" style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:14px;">
+    <section class="section" id="contact">
+      <div class="container contact-grid">
         <div>
-          <h2 style="margin:0;font-size:16px;">Contact</h2>
-          <p style="margin:6px 0 0;color:rgba(255,255,255,.62);font-size:13px;">Réponse rapide. Devis possible.</p>
-        </div>
-      </div>
+          <h2>Contact</h2>
+          <p class="sub">Ajoute ici ton Discord, Insta, ou un lien de paiement.</p>
 
-      <div class="cards">
-        <div class="card">
-          <h3>Email</h3>
-          <p><a href="mailto:delaunaylorenzo388@gmail.com">delaunaylorenzo388@gmail.com</a></p>
+          <div class="contact-cards">
+            <div class="contact-card">
+              <h4>Discord</h4>
+              <p>TonPseudo#0000</p>
+              <a class="btn btn-outline" href="#" aria-label="Lien Discord">Rejoindre</a>
+            </div>
+            <div class="contact-card">
+              <h4>Paiement</h4>
+              <p>Lien Stripe / PayPal</p>
+              <a class="btn btn-outline" href="#" aria-label="Lien paiement">Payer</a>
+            </div>
+          </div>
+
+          <p class="legal">
+            Astuce : ajoute tes Mentions légales / CGV (et la partie rétractation si tu fais une prestation numérique immédiate).
+          </p>
         </div>
-        <div class="card">
-          <h3>TikTok</h3>
-          <p><a href="https://www.tiktok.com/@lda.studio6" target="_blank" rel="noreferrer">@lda.studio6</a></p>
-        </div>
-        <div class="card">
-          <h3>Espace client</h3>
-          <p style="margin:0 0 12px;color:rgba(255,255,255,.62);">Connexion Discord ou email.</p>
-          <a class="btn" href="./client.html">Ouvrir</a>
-        </div>
+
+        <form class="form" onsubmit="return false;">
+          <label>
+            Pseudo / Nom
+            <input type="text" placeholder="Ex: Maya" />
+          </label>
+          <label>
+            Discord ou Email
+            <input type="text" placeholder="Ex: maya#1234 / mail@exemple.com" />
+          </label>
+          <label>
+            Config + jeu
+            <textarea rows="5" placeholder="Ex: RTX 3060 Ti, Ryzen 5, 16GB — Fortnite — soucis: stuttering/latence..."></textarea>
+          </label>
+          <button class="btn btn-primary" id="fakeSend">Envoyer</button>
+          <p class="form-note" id="formNote" aria-live="polite"></p>
+        </form>
       </div>
     </section>
-
-    <footer class="footer">
-      © <span id="y"></span> LDA Studio — Tous droits réservés.
-    </footer>
   </main>
 
-  <script src="./app.js"></script>
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+  <footer class="footer">
+    <div class="container footer-row">
+      <div class="foot-brand">
+        <span class="brand-mark">LDA</span><span class="brand-name"> Opti</span>
+        <p>© <span id="year"></span> — Tous droits réservés.</p>
+      </div>
+      <div class="foot-links">
+        <a href="#packs">Offres</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+        <a href="#top">Haut</a>
+      </div>
+    </div>
+  </footer>
 
-    // Smooth scroll si app.js n'est pas prêt
-    document.querySelectorAll('[data-scroll]').forEach(a=>{
-      a.addEventListener('click',(e)=>{
-        const id = a.getAttribute('data-scroll');
-        const el = document.querySelector(id);
-        if(!el) return;
-        e.preventDefault();
-        el.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-    });
-  </script>
-
-  <style>
-    /* petit correctif mobile (au cas où) */
-    @media(max-width: 980px){
-      .navlinks{ display:none; }
-    }
-  </style>
+  <script src="./script.js"></script>
 </body>
 </html>
