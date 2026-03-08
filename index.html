@@ -1,98 +1,116 @@
-
-
----
-
-## **Étape 1 : Structure du projet**
-Crée un dossier avec ces fichiers :
-```
-mon-site-apple/
-│── index.html
-│── style.css
-│── script.js
-│── assets/
-│   │── logo.svg (ou .png)
-│   │── background.jpg (fond flou)
-```
-
----
-
-## **Étape 2 : Code HTML (`index.html`)**
-```html
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liquid Glass | Inspiré par Apple</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Liquid Glass</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
-    <!-- Barre de navigation style Apple -->
-    <nav class="navbar">
-        <div class="nav-logo">
-            <img src="assets/logo.svg" alt="Logo" width="20">
-        </div>
-        <ul class="nav-links">
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">Produits</a></li>
-            <li><a href="#">Design</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <div class="nav-bag">
-            <ion-icon name="bag-outline"></ion-icon>
-        </div>
-    </nav>
 
-    <!-- Hero Section avec effet "Liquid Glass" -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Liquid Glass</h1>
-            <p>Un design épuré, des performances fluides.</p>
-            <button class="cta-button">Découvrir</button>
-        </div>
-        <div class="hero-visual">
-            <div class="glass-card">
-                <div class="glass-content">
-                    <h2>Nouveau</h2>
-                    <h3>iDevice Pro</h3>
-                    <p>Puissance et élégance réinventées.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<nav class="navbar">
 
-    <!-- Section Produits avec cartes flottantes -->
-    <section class="products">
-        <div class="product-card">
-            <div class="product-glass">
-                <h3>iPhone 15</h3>
-                <p>L'écran le plus avancé.</p>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-glass">
-                <h3>MacBook Air</h3>
-                <p>Léger. Puissant. Magique.</p>
-            </div>
-        </div>
-    </section>
+<div class="logo">
+LiquidGlass
+</div>
 
-    <!-- Footer minimaliste -->
-    <footer>
-        <p>© 2026 Liquid Glass. Tous droits réservés.</p>
-    </footer>
+<ul class="nav-links">
+<li><a href="#">Accueil</a></li>
+<li><a href="#">Produits</a></li>
+<li><a href="#">Design</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
 
-    <!-- Icônes IonIcon (pour le panier) -->
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <!-- GSAP pour les animations (optionnel) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="script.js"></script>
+</nav>
+
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>Liquid Glass</h1>
+
+<p>
+Un design futuriste inspiré d'Apple.
+Fluide. Minimaliste. Élégant.
+</p>
+
+<button>Découvrir</button>
+
+</div>
+
+
+<div class="hero-card">
+
+<div class="glass">
+
+<h2>Nouveau</h2>
+<h3>Device Pro</h3>
+<p>Puissance et élégance.</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="products">
+
+<div class="product">
+
+<div class="glass">
+
+<h3>iPhone</h3>
+<p>L'écran le plus avancé.</p>
+
+</div>
+
+</div>
+
+
+<div class="product">
+
+<div class="glass">
+
+<h3>MacBook</h3>
+<p>Léger. Puissant.</p>
+
+</div>
+
+</div>
+
+
+<div class="product">
+
+<div class="glass">
+
+<h3>AirPods</h3>
+<p>Son immersif.</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>© 2026 Liquid Glass</p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
 </body>
 </html>
-```
-
-
