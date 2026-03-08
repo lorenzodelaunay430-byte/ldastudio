@@ -1,31 +1,38 @@
-styles.css
-*{
-margin: 0;
-padding: 0;
-box-sizing: border-box; 
-font-family: 'inter', -apple-system, BlinkMacSystemFont, sans-serif;
+## **Étape 3 : Style CSS (`style.css`)**
+```css
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
 body {
-background #0000;
-color: #fff;
-overflow-x: hidders;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
 }
+
 /* Effet "Liquid Glass" (backdrop-filter) */
-.glass-card, .product-glass .hero-visual {
-  background: rgba (255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 2rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  transition: all 0.4s ease;
+.glass-card, .product-glass, .hero-visual {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
 }
+
 .glass-card:hover, .product-glass:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-  /*barred e navigation */
-  .navbar {
-    display: flex; 
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Barre de navigation */
+.navbar {
+    display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5%;
@@ -33,21 +40,140 @@ overflow-x: hidders;
     top: 0;
     width: 100%;
     z-index: 100;
-    background: rgba(0, 0, 0,0.8);
-    backdrop-filter:blur(10px);
-  }
-  .nav-links {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.nav-links {
     display: flex;
     list-style: none;
     gap: 2rem;
-  }
-  .nav-link a {
+}
+
+.nav-links a {
     color: #fff;
     text-decoration: none;
     font-weight: 500;
     transition: opacity 0.3s;
-  }
-  .nav-link a {
-    color
-    
-  
+}
+
+.nav-links a:hover {
+    opacity: 0.7;
+}
+
+.nav-bag ion-icon {
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Section Hero */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    max-width: 500px;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #fff, #a0a0a0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-button {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 50px;
+    background: #fff;
+    color: #000;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.cta-button:hover {
+    background: #f0f0f0;
+    transform: scale(1.05);
+}
+
+.hero-visual {
+    width: 40%;
+}
+
+.glass-card {
+    padding: 3rem;
+    text-align: center;
+}
+
+.glass-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+}
+
+.glass-card h3 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* Section Produits */
+.products {
+    padding: 5rem 5%;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product-card {
+    width: 300px;
+    height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.product-glass {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.product-glass h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    opacity: 0.6;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 
