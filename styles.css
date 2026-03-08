@@ -19,6 +19,35 @@ overflow-x: hidders;
   padding: 2rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   transition: all 0.4s ease;
-  
-  
+}
+.glass-card:hover, .product-glass:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  /*barred e navigation */
+  .navbar {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(0, 0, 0,0.8);
+    backdrop-filter:blur(10px);
+  }
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  }
+  .nav-link a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s;
+  }
+  .nav-link a {
+    color
+    
   
