@@ -177,3 +177,70 @@ footer {
 
 /* Responsive */
 @media (max-width: 
+
+        /* Responsive */
+@media (max-width: 1024px) {
+
+    .hero {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 3rem;
+        padding-top: 6rem;
+    }
+
+    .hero-visual {
+        width: 80%;
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 1rem 3%;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .hero-visual {
+        width: 100%;
+    }
+
+    .products {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-card {
+        width: 90%;
+        max-width: 320px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .cta-button {
+        padding: 0.7rem 1.5rem;
+    }
+
+}
