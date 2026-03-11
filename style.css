@@ -1,85 +1,185 @@
+```css
 body{
-font-family: Arial;
+
 margin:0;
-background:#0f0f0f;
+font-family:'Inter',sans-serif;
+
+background:linear-gradient(120deg,#0f172a,#020617);
+
 color:white;
+
+overflow-x:hidden;
+
 }
 
 header{
+
 text-align:center;
 padding:40px;
-background:#111;
-}
 
-nav{
-display:flex;
-justify-content:center;
-gap:30px;
-padding:20px;
-background:#1a1a1a;
-}
-
-nav a{
-color:white;
-text-decoration:none;
 }
 
 .hero{
+
+height:60vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
 text-align:center;
-padding:80px;
-background:linear-gradient(45deg,#3a7bfd,#00c6ff);
+
+animation:fadeUp 1.2s ease;
+
 }
 
-button{
-padding:12px 25px;
-border:none;
-background:black;
+.cta{
+
+margin-top:20px;
+
+padding:14px 35px;
+
+background:linear-gradient(90deg,#4f46e5,#06b6d4);
+
+border-radius:30px;
+
+text-decoration:none;
+
 color:white;
-cursor:pointer;
+
+font-weight:600;
+
+transition:0.3s;
+
 }
 
-section{
-padding:60px;
-text-align:center;
+.cta:hover{
+
+transform:scale(1.1);
+
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+
+}
+
+.offres{
+
+display:flex;
+
+justify-content:center;
+
+gap:40px;
+
+flex-wrap:wrap;
+
+padding:80px;
+
 }
 
 .card{
-background:#1a1a1a;
-padding:30px;
-margin:20px;
-border-radius:10px;
-display:inline-block;
-width:200px;
+
+width:260px;
+
+padding:40px;
+
+text-align:center;
+
+transition:0.4s;
+
 }
 
-.portfolio{
-display:flex;
-justify-content:center;
-gap:20px;
+.card:hover{
+
+transform:translateY(-10px) scale(1.03);
+
 }
 
-.project{
-background:#222;
-padding:50px;
-border-radius:10px;
+.price{
+
+font-size:40px;
+
+margin:20px 0;
+
+color:#38bdf8;
+
 }
 
-form{
-display:flex;
-flex-direction:column;
-max-width:400px;
-margin:auto;
-gap:10px;
-}
+button{
 
-input,textarea{
-padding:10px;
+padding:12px 25px;
+
 border:none;
-border-radius:5px;
+
+border-radius:10px;
+
+background:linear-gradient(90deg,#4f46e5,#06b6d4);
+
+color:white;
+
+cursor:pointer;
+
+font-weight:600;
+
+}
+
+.glass{
+
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,0.15);
+
+border-radius:20px;
+
+box-shadow:0 8px 30px rgba(0,0,0,0.5);
+
+}
+
+.about{
+
+margin:100px auto;
+
+max-width:700px;
+
+padding:40px;
+
+text-align:center;
+
 }
 
 footer{
+
+margin-top:100px;
+
 text-align:center;
-padding:20px;
-background:#111;
+
+padding:30px;
+
+opacity:0.6;
+
 }
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+```
