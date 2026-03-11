@@ -2,144 +2,96 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
 <meta charset="UTF-8">
-<title>LDA Studio - Création de sites web</title>
+<title>LDA Studio</title>
 
-<style>
-body{
-font-family:Arial;
-margin:0;
-background:#0f0f14;
-color:white;
-text-align:center;
-}
+<link rel="stylesheet" href="style.css">
 
-header{
-padding:60px;
-background:linear-gradient(135deg,#5b8cff,#7a5cff);
-}
-
-h1{
-font-size:45px;
-margin-bottom:10px;
-}
-
-section{
-padding:60px 20px;
-}
-
-.container{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:30px;
-}
-
-.card{
-background:#1a1a22;
-padding:35px;
-border-radius:15px;
-width:260px;
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
-}
-
-.price{
-font-size:35px;
-margin:15px 0;
-color:#7aa2ff;
-}
-
-button{
-padding:12px 25px;
-border:none;
-border-radius:8px;
-background:#5b8cff;
-color:white;
-font-size:16px;
-cursor:pointer;
-}
-
-button:hover{
-background:#3d6fff;
-}
-
-.hero{
-font-size:20px;
-opacity:0.9;
-}
-
-footer{
-padding:30px;
-background:#111;
-margin-top:50px;
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<header>
+<header class="glass">
+
 <h1>LDA Studio</h1>
-<p class="hero">Création de sites web modernes pour entreprises</p>
+<p>Création de sites web modernes</p>
+
 </header>
 
-<section>
-<h2>Mes offres</h2>
+<section class="hero">
 
-<div class="container">
+<h2>Votre site web professionnel</h2>
 
-<div class="card">
-<h3>Site Starter</h3>
-<p>Site simple pour présenter votre activité</p>
+<p>Design premium • rapide • optimisé</p>
+
+<a href="#offres" class="cta">Voir les offres</a>
+
+</section>
+
+<section id="offres" class="offres">
+
+<div class="card glass">
+
+<h3>Starter</h3>
+
+<p>Site simple pour entreprise</p>
+
 <div class="price">199€</div>
+
 <a href="https://buy.stripe.com/cNieVf5IIf0jbC9gp00ZW00">
 <button>Commander</button>
 </a>
+
 </div>
 
-<div class="card">
-<h3>Site Professionnel</h3>
-<p>Site complet moderne et optimisé</p>
+<div class="card glass">
+
+<h3>Pro</h3>
+
+<p>Site moderne et optimisé</p>
+
 <div class="price">399€</div>
+
 <a href="https://buy.stripe.com/4gM4gBb326tNay5c8K0ZW01">
 <button>Commander</button>
 </a>
+
 </div>
 
-<div class="card">
-<h3>Site Premium</h3>
-<p>Site avancé avec design sur mesure</p>
+<div class="card glass">
+
+<h3>Premium</h3>
+
+<p>Design sur mesure</p>
+
 <div class="price">549€</div>
+
 <a href="https://buy.stripe.com/8x2eVf9YY8BVbC97Su0ZW02">
 <button>Commander</button>
 </a>
-</div>
 
 </div>
-</section>
-
-<section>
-<h2>Pourquoi me choisir</h2>
-
-<p>✔ Site rapide et moderne</p>
-<p>✔ Compatible mobile</p>
-<p>✔ Design professionnel</p>
-<p>✔ Livraison rapide</p>
 
 </section>
 
-<section>
-<h2>Contact</h2>
+<section class="about glass">
 
-<p>Email : contact@ldastudio.fr</p>
-<p>Instagram : @lda.studio</p>
+<h2>Pourquoi choisir LDA Studio</h2>
+
+<p>Sites rapides, modernes et optimisés pour le SEO.</p>
 
 </section>
 
 <footer>
+
 <p>© 2026 LDA Studio</p>
+
 </footer>
+
+<script src="script.js"></script>
 
 </body>
 </html>
