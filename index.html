@@ -1,43 +1,96 @@
 ```html
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>LDA Studio</title>
 
 <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<header class="glass">
+<div class="background"></div>
+
+<header>
 
 <h1>LDA Studio</h1>
-<p>Création de sites web modernes</p>
+
+<nav>
+
+<a href="#services">Services</a>
+<a href="#offres">Offres</a>
+<a href="#contact">Contact</a>
+
+</nav>
 
 </header>
 
+
 <section class="hero">
 
-<h2>Votre site web professionnel</h2>
+<h2>Création de sites web <span>premium</span></h2>
 
-<p>Design premium • rapide • optimisé</p>
+<p>Design moderne • performance • SEO</p>
 
 <a href="#offres" class="cta">Voir les offres</a>
 
 </section>
 
-<section id="offres" class="offres">
 
-<div class="card glass">
+<section id="services" class="glass-section">
+
+<h2>Services</h2>
+
+<div class="grid">
+
+<div class="glass-card">
+
+<h3>Design Web</h3>
+
+<p>Sites modernes et responsive</p>
+
+</div>
+
+<div class="glass-card">
+
+<h3>SEO</h3>
+
+<p>Optimisation Google</p>
+
+</div>
+
+<div class="glass-card">
+
+<h3>E-commerce</h3>
+
+<p>Boutiques en ligne</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="offres" class="glass-section">
+
+<h2>Offres</h2>
+
+<div class="grid">
+
+<div class="glass-card pricing">
 
 <h3>Starter</h3>
 
-<p>Site simple pour entreprise</p>
+<p>Site simple</p>
 
 <div class="price">199€</div>
 
@@ -47,11 +100,11 @@
 
 </div>
 
-<div class="card glass">
+<div class="glass-card pricing">
 
 <h3>Pro</h3>
 
-<p>Site moderne et optimisé</p>
+<p>Site moderne</p>
 
 <div class="price">399€</div>
 
@@ -61,7 +114,7 @@
 
 </div>
 
-<div class="card glass">
+<div class="glass-card pricing">
 
 <h3>Premium</h3>
 
@@ -75,21 +128,26 @@
 
 </div>
 
-</section>
-
-<section class="about glass">
-
-<h2>Pourquoi choisir LDA Studio</h2>
-
-<p>Sites rapides, modernes et optimisés pour le SEO.</p>
+</div>
 
 </section>
+
+
+<section id="contact" class="glass-section">
+
+<h2>Contact</h2>
+
+<p>Email : contact@ldastudio.fr</p>
+
+</section>
+
 
 <footer>
 
-<p>© 2026 LDA Studio</p>
+© 2026 LDA Studio
 
 </footer>
+
 
 <script src="script.js"></script>
 
