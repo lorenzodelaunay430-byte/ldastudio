@@ -1,114 +1,97 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Liquid Glass</title>
-
+<title>LDA Studio - Création de Sites Web</title>
 <link rel="stylesheet" href="style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
 
-<nav class="navbar">
+<header>
+<h1>LDA Studio</h1>
+<p>Création de sites web modernes</p>
+</header>
 
-<div class="logo">
-LiquidGlass
-</div>
-
-<ul class="nav-links">
-<li><a href="#">Accueil</a></li>
-<li><a href="#">Produits</a></li>
-<li><a href="#">Design</a></li>
-<li><a href="#">Contact</a></li>
-</ul>
-
+<nav>
+<a href="#services">Services</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#tarifs">Tarifs</a>
+<a href="#contact">Contact</a>
 </nav>
 
-
 <section class="hero">
+<h2>Votre site web professionnel</h2>
+<p>Je crée des sites rapides, modernes et optimisés.</p>
+<button onclick="scrollToContact()">Créer mon site</button>
+</section>
 
-<div class="hero-text">
+<section id="services">
+<h2>Services</h2>
 
-<h1>Liquid Glass</h1>
-
-<p>
-Un design futuriste inspiré d'Apple.
-Fluide. Minimaliste. Élégant.
-</p>
-
-<button>Découvrir</button>
-
+<div class="card">
+<h3>Site Vitrine</h3>
+<p>Présentation de votre entreprise.</p>
 </div>
 
-
-<div class="hero-card">
-
-<div class="glass">
-
-<h2>Nouveau</h2>
-<h3>Device Pro</h3>
-<p>Puissance et élégance.</p>
-
+<div class="card">
+<h3>Boutique en ligne</h3>
+<p>Vendez vos produits sur internet.</p>
 </div>
 
+<div class="card">
+<h3>Refonte de site</h3>
+<p>Modernisation de votre site existant.</p>
 </div>
 
 </section>
 
+<section id="portfolio">
+<h2>Portfolio</h2>
 
-<section class="products">
-
-<div class="product">
-
-<div class="glass">
-
-<h3>iPhone</h3>
-<p>L'écran le plus avancé.</p>
-
-</div>
-
-</div>
-
-
-<div class="product">
-
-<div class="glass">
-
-<h3>MacBook</h3>
-<p>Léger. Puissant.</p>
-
-</div>
-
-</div>
-
-
-<div class="product">
-
-<div class="glass">
-
-<h3>AirPods</h3>
-<p>Son immersif.</p>
-
-</div>
-
+<div class="portfolio">
+<div class="project">Projet 1</div>
+<div class="project">Projet 2</div>
+<div class="project">Projet 3</div>
 </div>
 
 </section>
 
+<section id="tarifs">
+<h2>Tarifs</h2>
+
+<div class="card">
+<h3>Site simple</h3>
+<p>150€</p>
+</div>
+
+<div class="card">
+<h3>Site professionnel</h3>
+<p>400€</p>
+</div>
+
+<div class="card">
+<h3>Boutique e-commerce</h3>
+<p>800€</p>
+</div>
+
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+
+<form>
+<input type="text" placeholder="Nom">
+<input type="email" placeholder="Email">
+<textarea placeholder="Votre projet"></textarea>
+<button>Envoyer</button>
+</form>
+
+</section>
 
 <footer>
-
-<p>© 2026 Liquid Glass</p>
-
+<p>© 2026 LDA Studio</p>
 </footer>
-
 
 <script src="script.js"></script>
 
