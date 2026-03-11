@@ -1,91 +1,139 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>LDA Studio - Création de Sites Web</title>
-<link rel="stylesheet" href="style.css">
+<title>LDA Studio - Création de sites web</title>
+
+<style>
+body{
+font-family:Arial;
+margin:0;
+background:#0f0f14;
+color:white;
+text-align:center;
+}
+
+header{
+padding:60px;
+background:linear-gradient(135deg,#5b8cff,#7a5cff);
+}
+
+h1{
+font-size:45px;
+margin-bottom:10px;
+}
+
+section{
+padding:60px 20px;
+}
+
+.container{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:30px;
+}
+
+.card{
+background:#1a1a22;
+padding:35px;
+border-radius:15px;
+width:260px;
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+.price{
+font-size:35px;
+margin:15px 0;
+color:#7aa2ff;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:8px;
+background:#5b8cff;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#3d6fff;
+}
+
+.hero{
+font-size:20px;
+opacity:0.9;
+}
+
+footer{
+padding:30px;
+background:#111;
+margin-top:50px;
+}
+</style>
+
 </head>
 
 <body>
 
 <header>
 <h1>LDA Studio</h1>
-<p>Création de sites web modernes</p>
+<p class="hero">Création de sites web modernes pour entreprises</p>
 </header>
 
-<nav>
-<a href="#services">Services</a>
-<a href="#portfolio">Portfolio</a>
-<a href="#tarifs">Tarifs</a>
-<a href="#contact">Contact</a>
-</nav>
+<section>
+<h2>Mes offres</h2>
 
-<section class="hero">
-<h2>Votre site web professionnel</h2>
-<p>Je crée des sites rapides, modernes et optimisés.</p>
-<button onclick="scrollToContact()">Créer mon site</button>
+<div class="container">
+
+<div class="card">
+<h3>Site Starter</h3>
+<p>Site simple pour présenter votre activité</p>
+<div class="price">199€</div>
+<a href="https://buy.stripe.com/cNieVf5IIf0jbC9gp00ZW00">
+<button>Commander</button>
+</a>
+</div>
+
+<div class="card">
+<h3>Site Professionnel</h3>
+<p>Site complet moderne et optimisé</p>
+<div class="price">399€</div>
+<a href="https://buy.stripe.com/4gM4gBb326tNay5c8K0ZW01">
+<button>Commander</button>
+</a>
+</div>
+
+<div class="card">
+<h3>Site Premium</h3>
+<p>Site avancé avec design sur mesure</p>
+<div class="price">549€</div>
+<a href="https://buy.stripe.com/8x2eVf9YY8BVbC97Su0ZW02">
+<button>Commander</button>
+</a>
+</div>
+
+</div>
 </section>
 
-<section id="services">
-<h2>Services</h2>
+<section>
+<h2>Pourquoi me choisir</h2>
 
-<div class="card">
-<h3>Site Vitrine</h3>
-<p>Présentation de votre entreprise.</p>
-</div>
-
-<div class="card">
-<h3>Boutique en ligne</h3>
-<p>Vendez vos produits sur internet.</p>
-</div>
-
-<div class="card">
-<h3>Refonte de site</h3>
-<p>Modernisation de votre site existant.</p>
-</div>
-
-</section>
-
-<section id="portfolio">
-<h2>Portfolio</h2>
-
-<div class="portfolio">
-<div class="project">Projet 1</div>
-<div class="project">Projet 2</div>
-<div class="project">Projet 3</div>
-</div>
-
-</section>
-
-<section id="tarifs">
-<h2>Tarifs</h2>
-
-<div class="card">
-<h3>Site simple</h3>
-<p>150€</p>
-</div>
-
-<div class="card">
-<h3>Site professionnel</h3>
-<p>400€</p>
-</div>
-
-<div class="card">
-<h3>Boutique e-commerce</h3>
-<p>800€</p>
-</div>
+<p>✔ Site rapide et moderne</p>
+<p>✔ Compatible mobile</p>
+<p>✔ Design professionnel</p>
+<p>✔ Livraison rapide</p>
 
 </section>
 
-<section id="contact">
+<section>
 <h2>Contact</h2>
 
-<form>
-<input type="text" placeholder="Nom">
-<input type="email" placeholder="Email">
-<textarea placeholder="Votre projet"></textarea>
-<button>Envoyer</button>
-</form>
+<p>Email : contact@ldastudio.fr</p>
+<p>Instagram : @lda.studio</p>
 
 </section>
 
@@ -93,7 +141,6 @@
 <p>© 2026 LDA Studio</p>
 </footer>
 
-<script src="script.js"></script>
-
 </body>
 </html>
+```
