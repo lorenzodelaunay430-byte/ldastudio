@@ -1,3 +1,6 @@
+```javascript
+/* CURSOR GLOW */
+
 const glow = document.querySelector(".cursor-glow")
 
 document.addEventListener("mousemove",e=>{
@@ -7,29 +10,97 @@ glow.style.top = e.clientY + "px"
 
 })
 
-const cards = document.querySelectorAll(".glass-card")
 
-const observer = new IntersectionObserver(entries=>{
+/* PARTICLES */
 
-entries.forEach(entry=>{
+const canvas = document.getElementById("particles")
 
-if(entry.isIntersecting){
+const ctx = canvas.getContext("2d")
 
-entry.target.style.opacity=1
-entry.target.style.transform="translateY(0)"
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight
+
+let particles = []
+
+for(let i=0;i<80;i++){
+
+particles.push({
+
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2,
+speedX:(Math.random()-0.5)*0.5,
+speedY:(Math.random()-0.5)*0.5
+
+})
+
+}
+
+function animateParticles(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+particles.forEach(p=>{
+
+p.x+=p.speedX
+p.y+=p.speedY
+
+ctx.fillStyle="#6366f1"
+
+ctx.beginPath()
+
+ctx.arc(p.x,p.y,p.size,0,Math.PI*2)
+
+ctx.fill()
+
+})
+
+requestAnimationFrame(animateParticles)
+
+}
+
+animateParticles()
+
+
+/* INTRO ANIMATION */
+
+const text = "Ici vous trouverez le bonheur des entrepreneurs"
+
+const introText = document.getElementById("intro-text")
+
+let i = 0
+
+function typeText(){
+
+if(i < text.length){
+
+introText.innerHTML += text.charAt(i)
+
+i++
+
+setTimeout(typeText,50)
+
+}
+
+}
+
+gsap.to("#intro-title",{opacity:1,duration:1.5})
+
+setTimeout(typeText,1500)
+
+gsap.to(".intro",{
+
+opacity:0,
+
+delay:6,
+
+duration:1.5,
+
+onComplete:()=>{
+
+document.querySelector(".intro").style.display="none"
 
 }
 
 })
-
-})
-
-cards.forEach(card=>{
-
-card.style.opacity=0
-card.style.transform="translateY(80px)"
-card.style.transition="0.8s"
-
-observer.observe(card)
-
-})
+```
