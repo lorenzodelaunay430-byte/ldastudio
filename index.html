@@ -13,21 +13,33 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
 </head>
 
 <body>
 
 <div class="intro">
 
-<h1>LTA FR</h1>
+<canvas id="particles"></canvas>
 
-<p>Ici vous trouverez le bonheur des entrepreneurs</p>
+<div class="intro-center">
+
+<h1 id="intro-title">LTA FR</h1>
+
+<p id="intro-text"></p>
 
 </div>
 
-<header>
+</div>
 
-<h2>LTA FR</h2>
+<div class="cursor-glow"></div>
+
+<div class="mesh-bg"></div>
+
+<header class="navbar">
+
+<div class="logo">LTA FR</div>
 
 <nav>
 
@@ -41,50 +53,100 @@
 
 <section class="hero">
 
-<h1>Création de sites web premium</h1>
+<h1>
 
-<p>Design moderne • performance • conversion</p>
+Création de sites <span>ultra premium</span>
+
+</h1>
+
+<p>
+
+Design moderne • performance • conversion
+
+</p>
+
+<a href="#pricing" class="cta">Voir les offres</a>
 
 </section>
 
-<section id="pricing">
+<section id="services" class="section">
+
+<h2>Services</h2>
+
+<div class="grid">
+
+<div class="glass-card">
+
+<h3>Web Design</h3>
+
+<p>Design moderne et responsive</p>
+
+</div>
+
+<div class="glass-card">
+
+<h3>SEO</h3>
+
+<p>Optimisation Google</p>
+
+</div>
+
+<div class="glass-card">
+
+<h3>E-commerce</h3>
+
+<p>Boutique en ligne performante</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="pricing" class="section">
 
 <h2>Offres</h2>
 
-<div class="cards">
+<div class="grid">
 
-<div class="card">
+<div class="glass-card">
 
 <h3>Starter</h3>
 
-<p class="price">199€</p>
+<div class="price">199€</div>
 
 <a href="https://buy.stripe.com/cNieVf5IIf0jbC9gp00ZW00">
+
 <button>Commander</button>
+
 </a>
 
 </div>
 
-<div class="card">
+<div class="glass-card highlight">
 
 <h3>Pro</h3>
 
-<p class="price">399€</p>
+<div class="price">399€</div>
 
 <a href="https://buy.stripe.com/4gM4gBb326tNay5c8K0ZW01">
+
 <button>Commander</button>
+
 </a>
 
 </div>
 
-<div class="card">
+<div class="glass-card">
 
 <h3>Premium</h3>
 
-<p class="price">549€</p>
+<div class="price">549€</div>
 
 <a href="https://buy.stripe.com/8x2eVf9YY8BVbC97Su0ZW02">
+
 <button>Commander</button>
+
 </a>
 
 </div>
@@ -93,13 +155,19 @@
 
 </section>
 
-<section id="contact">
+<section id="contact" class="section">
 
 <h2>Contact</h2>
 
 <p>contact@ltafr.com</p>
 
 </section>
+
+<footer>
+
+© 2026 LTA FR
+
+</footer>
 
 <script src="script.js"></script>
 
