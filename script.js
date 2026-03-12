@@ -14,13 +14,12 @@ glow.style.top = e.clientY + "px"
 /* PARTICLES */
 
 const canvas = document.getElementById("particles")
-
 const ctx = canvas.getContext("2d")
 
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 
-let particles = []
+let particles=[]
 
 for(let i=0;i<80;i++){
 
@@ -48,9 +47,7 @@ p.y+=p.speedY
 ctx.fillStyle="#6366f1"
 
 ctx.beginPath()
-
 ctx.arc(p.x,p.y,p.size,0,Math.PI*2)
-
 ctx.fill()
 
 })
@@ -62,23 +59,23 @@ requestAnimationFrame(animateParticles)
 animateParticles()
 
 
-/* INTRO ANIMATION */
+/* INTRO TEXT */
 
-const text = "Ici vous trouverez le bonheur des entrepreneurs"
+const text="Ici vous trouverez le bonheur des entrepreneurs"
 
-const introText = document.getElementById("intro-text")
+const introText=document.getElementById("intro-text")
 
-let i = 0
+let i=0
 
 function typeText(){
 
-if(i < text.length){
+if(i<text.length){
 
-introText.innerHTML += text.charAt(i)
+introText.innerHTML+=text.charAt(i)
 
 i++
 
-setTimeout(typeText,50)
+setTimeout(typeText,40)
 
 }
 
@@ -91,9 +88,7 @@ setTimeout(typeText,1500)
 gsap.to(".intro",{
 
 opacity:0,
-
 delay:6,
-
 duration:1.5,
 
 onComplete:()=>{
