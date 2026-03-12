@@ -7,18 +7,17 @@ box-sizing:border-box;
 body{
 
 font-family:'Inter',sans-serif;
-background:#040404;
+background:#030303;
 color:white;
 overflow-x:hidden;
 
 }
 
-/* mesh background */
+/* mesh gradient */
 
 .mesh-bg{
 
 position:fixed;
-
 width:100%;
 height:100%;
 
@@ -26,7 +25,7 @@ background:
 
 radial-gradient(circle at 20% 30%, #6366f1, transparent 40%),
 radial-gradient(circle at 80% 20%, #06b6d4, transparent 40%),
-radial-gradient(circle at 40% 80%, #9333ea, transparent 40%);
+radial-gradient(circle at 50% 80%, #9333ea, transparent 40%);
 
 filter:blur(120px);
 
@@ -39,7 +38,7 @@ animation:meshMove 20s infinite alternate;
 @keyframes meshMove{
 
 0%{transform:translate(0,0)}
-100%{transform:translate(-200px,-120px)}
+100%{transform:translate(-200px,-100px)}
 
 }
 
@@ -188,7 +187,7 @@ padding:40px;
 
 border-radius:20px;
 
-background:rgba(255,255,255,0.06);
+background:rgba(255,255,255,0.08);
 
 backdrop-filter:blur(20px);
 
@@ -197,6 +196,8 @@ border:1px solid rgba(255,255,255,0.2);
 box-shadow:0 20px 60px rgba(0,0,0,0.6);
 
 transition:0.4s;
+
+transform-style:preserve-3d;
 
 }
 
