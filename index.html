@@ -7,15 +7,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LTA FR — Création de sites web premium</title>
+<title>LTA FR</title>
 
 <link rel="stylesheet" href="style.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
 </head>
 
 <body>
+
+<div class="intro">
+
+<canvas id="particles"></canvas>
+
+<div class="intro-center">
+
+<h1 id="intro-title">LTA FR</h1>
+
+<p id="intro-text"></p>
+
+</div>
+
+</div>
+
+<div class="cursor-glow"></div>
+
+<div class="mesh-bg"></div>
 
 <header class="navbar">
 
@@ -23,17 +43,13 @@
 
 <nav>
 
-<a href="#hero">Accueil</a> <a href="#services">Services</a> <a href="#portfolio">Portfolio</a> <a href="#pricing">Offres</a> <a href="#contact">Contact</a>
+<a href="#services">Services</a> <a href="#portfolio">Portfolio</a> <a href="#pricing">Offres</a> <a href="#contact">Contact</a>
 
 </nav>
 
-<button id="themeToggle">🌙</button>
-
 </header>
 
-<section id="hero" class="hero">
-
-<div class="hero-content">
+<section class="hero">
 
 <h1>Création de sites <span>ultra premium</span></h1>
 
@@ -41,33 +57,28 @@
 
 <a href="#pricing" class="cta">Voir les offres</a>
 
-</div>
-
 </section>
 
-<section id="stats" class="stats">
+<section id="stats" class="section">
+
+<h2>Notre impact</h2>
+
+<div class="grid">
 
 <div class="stat">
-
-<h2 id="sitesCount">0</h2>
-
+<h3 id="sitesCount">0</h3>
 <p>Sites créés</p>
-
 </div>
 
 <div class="stat">
-
-<h2 id="clientsCount">0</h2>
-
+<h3 id="clientsCount">0</h3>
 <p>Clients</p>
-
 </div>
 
 <div class="stat">
-
-<h2 id="satisfactionCount">0</h2>
-
+<h3 id="satisfactionCount">0</h3>
 <p>% satisfaction</p>
+</div>
 
 </div>
 
@@ -75,32 +86,23 @@
 
 <section id="services" class="section">
 
-<h2>Nos services</h2>
+<h2>Services</h2>
 
 <div class="grid">
 
-<div class="card">
-
-<h3>Web design</h3>
-
-<p>Sites modernes, rapides et responsive.</p>
-
+<div class="glass-card tilt">
+<h3>Web Design</h3>
+<p>Design moderne et responsive</p>
 </div>
 
-<div class="card">
-
+<div class="glass-card tilt">
 <h3>SEO</h3>
-
-<p>Optimisation pour Google.</p>
-
+<p>Optimisation Google</p>
 </div>
 
-<div class="card">
-
+<div class="glass-card tilt">
 <h3>E-commerce</h3>
-
-<p>Boutiques en ligne performantes.</p>
-
+<p>Boutique en ligne performante</p>
 </div>
 
 </div>
@@ -109,32 +111,23 @@
 
 <section id="portfolio" class="section">
 
-<h2>Projets récents</h2>
+<h2>Portfolio</h2>
 
-<div class="portfolio-grid">
+<div class="grid">
 
-<div class="portfolio-item">
-
+<div class="glass-card">
 <img src="https://picsum.photos/400/250">
-
 <p>Site restaurant</p>
-
 </div>
 
-<div class="portfolio-item">
-
+<div class="glass-card">
 <img src="https://picsum.photos/401/250">
-
 <p>Site e-commerce</p>
-
 </div>
 
-<div class="portfolio-item">
-
+<div class="glass-card">
 <img src="https://picsum.photos/402/250">
-
 <p>Site entreprise</p>
-
 </div>
 
 </div>
@@ -143,101 +136,33 @@
 
 <section id="pricing" class="section">
 
-<h2>Nos offres</h2>
+<h2>Offres</h2>
 
 <div class="grid">
 
-<div class="card">
-
+<div class="glass-card">
 <h3>Starter</h3>
-
-<p class="price">199€</p>
-
-<a href="https://buy.stripe.com/cNieVf5IIf0jbC9gp00ZW00">
-<button>Commander</button>
-</a>
-
+<div class="price">199€</div>
+<a href="https://buy.stripe.com/cNieVf5IIf0jbC9gp00ZW00"><button>Commander</button></a>
 </div>
 
-<div class="card highlight">
-
+<div class="glass-card highlight">
 <h3>Pro</h3>
-
-<p class="price">399€</p>
-
-<a href="https://buy.stripe.com/4gM4gBb326tNay5c8K0ZW01">
-<button>Commander</button>
-</a>
-
+<div class="price">399€</div>
+<a href="https://buy.stripe.com/4gM4gBb326tNay5c8K0ZW01"><button>Commander</button></a>
 </div>
 
-<div class="card">
-
+<div class="glass-card">
 <h3>Premium</h3>
-
-<p class="price">549€</p>
-
-<a href="https://buy.stripe.com/8x2eVf9YY8BVbC97Su0ZW02">
-<button>Commander</button>
-</a>
-
+<div class="price">549€</div>
+<a href="https://buy.stripe.com/8x2eVf9YY8BVbC97Su0ZW02"><button>Commander</button></a>
 </div>
 
 </div>
 
 </section>
-
-<section id="calculator" class="section">
-
-<h2>Calculateur de prix</h2>
-
-<select id="pages">
-
-<option value="200">Site 1 page</option>
-<option value="400">Site 5 pages</option>
-<option value="600">Site 10 pages</option>
-
-</select>
-
-<select id="seo">
-
-<option value="0">Sans SEO</option>
-<option value="200">SEO inclus</option>
-
-</select>
-
-<button onclick="calculatePrice()">Calculer</button>
-
-<h3 id="priceResult">Prix estimé : 0€</h3>
-
-</section>
-
-<section id="contact" class="section">
-
-<h2>Contact</h2>
-
-<form class="contact-form">
-
-<input placeholder="Nom" required>
-
-<input placeholder="Email" required>
-
-<textarea placeholder="Explique ton projet"></textarea>
-
-<button type="submit">Envoyer</button>
-
-</form>
-
-</section>
-
-<footer>
-
-<p>© 2026 LTA FR</p>
-
-</footer>
 
 <script src="script.js"></script>
 
 </body>
-
 </html>
