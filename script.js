@@ -1,108 +1,68 @@
-const glow=document.querySelector(".cursor-glow")
-
-document.addEventListener("mousemove",e=>{
-glow.style.left=e.clientX+"px"
-glow.style.top=e.clientY+"px"
-})
-
-/* PARTICLES */
-
-const canvas=document.getElementById("particles")
-const ctx=canvas.getContext("2d")
-
-canvas.width=window.innerWidth
-canvas.height=window.innerHeight
-
-let particles=[]
-
-for(let i=0;i<80;i++){
-
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-size:Math.random()*2,
-speedX:(Math.random()-0.5)*0.5,
-speedY:(Math.random()-0.5)*0.5
-})
-
-}
-
-function animateParticles(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height)
-
-particles.forEach(p=>{
-
-p.x+=p.speedX
-p.y+=p.speedY
-
-ctx.fillStyle="#6366f1"
-
-ctx.beginPath()
-ctx.arc(p.x,p.y,p.size,0,Math.PI*2)
-ctx.fill()
-
-})
-
-requestAnimationFrame(animateParticles)
-
-}
-
-animateParticles()
-
-/* INTRO TEXT */
-
-const text="Ici vous trouverez le bonheur des entrepreneurs"
+const introText="Ici vous trouverez le bonheur des entrepreneurs"
 
 let i=0
 
-function typeText(){
+function typeIntro(){
 
-if(i<text.length){
+if(i<introText.length){
 
-document.getElementById("intro-text").innerHTML+=text.charAt(i)
+document.getElementById("introText").innerHTML+=introText.charAt(i)
 
 i++
 
-setTimeout(typeText,40)
+setTimeout(typeIntro,40)
 
 }
 
 }
 
-gsap.to("#intro-title",{opacity:1,duration:1.5})
+typeIntro()
 
-setTimeout(typeText,1500)
+setTimeout(()=>{
 
-gsap.to(".intro",{
-opacity:0,
-delay:6,
-duration:1.5,
-onComplete:()=>{
 document.querySelector(".intro").style.display="none"
+
+},4000)
+
+function animateValue(id,end){
+
+let el=document.getElementById(id)
+
+let count=0
+
+let interval=setInterval(()=>{
+
+count++
+
+el.innerText=count
+
+if(count>=end){
+
+clearInterval(interval)
+
 }
-})
 
-/* TILT EFFECT */
+},20)
 
-document.querySelectorAll(".tilt").forEach(card=>{
+}
 
-card.addEventListener("mousemove",e=>{
+animateValue("sitesCount",50)
+animateValue("clientsCount",30)
+animateValue("satisfactionCount",100)
 
-let rect=card.getBoundingClientRect()
+function calculatePrice(){
 
-let x=e.clientX-rect.left
-let y=e.clientY-rect.top
+let pages=document.getElementById("pages").value*1
+let seo=document.getElementById("seo").value*1
 
-let rotateX=(y-rect.height/2)/10
-let rotateY=(rect.width/2-x)/10
+let total=pages+seo
 
-card.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+document.getElementById("priceResult").innerText="Prix estimé : "+total+"€"
 
-})
+}
 
-card.addEventListener("mouseleave",()=>{
-card.style.transform="rotateX(0) rotateY(0)"
-})
+document.getElementById("themeToggle").onclick=function(){
 
-})
+document.body.classList.toggle("dark")
+
+}
