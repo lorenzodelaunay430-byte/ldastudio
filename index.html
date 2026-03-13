@@ -1,49 +1,34 @@
 <!DOCTYPE html>
 
 <html lang="fr">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LTA FR</title>
+<title>LTA FR - Création de sites</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
-
-<div class="intro">
-
-<canvas id="particles"></canvas>
-
-<div class="intro-center">
-<h1 id="intro-title">LTA FR</h1>
-<p id="intro-text"></p>
-</div>
-
-</div>
-
-<div class="cursor-glow"></div>
-
-<div class="mesh-bg"></div>
 
 <header class="navbar">
 
 <div class="logo">LTA FR</div>
 
 <nav>
-<a href="#services">Services</a>
-<a href="#pricing">Offres</a>
-<a href="#contact">Contact</a>
+
+<a href="#services">Services</a> <a href="#portfolio">Portfolio</a> <a href="#pricing">Offres</a> <a href="#contact">Contact</a>
+
 </nav>
+
+<button id="themeToggle">🌙</button>
 
 </header>
 
@@ -51,81 +36,199 @@
 
 <h1>Création de sites <span>ultra premium</span></h1>
 
-<p>Design moderne • performance • conversion</p>
+<p>Nous créons des sites modernes pour entreprises.</p>
 
-<a href="#pricing" class="cta">Voir les offres</a>
+<button class="cta">Voir les offres</button>
 
 </section>
 
-<section id="services" class="section">
+<section id="stats">
 
-<h2>Services</h2>
+<div class="stat">
+
+<h2 id="sites">0</h2>
+
+<p>Sites créés</p>
+
+</div>
+
+<div class="stat">
+
+<h2 id="clients">0</h2>
+
+<p>Clients</p>
+
+</div>
+
+<div class="stat">
+
+<h2 id="satisfaction">0</h2>
+
+<p>% satisfaction</p>
+
+</div>
+
+</section>
+
+<section id="services">
+
+<h2>Nos services</h2>
 
 <div class="grid">
 
-<div class="glass-card tilt">
-<h3>Web Design</h3>
-<p>Design moderne et responsive</p>
+<div class="card">
+<h3>Web design</h3>
+<p>Design moderne et rapide.</p>
 </div>
 
-<div class="glass-card tilt">
+<div class="card">
 <h3>SEO</h3>
-<p>Optimisation Google</p>
+<p>Référencement Google.</p>
 </div>
 
-<div class="glass-card tilt">
+<div class="card">
 <h3>E-commerce</h3>
-<p>Boutique en ligne performante</p>
+<p>Boutiques en ligne performantes.</p>
 </div>
 
 </div>
 
 </section>
 
-<section id="pricing" class="section">
+<section id="portfolio">
 
-<h2>Offres</h2>
+<h2>Projets récents</h2>
+
+<div class="portfolio-grid">
+
+<div class="portfolio-item">
+<img src="https://picsum.photos/400/250">
+<p>Restaurant</p>
+</div>
+
+<div class="portfolio-item">
+<img src="https://picsum.photos/401/250">
+<p>E-commerce</p>
+</div>
+
+<div class="portfolio-item">
+<img src="https://picsum.photos/402/250">
+<p>Entreprise</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="pricing">
+
+<h2>Nos offres</h2>
 
 <div class="grid">
 
-<div class="glass-card tilt">
+<div class="card">
+
 <h3>Starter</h3>
-<div class="price">199€</div>
+
+<p class="price">199€</p>
+
 <a href="https://buy.stripe.com/cNieVf5IIf0jbC9gp00ZW00">
+
 <button>Commander</button>
+
 </a>
+
 </div>
 
-<div class="glass-card tilt highlight">
+<div class="card">
+
 <h3>Pro</h3>
-<div class="price">399€</div>
+
+<p class="price">399€</p>
+
 <a href="https://buy.stripe.com/4gM4gBb326tNay5c8K0ZW01">
+
 <button>Commander</button>
+
 </a>
+
 </div>
 
-<div class="glass-card tilt">
+<div class="card">
+
 <h3>Premium</h3>
-<div class="price">549€</div>
+
+<p class="price">549€</p>
+
 <a href="https://buy.stripe.com/8x2eVf9YY8BVbC97Su0ZW02">
+
 <button>Commander</button>
+
 </a>
+
 </div>
 
 </div>
 
 </section>
 
-<section id="contact" class="section">
+<section id="calculator">
+
+<h2>Calculateur de prix</h2>
+
+<select id="pages">
+
+<option value="200">Site 1 page</option>
+<option value="400">Site 5 pages</option>
+<option value="600">Site 10 pages</option>
+
+</select>
+
+<select id="seo">
+
+<option value="0">Sans SEO</option>
+<option value="200">SEO inclus</option>
+
+</select>
+
+<button onclick="calculate()">Calculer</button>
+
+<h3 id="result">Prix estimé : 0€</h3>
+
+</section>
+
+<section id="contact">
+
 <h2>Contact</h2>
-<p>contact@ltafr.com</p>
+
+<form>
+
+<input placeholder="Nom">
+
+<input placeholder="Email">
+
+<textarea placeholder="Explique ton projet"></textarea>
+
+<button>Envoyer</button>
+
+</form>
+
 </section>
 
 <footer>
-© 2026 LTA FR
+
+<p>© 2026 LTA FR</p>
+
 </footer>
 
-<script src="script.js"></script>
+<script src="js/main.js"></script>
+
+<script src="js/stats.js"></script>
+
+<script src="js/calculator.js"></script>
+
+<script src="js/theme.js"></script>
 
 </body>
+
 </html>
