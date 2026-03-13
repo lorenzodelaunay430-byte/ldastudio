@@ -196,6 +196,11 @@ color:white;
 .section{
 
 padding:120px 20px;
+
+max-width:1200px;
+
+margin:auto;
+
 text-align:center;
 
 }
@@ -203,8 +208,13 @@ text-align:center;
 .grid{
 
 display:flex;
+
 justify-content:center;
+
+align-items:center;
+
 gap:40px;
+
 flex-wrap:wrap;
 
 margin-top:60px;
@@ -215,7 +225,7 @@ margin-top:60px;
 
 .glass-card{
 
-width:300px;
+width:280px;
 
 padding:40px;
 
@@ -228,6 +238,8 @@ backdrop-filter:blur(20px);
 border:1px solid rgba(255,255,255,0.2);
 
 box-shadow:0 20px 60px rgba(0,0,0,0.6);
+
+text-align:center;
 
 transition:0.4s;
 
