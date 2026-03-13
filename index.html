@@ -7,12 +7,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LTA FR - Création de sites</title>
+<title>LTA FR — Création de sites web premium</title>
 
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 </head>
 
@@ -24,7 +23,7 @@
 
 <nav>
 
-<a href="#services">Services</a> <a href="#portfolio">Portfolio</a> <a href="#pricing">Offres</a> <a href="#contact">Contact</a>
+<a href="#hero">Accueil</a> <a href="#services">Services</a> <a href="#portfolio">Portfolio</a> <a href="#pricing">Offres</a> <a href="#contact">Contact</a>
 
 </nav>
 
@@ -32,21 +31,25 @@
 
 </header>
 
-<section class="hero">
+<section id="hero" class="hero">
+
+<div class="hero-content">
 
 <h1>Création de sites <span>ultra premium</span></h1>
 
-<p>Nous créons des sites modernes pour entreprises.</p>
+<p>Design moderne • performance • conversion</p>
 
-<button class="cta">Voir les offres</button>
+<a href="#pricing" class="cta">Voir les offres</a>
+
+</div>
 
 </section>
 
-<section id="stats">
+<section id="stats" class="stats">
 
 <div class="stat">
 
-<h2 id="sites">0</h2>
+<h2 id="sitesCount">0</h2>
 
 <p>Sites créés</p>
 
@@ -54,7 +57,7 @@
 
 <div class="stat">
 
-<h2 id="clients">0</h2>
+<h2 id="clientsCount">0</h2>
 
 <p>Clients</p>
 
@@ -62,7 +65,7 @@
 
 <div class="stat">
 
-<h2 id="satisfaction">0</h2>
+<h2 id="satisfactionCount">0</h2>
 
 <p>% satisfaction</p>
 
@@ -70,57 +73,75 @@
 
 </section>
 
-<section id="services">
+<section id="services" class="section">
 
 <h2>Nos services</h2>
 
 <div class="grid">
 
 <div class="card">
+
 <h3>Web design</h3>
-<p>Design moderne et rapide.</p>
+
+<p>Sites modernes, rapides et responsive.</p>
+
 </div>
 
 <div class="card">
+
 <h3>SEO</h3>
-<p>Référencement Google.</p>
+
+<p>Optimisation pour Google.</p>
+
 </div>
 
 <div class="card">
+
 <h3>E-commerce</h3>
+
 <p>Boutiques en ligne performantes.</p>
+
 </div>
 
 </div>
 
 </section>
 
-<section id="portfolio">
+<section id="portfolio" class="section">
 
 <h2>Projets récents</h2>
 
 <div class="portfolio-grid">
 
 <div class="portfolio-item">
+
 <img src="https://picsum.photos/400/250">
-<p>Restaurant</p>
+
+<p>Site restaurant</p>
+
 </div>
 
 <div class="portfolio-item">
+
 <img src="https://picsum.photos/401/250">
-<p>E-commerce</p>
+
+<p>Site e-commerce</p>
+
 </div>
 
 <div class="portfolio-item">
+
 <img src="https://picsum.photos/402/250">
-<p>Entreprise</p>
+
+<p>Site entreprise</p>
+
 </div>
 
 </div>
 
 </section>
 
-<section id="pricing">
+<section id="pricing" class="section">
 
 <h2>Nos offres</h2>
 
@@ -133,23 +154,19 @@
 <p class="price">199€</p>
 
 <a href="https://buy.stripe.com/cNieVf5IIf0jbC9gp00ZW00">
-
 <button>Commander</button>
-
 </a>
 
 </div>
 
-<div class="card">
+<div class="card highlight">
 
 <h3>Pro</h3>
 
 <p class="price">399€</p>
 
 <a href="https://buy.stripe.com/4gM4gBb326tNay5c8K0ZW01">
-
 <button>Commander</button>
-
 </a>
 
 </div>
@@ -161,9 +178,7 @@
 <p class="price">549€</p>
 
 <a href="https://buy.stripe.com/8x2eVf9YY8BVbC97Su0ZW02">
-
 <button>Commander</button>
-
 </a>
 
 </div>
@@ -172,7 +187,7 @@
 
 </section>
 
-<section id="calculator">
+<section id="calculator" class="section">
 
 <h2>Calculateur de prix</h2>
 
@@ -191,25 +206,25 @@
 
 </select>
 
-<button onclick="calculate()">Calculer</button>
+<button onclick="calculatePrice()">Calculer</button>
 
-<h3 id="result">Prix estimé : 0€</h3>
+<h3 id="priceResult">Prix estimé : 0€</h3>
 
 </section>
 
-<section id="contact">
+<section id="contact" class="section">
 
 <h2>Contact</h2>
 
-<form>
+<form class="contact-form">
 
-<input placeholder="Nom">
+<input placeholder="Nom" required>
 
-<input placeholder="Email">
+<input placeholder="Email" required>
 
 <textarea placeholder="Explique ton projet"></textarea>
 
-<button>Envoyer</button>
+<button type="submit">Envoyer</button>
 
 </form>
 
@@ -221,13 +236,7 @@
 
 </footer>
 
-<script src="js/main.js"></script>
-
-<script src="js/stats.js"></script>
-
-<script src="js/calculator.js"></script>
-
-<script src="js/theme.js"></script>
+<script src="script.js"></script>
 
 </body>
 
