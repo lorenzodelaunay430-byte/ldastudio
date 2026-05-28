@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atelier H Anguier</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logoBox">
+        <div class="logoMark"><span>H</span></div>
+        <div class="logoText">ATELIER<br><b>ANGUIER</b></div>
+      </div>
+      <nav>
+        <a class="navItem active" href="#home"><span>⌂</span>Accueil</a>
+        <a class="navItem" href="#scanner"><span>⌗</span>Scanner</a>
+        <a class="navItem" href="#boxes"><span>◫</span>Toutes les boîtes</a>
+        <a class="navItem" href="#search"><span>⌕</span>Recherche</a>
+        <a class="navItem" href="#stats"><span>▥</span>Statistiques</a>
+        <a class="navItem" href="#settings"><span>⚙</span>Paramètres</a>
+        <a class="navItem" href="#about"><span>ⓘ</span>À propos</a>
+      </nav>
+      <div class="sideCard">
+        <h3>Atelier H Anguier</h3>
+        <p>Organisation et efficacité au cœur de l’atelier.</p>
+        <div class="miniLine"></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h1>Atelier H <span>Anguier</span></h1>
+          <p>Gestion des boîtes — Atelier H</p>
+        </div>
+        <div class="topActions">
+          <button id="themeBtn" title="Changer thème">☼</button>
+          <button class="profile">☻ <b>Atelier H</b>⌄</button>
+        </div>
+      </header>
+
+      <section id="home" class="hero panel">
+        <div class="heroText">
+          <div class="iconBubble">⌗</div>
+          <h2>Scanner une boîte</h2>
+          <p>Scannez le code-barres de la boîte avec votre lecteur Tera.</p>
+          <div class="scanWrap" id="scanner">
+            <input id="scanInput" autocomplete="off" autofocus placeholder="Scannez ici... (ex. Qboite1Q)" />
+            <button id="scanBtn">⌨</button>
+          </div>
+          <p class="help">ⓘ Les codes acceptés sont au format Qboite1Q, Qboite2Q, ..., Qboite48Q</p>
+        </div>
+        <div class="barcodeArt">
+          <div class="corners"></div>
+          <div class="barcodeLines"></div>
+        </div>
+      </section>
+
+      <section id="stats" class="statsGrid">
+        <article class="stat panel"><div class="roundIcon">▣</div><h3>48</h3><p>Boîtes</p><small>Total dans l’atelier H</small></article>
+        <article class="stat panel"><div class="roundIcon">⌖</div><h3>1</h3><p>Emplacement</p><small>Atelier H</small></article>
+        <article class="stat panel"><div class="roundIcon">◈</div><h3>48</h3><p>Boîtes référencées</p><small>100% répertoriées</small></article>
+        <article class="stat panel"><div class="roundIcon">✓</div><h3 id="ruptureCount">0</h3><p>En rupture</p><small>Tout est disponible</small></article>
+      </section>
+
+      <section id="result" class="result panel hidden"></section>
+
+      <section id="boxes" class="boxesPanel panel">
+        <div class="sectionHead">
+          <div><span class="cubeIcon">◈</span><h2>Aperçu des boîtes</h2></div>
+          <div id="search" class="searchBox"><input id="searchInput" placeholder="Rechercher une boîte..." /></div>
+        </div>
+        <div id="boxesGrid" class="boxesGrid"></div>
+      </section>
+
+      <section id="settings" class="panel infoPanel">
+        <h2>Paramètres</h2>
+        <p>Pour modifier une boîte, ouvre <b>script.js</b> et change le nom, la quantité ou le commentaire dans la liste.</p>
+      </section>
+
+      <section id="about" class="footer">© 2026 Atelier H Anguier — Conçu pour scanner rapidement les boîtes.</section>
+    </main>
+  </div>
+</body>
+</html>
