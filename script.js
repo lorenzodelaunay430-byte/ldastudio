@@ -1,4 +1,4 @@
-const boxes = Array.from({ length: 48 }, (_, i) => {
+const boxes = Array.from({ length: 46 }, (_, i) => {
   const n = i + 1;
   return {
     id: `Qboite${n}Q`,
