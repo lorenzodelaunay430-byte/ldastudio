@@ -83,7 +83,7 @@ function findBox() {
     result.innerHTML = `
       <h2>❌ Boîte introuvable</h2>
       <p>Code scanné : <b>${raw || 'vide'}</b></p>
-      <p>Format attendu : <b>Qboite1Q</b> à <b>Qboite48Q</b>.</p>
+      <p>Format attendu : <b>Qboite1Q</b> à <b>Qboite46Q</b>.</p>
     `;
     return;
   }
