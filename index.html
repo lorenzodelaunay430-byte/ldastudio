@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atelier H Anguier</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside class="sidebar">
+  <div class="logo"><div class="logo-box">H</div><h2>Atelier H<br><span>Anguier</span></h2></div>
+  <nav class="menu">
+    <button class="nav-btn active" data-page="home">Accueil</button>
+    <button class="nav-btn" data-page="scanner">Scanner</button>
+    <button class="nav-btn" data-page="boxes">Toutes les boîtes</button>
+    <button class="nav-btn" data-page="settings">Paramètres</button>
+  </nav>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div><h1>Atelier H <span>Anguier</span></h1><p class="subtitle">Gestion des boîtes - Atelier H</p></div>
+    <div class="profile-pill">Tera 6100 · 2.4G</div>
+  </div>
+
+  <section id="homePage" class="page active-page">
+    <div class="scanner-card">
+      <div class="scan-left">
+        <h2>Scanner une boîte</h2>
+        <p>Scannez un code : Qboite1Q → Qboite48Q</p>
+        <input type="text" id="scanInput" placeholder="Scannez ici..." autofocus>
+      </div>
+      <div class="barcode-visual"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><h3 id="totalCount">48</h3><p>Boîtes</p></div>
+      <div class="stat"><h3>1</h3><p>Emplacement</p></div>
+      <div class="stat"><h3 id="indispoCount">0</h3><p>Indisponibles</p></div>
+    </div>
+
+    <div id="result"></div>
+
+    <div class="section-head"><h2 class="section-title">Aperçu des boîtes</h2><button class="mini-btn" onclick="showPage('boxes')">Voir toutes</button></div>
+    <div class="boxes" id="previewBoxes"></div>
+  </section>
+
+  <section id="scannerPage" class="page">
+    <div class="scanner-card small">
+      <h2>Scanner rapide</h2>
+      <p>Place le curseur ici puis scanne avec le Tera.</p>
+      <input type="text" id="scanInput2" placeholder="Scannez ici...">
+    </div>
+    <div id="result2"></div>
+  </section>
+
+  <section id="boxesPage" class="page">
+    <div class="section-head"><h2 class="section-title">Toutes les boîtes</h2><input class="search" id="boxSearch" placeholder="Rechercher une boîte..."></div>
+    <div class="boxes" id="boxes"></div>
+  </section>
+
+  <section id="settingsPage" class="page">
+    <div class="settings-grid">
+      <div class="settings-card">
+        <h2>Scanner connecté</h2>
+        <p class="muted">Modèle installé dans l’atelier.</p>
+        <div class="scanner-3d-wrap">
+          <div class="scanner-3d">
+            <div class="scanner-screen"></div><div class="scanner-head"></div><div class="scanner-light"></div><div class="scanner-handle"></div><div class="scanner-base"></div>
+          </div>
+        </div>
+        <div class="scanner-info">
+          <p><strong>Modèle :</strong> Tera 6100</p>
+          <p><strong>Connexion :</strong> 2.4G sans fil</p>
+          <p><strong>Mode :</strong> Clavier automatique</p>
+          <p><strong>Format :</strong> Qboite1Q, Qboite2Q...</p>
+        </div>
+      </div>
+
+      <div class="settings-card">
+        <h2>Couleur du site</h2>
+        <p class="muted">Change la couleur sans modifier l’interface.</p>
+        <div class="color-list">
+          <button class="color-dot purple" onclick="setTheme('purple')" title="Violet"></button>
+          <button class="color-dot blue" onclick="setTheme('blue')" title="Bleu"></button>
+          <button class="color-dot green" onclick="setTheme('green')" title="Vert"></button>
+          <button class="color-dot orange" onclick="setTheme('orange')" title="Orange"></button>
+          <button class="color-dot red" onclick="setTheme('red')" title="Rouge"></button>
+        </div>
+      </div>
+
+      <div class="settings-card">
+        <h2>Ajouter une boîte</h2>
+        <p class="muted">Ajoute automatiquement la prochaine boîte.</p>
+        <button class="big-action" onclick="addBox()">+ Ajouter une boîte</button>
+        <p class="hint">Exemple : après 48, ça ajoute Qboite49Q.</p>
+      </div>
+
+      <div class="settings-card">
+        <h2>Supprimer une boîte</h2>
+        <p class="muted">Supprime la dernière boîte de la liste.</p>
+        <button class="big-action danger" onclick="removeLastBox()">Supprimer la dernière boîte</button>
+        <p class="hint">Impossible de descendre sous 1 boîte.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
